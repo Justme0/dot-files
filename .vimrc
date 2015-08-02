@@ -1,4 +1,4 @@
-"-----------------------------------for vundle plugin ----------------------------------------
+"-----------------------------------for vundle plugin ---------------------
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -45,29 +45,29 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this linesyntax on
+" Put your non-Plugin stuff after this line
 "
 "------------------------------------------------------------------------------------------
 
-set t_Co=256
+"set t_Co=256
 "------------for color scheme--------------------------------------------------------------
-
-"colorscheme gruvbox
-"set background=dark
-
 " for coq color in dark background
 autocmd FileType coq highlight SentToCoq ctermbg=17 guibg=#000045
 set guifont=Consolas\ 12
 "set guifont=Consolas\ 16
 
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
-autocmd Filetype html nnoremap gp :w<Enter>:!google-chrome %<Enter><Enter>
+" gp conflict (the following has bug in %)
+"autocmd Filetype html nnoremap gp :w<Enter>:!google-chrome %<Enter><Enter>
 
-let g:molokai_original=1
-let g:rehash256=1
-colorscheme molokai
+"let g:molokai_original=1
+"let g:rehash256=1
+"colorscheme molokai
 
 "colorscheme evening
+
+colorscheme gruvbox
+set background=dark
 
 " my config (no plugin)---------------------------------------------------------------
 " remember last position
@@ -79,9 +79,7 @@ endif
 "au BufWinLeave ?* mkview
 "au BufWinEnter ?* silent loadview
 
-" for coq indent
 filetype indent on
-" for CoqIDE vim key bind
 filetype plugin on
 " let g:CoqIDEDefaultKeyMap=1
 set scrolloff=5
@@ -97,14 +95,9 @@ inoremap <silent> <F5>		<Esc>:w<Enter>:! coqc %<Enter>
 set number
 set autoindent smartindent
 set mouse=a
-"set ignorecase smartcase
 set incsearch
 set clipboard=unnamedplus
-" hide right and left scrollbar, and Toolbar
 set guioptions=
-"set guioptions-=r
-"set guioptions-=L
-"set guioptions-=T
 set cursorline
 set showcmd
 "set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
@@ -124,24 +117,35 @@ inoremap <C-k> <Esc><C-w>k
 inoremap <C-l> <Esc><C-w>l
 nnoremap j gj
 nnoremap k gk
-nnoremap g= gg=G<C-o><C-o>
-" clear a line
-nnoremap gl 0D
 
-" the following conflict with youcompleteme
-"inoremap <Down> <C-o>gj
-"inoremap <Up> <C-o>gk
 
-"map [[ ?{<CR>w99[{
-"map ]] j0[[%/{<CR>
+autocmd Filetype c nnoremap ,h <Esc>ggdGi#include <stdio.h><Enter><Enter>int main() {<Enter><Enter>return 0;<Enter>}<Esc>kkk
+autocmd Filetype cpp nnoremap ,h <Esc>ggdGi#include <iostream><Enter><Enter>using std::cout;<Enter>using std::endl;<Enter><Enter>int main() {<Enter><Enter>return 0;<Enter>}<Esc>kkk
+
+nnoremap ,= gg=G<C-o><C-o>
+" clear
+nnoremap ,c ggdG
+nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" clear line
+nnoremap ,l 0D
+autocmd Filetype c nnoremap ,m :w<Enter>:make<Enter>:cw<Enter>:!./a.out<Enter>
+autocmd Filetype cpp nnoremap ,m :w<Enter>:make<Enter>:cw<Enter>:!./a.out<Enter>
+autocmd Filetype python nnoremap ,m :w<Enter>:make<Enter>
+autocmd Filetype ruby nnoremap ,m :w<Enter>:make<Enter>
+nnoremap ,n :cn<Enter>
+nnoremap ,p :cp<Enter>
+" replace
+nnoremap ,r "_diwP
+nnoremap ,s :so ~/.vimrc<Enter>
 
 "----------------youcompleteme config------------------------------
+"/usr/lib/vim-youcompleteme/ycm_extra_conf.py
 let g:ycm_autoclose_preview_window_after_insertion=1
-"let g:ycm_seed_identifiers_with_syntax=1
-"let g:ycm_cache_omnifunc=0
-nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_key_invoke_completion='<M-;>'
 
-"----------------vim-instant-markdown config------------------------------
+"----------------vim-instant-markdown config----------------------
 let g:instant_markdown_autostart = 0
 "You can then manually trigger preview via the command :InstantMarkdownPreview.
+
+"----------------ctrlp ------------------------------------
+let g:ctrlp_by_filename = 1
