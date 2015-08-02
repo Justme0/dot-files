@@ -106,7 +106,8 @@ set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
 syntax enable
 syntax on
 
-inoremap { {<Enter>}<Esc>O
+autocmd filetype c inoremap { {<Enter>}<Esc>O
+autocmd filetype cpp inoremap { {<Enter>}<Esc>O
 nnoremap <C-h> <Esc><C-w>h
 nnoremap <C-j> <Esc><C-w>j
 nnoremap <C-k> <Esc><C-w>k
@@ -128,10 +129,9 @@ nnoremap ,c ggdG
 nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " clear line
 nnoremap ,l 0D
-autocmd Filetype c nnoremap ,m :w<Enter>:make<Enter>:cw<Enter>:!./a.out<Enter>
-autocmd Filetype cpp nnoremap ,m :w<Enter>:make<Enter>:cw<Enter>:!./a.out<Enter>
-autocmd Filetype python nnoremap ,m :w<Enter>:make<Enter>
-autocmd Filetype ruby nnoremap ,m :w<Enter>:make<Enter>
+autocmd Filetype c,cpp nnoremap <buffer> ,m :w<Enter>:make<Enter>:cw<Enter>:!./a.out<Enter>
+autocmd Filetype python nnoremap <buffer> ,m :w<Enter>:make<Enter>
+autocmd Filetype ruby nnoremap <buffer> ,m :w<Enter>:make<Enter>
 nnoremap ,n :cn<Enter>
 nnoremap ,p :cp<Enter>
 " replace

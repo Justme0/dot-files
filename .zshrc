@@ -111,7 +111,6 @@ bindkey '^p' up-history
 bindkey '^n' down-history
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
-bindkey '^n' history-incremental-search-forward
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^u' kill-whole-line
