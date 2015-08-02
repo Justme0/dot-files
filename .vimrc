@@ -130,8 +130,7 @@ nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " clear line
 nnoremap ,l 0D
 autocmd Filetype c,cpp nnoremap <buffer> ,m :w<Enter>:make<Enter>:cw<Enter>:!./a.out<Enter>
-autocmd Filetype python nnoremap <buffer> ,m :w<Enter>:make<Enter>
-autocmd Filetype ruby nnoremap <buffer> ,m :w<Enter>:make<Enter>
+autocmd Filetype python,ruby nnoremap <buffer> ,m :w<Enter>:make<Enter>
 nnoremap ,n :cn<Enter>
 nnoremap ,p :cp<Enter>
 " replace
