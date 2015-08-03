@@ -109,7 +109,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap ,, 0D
 nnoremap ,= gg=G<C-o><C-o>
-nnoremap ,d :YcmCompleter GoTo<CR>
+nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap ,l ggdG
 nnoremap ,n :cn<Enter>
 nnoremap ,p :cp<Enter>
