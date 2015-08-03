@@ -6,6 +6,8 @@ export ZSH=/home/justme0/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
+# the following is same as bash style prompt
+# ZSH_THEME="alanpeabody"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -85,16 +87,14 @@ source $ZSH/oh-my-zsh.sh
 
 # my configure
 alias a='./a.out'
-alias e='emacs'
 alias i='sudo apt-get install'
 alias info='info --vi-keys'
 alias ll='ls -halF'
 alias l='ls -halFrt'
-alias m='make'
 alias rm='sl'
 alias sz='. ~/.zshrc'
 alias t='gvfs-trash'
-alias time="/usr/bin/time -f '%E'"
+#alias time="/usr/bin/time -f '%E'"
 alias tree='gvfs-tree'
 alias v='gvim -o -geometry 300x80'
 alias vi='vi -o'
@@ -102,6 +102,8 @@ alias vv='vi ~/.vimrc'
 alias vz='vi ~/.zshrc'
 alias xm='xmodmap ~/.Xmodmap'
 alias gk='\gitk --all --branches -d'
+alias du='du -sch (.|)* | sort -h' # for zsh
+# alias du='du -sch .[!.]* * | sort -h # for bash
 
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
 bindkey -v
