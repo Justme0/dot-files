@@ -5,13 +5,14 @@ export ZSH=/home/justme0/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="random"
 ZSH_THEME="robbyrussell"
-# the following is same as bash style prompt
-# ZSH_THEME="alanpeabody"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -83,27 +84,24 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # my configure
-alias vi='vi -o'
-alias v='gvim -o -geometry 300x80'
-alias e='emacs'
-alias rm='sl'
-alias ll='ls -halF'
-alias info='info --vi-keys'
-alias time="/usr/bin/time -f '%E'"
-alias vz='vi ~/.zshrc'
-alias sz='. ~/.zshrc'
-alias vv='vi ~/.vimrc'
-alias xm='xmodmap ~/.Xmodmap'
 alias a='./a.out'
-alias t='trash'
+alias e='emacs'
 alias i='sudo apt-get install'
-alias p='sudo poweroff'
-alias s='sudo'
+alias info='info --vi-keys'
+alias ll='ls -halF'
+alias l='ls -halFrt'
 alias m='make'
-# the following is for zsh
-# sudo du -sch * .* | sort -h
-# the following is for bash
-# sudo du -sch .[!.]* * | sort -h
+alias rm='sl'
+alias sz='. ~/.zshrc'
+alias t='gvfs-trash'
+alias time="/usr/bin/time -f '%E'"
+alias tree='gvfs-tree'
+alias v='gvim -o -geometry 300x80'
+alias vi='vi -o'
+alias vv='vi ~/.vimrc'
+alias vz='vi ~/.zshrc'
+alias xm='xmodmap ~/.Xmodmap'
+alias gk='\gitk --all --branches -d'
 
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
 bindkey -v
@@ -114,4 +112,11 @@ bindkey '^r' history-incremental-search-backward
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^u' kill-whole-line
+
 export KEYTIMEOUT=1
+export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
+export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
+export LD_LIBRARY_PATH=/usr/local/lib
+export PATH="/home/justme0/Download/clang+llvm-3.6.1-x86_64-linux-gnu/bin:/home/justme0/Download/llvm-3.6.1.src/Release+Asserts/bin:$PATH"
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
