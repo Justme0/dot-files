@@ -119,6 +119,6 @@ export KEYTIMEOUT=1
 export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
 export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
 export LD_LIBRARY_PATH=/usr/local/lib
-export PATH="/home/justme0/Download/clang+llvm-3.6.1-x86_64-linux-gnu/bin:/home/justme0/Download/llvm-3.6.1.src/Release+Asserts/bin:$PATH"
+export PATH="$PATH:/home/justme0/Download/llvm-3.6.1.src/Release+Asserts/bin"
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
