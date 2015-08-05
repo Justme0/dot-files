@@ -62,6 +62,11 @@ autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<Enter>:! coqc %<Enter>
 "------------------------------------coq end---------------------------------
 
 "------------------------------------my config-------------------------------
+autocmd Filetype c,cpp inoremap <buffer> { {<Enter>}<Esc>O
+autocmd Filetype c,cpp nnoremap <buffer> ,m :w<Enter>:make<Enter>:cw<Enter>:!./a.out<Enter>
+autocmd Filetype python,ruby nnoremap <buffer> ,m :w<Enter>:make<Enter>
+autocmd Filetype html setlocal ts=4 sts=4 sw=4
+
 set t_Co=256
 set guifont=Courier\ 10\ Pitch\ 12
 "colorscheme molokai
@@ -75,7 +80,6 @@ if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-autocmd Filetype html setlocal ts=4 sts=4 sw=4
 filetype indent on
 filetype plugin on
 set history=2000
@@ -118,8 +122,6 @@ nnoremap ,s :so ~/.vimrc<Enter>
 nnoremap g= =i{<C-o>
 nnoremap gc ggdGi#include <stdio.h><Enter><Enter>int main() {<Enter><Enter>return 0;<Enter>}<Esc>kkk
 nnoremap gp ggdGi#include <iostream><Enter><Enter>using std::cout;<Enter>using std::endl;<Enter><Enter>int main() {<Enter><Enter>return 0;<Enter>}<Esc>kkk
-autocmd Filetype c,cpp nnoremap <buffer> ,m :w<Enter>:make<Enter>:cw<Enter>:!./a.out<Enter>
-autocmd Filetype python,ruby nnoremap <buffer> ,m :w<Enter>:make<Enter>
 "------------------------------------my config end---------------------------
 
 "----------------youcompleteme------------------------------------
