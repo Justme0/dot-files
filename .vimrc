@@ -118,6 +118,7 @@ nnoremap ,s :so ~/.vimrc<Enter>
 nnoremap g= =i{<C-o>
 nnoremap gc ggdGi#include <stdio.h><Enter><Enter>int main() {<Enter><Enter>return 0;<Enter>}<Esc>kkk
 nnoremap gp ggdGi#include <iostream><Enter><Enter>using std::cout;<Enter>using std::endl;<Enter><Enter>int main() {<Enter><Enter>return 0;<Enter>}<Esc>kkk
+nnoremap <buffer> ,m :w<Enter>:make<Enter>:cw<Enter>
 autocmd Filetype c,cpp nnoremap <buffer> ,m :w<Enter>:make<Enter>:cw<Enter>:!./a.out<Enter>
 autocmd Filetype python,ruby nnoremap <buffer> ,m :w<Enter>:make<Enter>
 "------------------------------------my config end---------------------------
