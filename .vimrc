@@ -122,7 +122,7 @@ nnoremap ,s :so ~/.vimrc<Enter>
 nnoremap g= =i{<C-o>
 nnoremap gc ggdGi#include <stdio.h><Enter><Enter>int main() {<Enter><Enter>return 0;<Enter>}<Esc>kkk
 nnoremap gp ggdGi#include <iostream><Enter><Enter>using std::cout;<Enter>using std::endl;<Enter><Enter>int main() {<Enter><Enter>return 0;<Enter>}<Esc>kkk
-"------------------------------------my config end---------------------------
+"------------------------------------my config end----------------
 
 "----------------youcompleteme------------------------------------
 "if vim-youcompleteme	/usr/lib/vim-youcompleteme/ycm_extra_conf.py
