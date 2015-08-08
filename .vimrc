@@ -115,7 +115,8 @@ nnoremap ,, 0D
 nnoremap ,= gg=G<C-o><C-o>
 nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap ,a ggdG
-nnoremap ,n :cn<Enter>
+nnoremap ,l :YcmDiags<CR>
+nnoremap ,n :cn<CR>
 nnoremap ,p :cp<Enter>
 nnoremap ,r "_diwP
 nnoremap ,s :so ~/.vimrc<Enter>
