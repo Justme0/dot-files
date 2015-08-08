@@ -67,7 +67,7 @@ autocmd Filetype c,cpp nnoremap <buffer> ,m :w<Enter>:make<Enter>:cw<Enter>:!./a
 autocmd Filetype python,ruby nnoremap <buffer> ,m :w<Enter>:make<Enter>:cw<Enter>
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
-set t_Co=256
+" set t_Co=256
 set guifont=Courier\ 10\ Pitch\ 12
 "colorscheme molokai
 "let g:molokai_original=1
