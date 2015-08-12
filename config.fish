@@ -18,9 +18,25 @@ set -gx CPLUS_INCLUDE_PATH	/usr/include/x86_64-linux-gnu
 set -gx LD_LIBRARY_PATH		/usr/local/lib
 set -gx GCC_COLORS		1
 
+alias gk='gitk --all --branches -d'
+alias i='sudo apt-get install'
+alias info='info --vi-keys'
 alias ll='ls -halF'
 alias lt='ls -halFtr'
 alias rm='sl'
+alias t='gvfs-trash'
+alias tree='gvfs-tree'
+alias v='gvim'
+
+alias vf='vi ~/dot-files/config.fish'
+alias sf='source ~/dot-files/config.fish'
+alias vv='vi ~/.vimrc'
+alias xm='xmodmap ~/.Xmodmap'
+
+alias gs='git status --short'
+alias ga='git add .'
+alias gc='git commit -v'
+alias gl='git pull'
 
 if test -f /usr/share/autojump/autojump.fish;
 	. /usr/share/autojump/autojump.fish;

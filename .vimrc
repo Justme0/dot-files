@@ -13,7 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'tomasr/molokai'
-if filereadable('/home/justme0/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py')
+if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
 	Plugin 'Valloric/YouCompleteMe'
 endif
 
@@ -77,7 +77,7 @@ set background=dark
 " colorscheme evening
 
 if has("autocmd")
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 filetype indent on
@@ -95,6 +95,7 @@ set showcmd
 " set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
 set foldmethod=syntax
+set shell=/bin/bash
 autocmd BufNewFile,BufRead * setlocal formatoptions=
 autocmd BufRead * normal zR
 
@@ -127,14 +128,14 @@ nnoremap gp ggdGi#include <iostream><Enter><Enter>using std::cout;<Enter>using s
 
 "----------------youcompleteme------------------------------------
 " if vim-youcompleteme	/usr/lib/vim-youcompleteme/ycm_extra_conf.py
-" else			/home/justme0/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
+" else			~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
 " let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<M-;>'
-if filereadable('./.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py')
-	let g:ycm_global_ycm_extra_conf = '/home/justme0/dot-files/.ycm_extra_conf.py'
+if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
+	let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
 elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
-	let g:ycm_global_ycm_extra_conf = '/home/justme0/dot-files/ycm_extra_conf.py'
+	let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf.py'
 endif
 "----------------youcompleteme end---------------------------------
 
