@@ -1,4 +1,4 @@
-"-----------------------------------vundle----------------------------------------
+"-----------------------------------vundle---------------------------------
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -6,7 +6,7 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -20,24 +20,24 @@ endif
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
+" Plugin 'L9'
 " Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
+" Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
+" Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
+" Plugin 'user/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+" filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -47,7 +47,7 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-"-----------------------------------vundle end------------------------------------
+"-----------------------------------vundle end-------------------------------
 
 "------------------------------------coq-------------------------------------
 autocmd FileType coq highlight SentToCoq ctermbg=17 guibg=#000045
@@ -69,12 +69,12 @@ autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
 " set t_Co=256
 set guifont=Courier\ 10\ Pitch\ 12
-"colorscheme molokai
-"let g:molokai_original=1
-"let g:rehash256=1
+" colorscheme molokai
+" let g:molokai_original=1
+" let g:rehash256=1
 colorscheme gruvbox
 set background=dark
-"colorscheme evening
+" colorscheme evening
 
 if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -92,7 +92,7 @@ set clipboard=unnamedplus
 set guioptions=
 set cursorline
 set showcmd
-"set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
+" set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
 set foldmethod=syntax
 autocmd BufNewFile,BufRead * setlocal formatoptions=
@@ -126,11 +126,16 @@ nnoremap gp ggdGi#include <iostream><Enter><Enter>using std::cout;<Enter>using s
 "------------------------------------my config end----------------
 
 "----------------youcompleteme------------------------------------
-"if vim-youcompleteme	/usr/lib/vim-youcompleteme/ycm_extra_conf.py
-"else			/home/justme0/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
-let g:ycm_autoclose_preview_window_after_insertion = 1
+" if vim-youcompleteme	/usr/lib/vim-youcompleteme/ycm_extra_conf.py
+" else			/home/justme0/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
+" let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<M-;>'
+if filereadable('./.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py')
+	let g:ycm_global_ycm_extra_conf = '/home/justme0/dot-files/.ycm_extra_conf.py'
+elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
+	let g:ycm_global_ycm_extra_conf = '/home/justme0/dot-files/ycm_extra_conf.py'
+endif
 "----------------youcompleteme end---------------------------------
 
 "----------------ctrlp---------------------------------------------
