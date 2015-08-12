@@ -14,7 +14,12 @@ Plugin 'theme'
 Plugin 'vi-mode'
 
 . /usr/share/autojump/autojump.fish
+
 set -gx C_INCLUDE_PATH		/usr/include/x86_64-linux-gnu
 set -gx CPLUS_INCLUDE_PATH	/usr/include/x86_64-linux-gnu
 set -gx LD_LIBRARY_PATH		/usr/local/lib
 set -gx GCC_COLORS		1
+
+alias ll='ls -halF'
+alias llt='ls -halFtr'
+alias rm='sl'
