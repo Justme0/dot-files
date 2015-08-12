@@ -34,8 +34,7 @@ alias vv='vi ~/.vimrc'
 alias xm='xmodmap ~/.Xmodmap'
 
 alias gs='git status --short'
-alias ga='git add .'
-alias gc='git commit -v'
+alias gg='git add . ; git commit -v'
 alias gl='git pull'
 
 if test -f /usr/share/autojump/autojump.fish;
