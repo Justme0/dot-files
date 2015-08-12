@@ -19,7 +19,7 @@ set -gx LD_LIBRARY_PATH		/usr/local/lib
 set -gx GCC_COLORS		1
 
 alias ll='ls -halF'
-alias llt='ls -halFtr'
+alias lt='ls -halFtr'
 alias rm='sl'
 
 if test -f /usr/share/autojump/autojump.fish;
