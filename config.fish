@@ -19,7 +19,7 @@ set -gx LD_LIBRARY_PATH		/usr/local/lib
 set -gx GCC_COLORS		1
 
 alias gg='git add . ; git commit -v'
-alias gk='gitk --all --branches -d'
+alias gk='gitk --all --date-order'
 alias gl='git pull'
 alias gs='git status --short'
 alias i='sudo apt-get install'
