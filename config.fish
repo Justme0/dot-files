@@ -18,7 +18,7 @@ set -gx CPLUS_INCLUDE_PATH	/usr/include/x86_64-linux-gnu
 set -gx LD_LIBRARY_PATH		/usr/local/lib
 set -gx GCC_COLORS		1
 
-alias gg='git add . ; git commit -v'
+alias gac='git add . ; git commit -v'
 alias gk='gitk --all --date-order'
 alias gl='git pull'
 alias gs='git status --short'
@@ -27,7 +27,7 @@ alias info='info --vi-keys'
 alias ll='ls -halF'
 alias lt='ls -halFtr'
 alias rm='sl'
-alias sf='source ~/dot-files/config.fish'
+alias sf='. ~/dot-files/config.fish'
 alias t='gvfs-trash'
 alias tree='gvfs-tree'
 alias v='gvim'
