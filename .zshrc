@@ -85,38 +85,40 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# my configure
-alias a='./a.out'
+# alias time="/usr/bin/time -f '%E'"
+# alias du='du -sch .[!.]* * | sort -h # for bash
+# alias du='du -sch (.|)* | sort -h' # for zsh
+alias gac='git add . ; git commit -v'
+alias gk='gitk --all --date-order'
+alias gl='git pull'
+alias gs='git status --short'
 alias i='sudo apt-get install'
 alias info='info --vi-keys'
 alias ll='ls -halF'
-alias l='ls -halFrt'
+alias lt='ls -halFtr'
 alias rm='sl'
+alias sf='. ~/dot-files/config.fish'
 alias sz='. ~/.zshrc'
 alias t='gvfs-trash'
-#alias time="/usr/bin/time -f '%E'"
 alias tree='gvfs-tree'
-alias v='gvim -o -geometry 300x80'
-alias vi='vi -o'
+alias v='gvim'
+alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
 alias vz='vi ~/.zshrc'
 alias xm='xmodmap ~/.Xmodmap'
-alias gk='\gitk --all --branches -d'
-alias du='du -sch (.|)* | sort -h' # for zsh
-# alias du='du -sch .[!.]* * | sort -h # for bash
 
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
 bindkey -v
-bindkey '^p' up-history
-bindkey '^n' down-history
-bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
+bindkey '^n' down-history
+bindkey '^p' up-history
+bindkey '^r' history-incremental-search-backward
 bindkey '^u' kill-whole-line
+bindkey '^w' backward-kill-word
 
 export KEYTIMEOUT=1
 export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
 export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
 export LD_LIBRARY_PATH=/usr/local/lib
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS=1
