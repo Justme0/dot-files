@@ -63,8 +63,8 @@ autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<Enter>:! coqc %<Enter>
 
 "------------------------------------my config-------------------------------
 autocmd Filetype c,cpp inoremap <buffer> { {<Enter>}<Esc>O
-autocmd Filetype c,cpp nnoremap <buffer> ,m :w<Enter>:make<Enter>:cw<Enter>:!./a.out<Enter>
-autocmd Filetype python,ruby nnoremap <buffer> ,m :w<Enter>:make<Enter>:cw<CR>
+autocmd Filetype c,cpp nnoremap <buffer> ,m :w<Enter>:make program=%<Enter>:cw<Enter>:!./a.out<Enter>
+autocmd Filetype python,ruby nnoremap <buffer> ,m :w<Enter>:make program=%<Enter>:cw<CR>
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
 " set t_Co=256
