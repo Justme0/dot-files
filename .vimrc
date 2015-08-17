@@ -63,7 +63,7 @@ autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
 
 "------------------------------------my config-------------------------------
 autocmd Filetype c,cpp		inoremap <buffer> { {<CR>}<Esc>O
-autocmd Filetype ruby		inoremap <buffer> { { \|x\|<CR>}<Esc>O
+autocmd Filetype ruby		inoremap <buffer> do do \|x\|<CR>end<Esc>O
 autocmd Filetype c,cpp		nnoremap <buffer> ,m :w<CR>:make program=%<CR>:cw<CR>:!./a.out<CR>
 autocmd Filetype python,ruby	nnoremap <buffer> ,m :w<CR>:make program=%<CR>:cw<CR>
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
