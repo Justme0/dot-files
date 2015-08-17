@@ -51,29 +51,30 @@ filetype plugin indent on    " required
 
 "------------------------------------coq-------------------------------------
 autocmd FileType coq highlight SentToCoq ctermbg=17 guibg=#000045
-autocmd FileType coq nnoremap <silent> <C-Up>	<Esc>:CoqIDEUndo<Enter>:set scrolloff=5<Enter>:vertical resize 76<Enter>
-autocmd FileType coq nnoremap <silent> <C-Down>	<Esc>:CoqIDENext<Enter>:set scrolloff=5<Enter>:vertical resize 76<Enter>
-autocmd FileType coq nnoremap <silent> <C-Right>	<Esc>:CoqIDEToCursor<Enter>:set scrolloff=5<Enter>:vertical resize 76<Enter>
-autocmd FileType coq nnoremap <silent> <F5>		<Esc>:w<Enter>:! coqc %<Enter>
-autocmd FileType coq inoremap <silent> <C-Up>	<Esc>:CoqIDEUndo<Enter>:set scrolloff=5<Enter>:vertical resize 76<Enter>
-autocmd FileType coq inoremap <silent> <C-Down>	<Esc>:CoqIDENext<Enter>:set scrolloff=5<Enter>:vertical resize 76<Enter>
-autocmd FileType coq inoremap <silent> <C-Right>	<Esc>:CoqIDEToCursor<Enter>:set scrolloff=5<Enter>:vertical resize 76<Enter>
-autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<Enter>:! coqc %<Enter>
+autocmd FileType coq nnoremap <silent> <C-Up>		<Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq nnoremap <silent> <C-Down>		<Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq nnoremap <silent> <C-Right>	<Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq nnoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
+autocmd FileType coq inoremap <silent> <C-Up>		<Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq inoremap <silent> <C-Down>		<Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq inoremap <silent> <C-Right>	<Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
 "------------------------------------coq end---------------------------------
 
 "------------------------------------my config-------------------------------
-autocmd Filetype c,cpp inoremap <buffer> { {<Enter>}<Esc>O
-autocmd Filetype c,cpp nnoremap <buffer> ,m :w<Enter>:make program=%<Enter>:cw<Enter>:!./a.out<Enter>
-autocmd Filetype python,ruby nnoremap <buffer> ,m :w<Enter>:make program=%<Enter>:cw<CR>
+autocmd Filetype c,cpp		inoremap <buffer> { {<CR>}<Esc>O
+autocmd Filetype ruby		inoremap <buffer> { { \|x\|<CR>}<Esc>O
+autocmd Filetype c,cpp		nnoremap <buffer> ,m :w<CR>:make program=%<CR>:cw<CR>:!./a.out<CR>
+autocmd Filetype python,ruby	nnoremap <buffer> ,m :w<CR>:make program=%<CR>:cw<CR>
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
 " set t_Co=256
 set guifont=Courier\ 10\ Pitch\ 12
-" colorscheme molokai
-" let g:molokai_original=1
-" let g:rehash256=1
-colorscheme gruvbox
-set background=dark
+let g:molokai_original=1
+let g:rehash256=1
+colorscheme molokai
+" colorscheme gruvbox
+" set background=dark
 " colorscheme evening
 
 if has("autocmd")
@@ -118,12 +119,13 @@ nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap ,a ggdG
 nnoremap ,l :YcmDiags<CR>
 nnoremap ,n :cn<CR>
-nnoremap ,p :cp<Enter>
+nnoremap ,p :cp<CR>
 nnoremap ,r "_diwP
-nnoremap ,s :so ~/.vimrc<Enter>
+nnoremap gr GpkdggzR
+nnoremap ,s :so ~/.vimrc<CR>
 nnoremap g= =i{<C-o>
-nnoremap gc ggdGi#include <stdio.h><Enter><Enter>int main() {<Enter><Enter>return 0;<Enter>}<Esc>kkk
-nnoremap gp ggdGi#include <iostream><Enter><Enter>using std::cout;<Enter>using std::endl;<Enter><Enter>int main() {<Enter><Enter>return 0;<Enter>}<Esc>kkk
+nnoremap gc ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
+nnoremap gp ggdGi#include <iostream><CR><CR>using std::cout;<CR>using std::endl;<CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
 "------------------------------------my config end----------------
 
 "----------------youcompleteme------------------------------------
