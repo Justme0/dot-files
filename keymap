@@ -1,3 +1,5 @@
+# w3m keymap
+
 ########## scrolling ##########
 keymap b	DOWN
 keymap f	NEXT_PAGE
