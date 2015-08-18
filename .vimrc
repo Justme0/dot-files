@@ -103,6 +103,8 @@ autocmd BufRead * normal zR
 syntax enable
 syntax on
 
+nnoremap [[ 99[{
+nnoremap ]] 99]}
 nnoremap <C-h> <Esc><C-w>h
 nnoremap <C-j> <Esc><C-w>j
 nnoremap <C-k> <Esc><C-w>k
@@ -121,7 +123,7 @@ nnoremap ,l :YcmDiags<CR>
 nnoremap ,n :cn<CR>
 nnoremap ,p :cp<CR>
 nnoremap ,r "_diwP
-nnoremap gr GpkdggzR
+nnoremap gr Go<esc>pkdggzR
 nnoremap ,s :so ~/.vimrc<CR>
 nnoremap g= =i{<C-o>
 autocmd Filetype c nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
