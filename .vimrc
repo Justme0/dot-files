@@ -103,8 +103,8 @@ autocmd BufRead * normal zR
 syntax enable
 syntax on
 
-nnoremap [[ 99[{
-nnoremap ]] 99]}
+nnoremap ,[ 99[{
+nnoremap ,] 99]}
 nnoremap <C-h> <Esc><C-w>h
 nnoremap <C-j> <Esc><C-w>j
 nnoremap <C-k> <Esc><C-w>k
@@ -116,16 +116,16 @@ inoremap <C-l> <Esc><C-w>l
 nnoremap j gj
 nnoremap k gk
 nnoremap ,, 0D
-nnoremap ,= gg=G<C-o><C-o>
+nnoremap g= gg=G<C-o><C-o>
 nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap ,a ggdG
-nnoremap ,l :YcmDiags<CR>
+" nnoremap ,l :YcmDiags<CR>
 nnoremap ,n :cn<CR>
 nnoremap ,p :cp<CR>
 nnoremap ,r "_diwP
 nnoremap gr Go<esc>pkdggzR
 nnoremap ,s :so ~/.vimrc<CR>
-nnoremap g= =i{<C-o>
+nnoremap ,= =i{<C-o>
 autocmd Filetype c nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
 autocmd Filetype cpp nnoremap ,h ggdGi#include <iostream><CR><CR>using std::cout;<CR>using std::endl;<CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
 "------------------------------------my config end----------------
