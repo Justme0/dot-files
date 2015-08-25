@@ -18,7 +18,7 @@ set -gx CPLUS_INCLUDE_PATH	/usr/include/x86_64-linux-gnu
 set -gx LD_LIBRARY_PATH		/usr/local/lib
 set -gx GCC_COLORS		1
 
-alias gac='git add . ; git commit -v'
+alias gac='git add . ; and git commit -v'
 alias gk='gitk --all --date-order'
 alias gl='git pull'
 alias gs='git status --short'
