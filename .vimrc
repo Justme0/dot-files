@@ -88,6 +88,7 @@ endif
 
 filetype indent on
 filetype plugin on
+set cino=N-s	" cpp namespace no indent
 set history=2000
 set scrolloff=5
 set number
