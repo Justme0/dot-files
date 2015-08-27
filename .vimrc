@@ -118,6 +118,10 @@ inoremap <C-h> <Esc><C-w>h
 inoremap <C-j> <Esc><C-w>j
 inoremap <C-k> <Esc><C-w>k
 inoremap <C-l> <Esc><C-w>l
+nnoremap <down> g<down>
+nnoremap <up> g<up>
+inoremap <down> <C-o>g<down>
+inoremap <up> <C-o>g<up>
 nnoremap j gj
 nnoremap k gk
 nnoremap ,, 0D
