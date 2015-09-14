@@ -88,7 +88,7 @@ endif
 
 filetype indent on
 filetype plugin on
-set cino=N-s	" cpp namespace no indent
+set cinoptions=N-s,g0	" cpp: no indent for namespace and 'public'
 set history=2000
 set scrolloff=5
 set number
@@ -104,7 +104,7 @@ set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
 set foldmethod=syntax
 set shell=/bin/bash
 autocmd BufNewFile,BufRead * setlocal formatoptions=
-autocmd BufRead * normal zR
+autocmd BufRead,BufEnter * normal zR
 
 syntax enable
 syntax on
