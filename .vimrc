@@ -70,17 +70,18 @@ autocmd Filetype c nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -W
 autocmd Filetype cpp nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:cw<CR>:!./a.out<CR>
 autocmd Filetype ruby nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>:cw<CR>
 autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python\ %<cr>:make<CR>:cw<CR>
-
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
 " set t_Co=256
 set guifont=Courier\ 10\ Pitch\ 12
-let g:molokai_original=1
-let g:rehash256=1
-colorscheme molokai
-" colorscheme gruvbox
-" set background=dark
+
+" let g:molokai_original=1
+" let g:rehash256=1
+" colorscheme molokai
+
 " colorscheme evening
+colorscheme gruvbox
+set background=dark
 
 if has("autocmd")
 	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
