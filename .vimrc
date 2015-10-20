@@ -13,6 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'tomasr/molokai'
+" Plugin 'gilligan/vim-lldb'
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
 	Plugin 'Valloric/YouCompleteMe'
 endif
@@ -69,7 +70,7 @@ autocmd Filetype c,cpp inoremap <buffer> { {<CR>}<Esc>O
 autocmd Filetype c nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:cw<CR>:!./a.out<CR>
 autocmd Filetype cpp nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:cw<CR>:!./a.out<CR>
 autocmd Filetype ruby nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>:cw<CR>
-autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python\ %<cr>:make<CR>:cw<CR>
+autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python3\ %<cr>:make<CR>:cw<CR>
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
 " set t_Co=256
