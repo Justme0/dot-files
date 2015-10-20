@@ -89,7 +89,7 @@ endif
 
 filetype indent on
 filetype plugin on
-set cinoptions=N-s,g0	" cpp: no indent for namespace and 'public'
+set cinoptions=N-s,g0,+0	" cpp: no indent for namespace; 'public'; template in brace
 set history=2000
 set scrolloff=5
 set number
@@ -100,8 +100,8 @@ set clipboard=unnamedplus
 set guioptions=
 set cursorline
 set showcmd
-" set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
-set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
+set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
+" set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
 set foldmethod=syntax
 set shell=/bin/bash
 autocmd BufNewFile,BufRead * setlocal formatoptions=
@@ -128,9 +128,14 @@ nnoremap j gj
 nnoremap k gk
 nnoremap ,, 0D
 nnoremap g= gg=G<C-o><C-o>
-nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" nnoremap ,d :YcmCompleter GoTo<CR>
+nnoremap ,d :YcmCompleter GoToImprecise<CR>
+nnoremap ,c :YcmCompleter GoToDeclaration<CR>
 nnoremap ,a ggdG
-" nnoremap ,l :YcmDiags<CR>
+" let g:ycm_key_detailed_diagnostics = '<leader>d'
+nnoremap \m :YcmDiags<CR>
+nnoremap \n :lnext<CR>
+nnoremap \p :lprevious<CR>
 nnoremap ,n :cn<CR>
 nnoremap ,p :cp<CR>
 nnoremap ,r "_diwP
