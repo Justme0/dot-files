@@ -65,8 +65,8 @@ autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
 "------------------------------------my config-------------------------------
 
 " edit and compile for programming
-autocmd Filetype c,cpp inoremap <buffer> { {<CR>}<Esc>O
-" autocmd Filetype ruby inoremap <buffer> do do \|x\|<CR>end<Esc>O
+autocmd Filetype c,cpp inoremap <buffer> {<CR> {<CR>}<Esc>O
+autocmd Filetype ruby inoremap <buffer> do<Space> do<CR>end<Esc>kA <bar>
 autocmd Filetype c nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:cw<CR>:!./a.out<CR>
 autocmd Filetype cpp nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:cw<CR>:!./a.out<CR>
 autocmd Filetype ruby nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>:cw<CR>
