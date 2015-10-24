@@ -129,12 +129,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap ,, 0D
 nnoremap g= gg=G<C-o><C-o>
-" nnoremap ,d :YcmCompleter GoTo<CR>
-nnoremap ,d :YcmCompleter GoToImprecise<CR>
-nnoremap ,c :YcmCompleter GoToDeclaration<CR>
 nnoremap ,a ggdG
-" let g:ycm_key_detailed_diagnostics = '<leader>d'
-nnoremap \m :YcmDiags<CR>
 nnoremap \n :lnext<CR>
 nnoremap \p :lprevious<CR>
 nnoremap ,n :cn<CR>
@@ -153,9 +148,14 @@ autocmd Filetype cpp nnoremap ,h ggdGi#include <iostream><CR><CR>using std::cout
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<M-;>'
+" let g:ycm_key_detailed_diagnostics = '<leader>d'
+nnoremap \m :YcmDiags<CR>
+nnoremap ,c :YcmCompleter GoToDeclaration<CR>
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
+	nnoremap ,d :YcmCompleter GoToImprecise<CR>
 	let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
 elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
+	nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 	let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf.py'
 endif
 "----------------youcompleteme end---------------------------------
