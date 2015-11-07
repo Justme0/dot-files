@@ -66,11 +66,12 @@ autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
 
 " edit and compile for programming
 autocmd Filetype c,cpp inoremap <buffer> {<CR> {<CR>}<Esc>O
-autocmd Filetype ruby inoremap <buffer> do<Space> do<CR>end<Esc>kA <bar>
+"autocmd Filetype ruby inoremap <buffer> do<Space> do<CR>end<Esc>kA <bar>
+autocmd Filetype ruby inoremap <buffer> do do<CR>end<Esc>kA
 autocmd Filetype c nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:cw<CR>:!./a.out<CR>
 autocmd Filetype cpp nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:cw<CR>:!./a.out<CR>
 autocmd Filetype ruby nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>:cw<CR>
-autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python3\ %<cr>:make<CR>:cw<CR>
+autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<cr>:make<CR>:cw<CR>
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
 " set t_Co=256
