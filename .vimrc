@@ -144,7 +144,7 @@ nnoremap gr Go<esc>pkdggzR
 nnoremap ,s :so ~/.vimrc<CR>
 nnoremap ,= =i{<C-o>
 autocmd Filetype c nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
-autocmd Filetype cpp nnoremap ,h ggdGi#include <iostream><CR><CR>using std::cout;<CR>using std::endl;<CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
+autocmd Filetype cpp nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
 "------------------------------------my config end----------------
 
 "----------------youcompleteme------------------------------------
