@@ -65,7 +65,7 @@ autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
 "------------------------------------my config-------------------------------
 
 " edit and compile for programming
-inoremap <buffer> {<CR> {<CR>}<Esc>O
+inoremap {<CR> {<CR>}<Esc>O
 autocmd Filetype ruby inoremap <buffer> do<CR>		do<CR>end<Esc>O
 autocmd Filetype ruby inoremap <buffer> do<Space>	do<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> module<Space>	module<Space><CR>end<Esc>kA
@@ -117,8 +117,6 @@ autocmd BufRead,BufEnter * normal zR
 syntax enable
 syntax on
 
-nnoremap ,[ 99[{
-nnoremap ,] 99]}
 nnoremap <C-h> <Esc><C-w>h
 nnoremap <C-j> <Esc><C-w>j
 nnoremap <C-k> <Esc><C-w>k
