@@ -18,6 +18,7 @@ set -gx CPLUS_INCLUDE_PATH	/usr/include/x86_64-linux-gnu
 set -gx LD_LIBRARY_PATH		/usr/local/lib
 set -gx GCC_COLORS		1
 set -gx LLDB /usr/bin/lldb-3.6
+set -gx EDITOR			/usr/bin/vim
 
 alias gac='git add --all --verbose; and git commit -v'
 alias gk='gitk --all --date-order'
@@ -30,11 +31,9 @@ alias lt='ls -halFtr'
 alias rm='sl'
 alias sf='. ~/dot-files/config.fish'
 alias t='gvfs-trash'
-alias tree='gvfs-tree'
 alias v='gvim'
 alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
-alias xm='xmodmap ~/.Xmodmap'
 
 if test -f /usr/share/autojump/autojump.fish;
 	. /usr/share/autojump/autojump.fish;
