@@ -107,7 +107,7 @@ set hlsearch
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 set clipboard=unnamedplus
-set guioptions=
+set guioptions=r
 set cursorline
 set showcmd
 set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
