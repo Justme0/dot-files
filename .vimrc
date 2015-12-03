@@ -104,8 +104,8 @@ set autoindent smartindent
 set mouse=a
 set incsearch
 set hlsearch
-nnoremap <esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[
+nnoremap <silent> <esc> :noh<return><esc>
+nnoremap <silent> <esc>^[ <esc>^[
 set clipboard=unnamedplus
 set guioptions=r
 set cursorline
