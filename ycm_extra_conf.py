@@ -31,20 +31,21 @@ flags = [
 
 # std is required
 # clang won't know which language to use compiling headers
-'-std=c++1y',
-'-stdlib=libc++',   # add on 4.29 by justme0
+'-std=c++14',       # update on 2015.12.4 by justme0
+'-stdlib=libc++',   # add on 2015.4.29 by justme0
 
 # '-x' and 'c++' also required
 # use 'c' for C projects
-'-x',
-'c++',
+'-x', 'c++',
 
 # include third party libraries
 #'-isystem',
 #'/usr/include/python2.7',
-'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.1.0/../../../../include/c++/5.1.0',
-'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.1.0/../../../../include/i386-linux-gnu/c++/5.1.0',
-'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.1.0/../../../../include/c++/5.1.0/backward',
+
+# made by $ echo | clang -v -E -x c++ -
+'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.2.1/../../../../include/c++/5.2.1',
+'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.2.1/../../../../include/i386-linux-gnu/c++/5.2.1',
+'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.2.1/../../../../include/c++/5.2.1/backward',
 '-isystem', '/usr/local/include',
 '-isystem', '/usr/local/bin/../lib/clang/3.5.0/include',
 '-isystem', '/usr/include/i386-linux-gnu',
