@@ -34,6 +34,7 @@ alias t='gvfs-trash'
 alias v='gvim'
 alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
+alias a='./a.out'
 
 if test -f /usr/share/autojump/autojump.fish;
 	. /usr/share/autojump/autojump.fish;
