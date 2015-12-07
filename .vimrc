@@ -148,6 +148,8 @@ nnoremap ,s :so ~/.vimrc<CR>
 nnoremap ,= =i{<C-o>
 autocmd Filetype c nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
 autocmd Filetype cpp nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
+autocmd FileType ruby nnoremap ,h ggdGi#! /usr/bin/env ruby<CR><CR><Esc>
+autocmd FileType python nnoremap ,h ggdGi#! /usr/bin/env python2<CR><CR><Esc>
 "------------------------------------my config end----------------
 
 "----------------youcompleteme------------------------------------
