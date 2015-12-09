@@ -143,7 +143,7 @@ nnoremap \p :lprevious<CR>
 nnoremap ,n :cn<CR>
 nnoremap ,p :cp<CR>
 nnoremap ,r "_diwP
-nnoremap gr Go<esc>pkdggzR
+nnoremap gr Go<esc>pk"zdggzR
 nnoremap ,s :so ~/.vimrc<CR>
 nnoremap ,= =i{<C-o>
 autocmd Filetype c nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
