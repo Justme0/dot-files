@@ -13,6 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'tomasr/molokai'
+" Plugin 'scrooloose/nerdcommenter'
 " Plugin 'gilligan/vim-lldb'
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
 	Plugin 'Valloric/YouCompleteMe'
@@ -91,6 +92,7 @@ set guifont=Courier\ 10\ Pitch\ 12
 colorscheme gruvbox
 set background=dark
 
+" go last open line
 if has("autocmd")
 	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
@@ -113,10 +115,13 @@ set cursorline
 set showcmd
 set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 " set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
-set foldmethod=syntax
 set shell=/bin/bash
-autocmd BufNewFile,BufRead * setlocal formatoptions=
+"autocmd BufNewFile,BufRead * setlocal formatoptions=
+set formatoptions=
+
+set foldmethod=syntax
 autocmd BufRead,BufEnter * normal zR
+set nofoldenable
 
 syntax enable
 syntax on
@@ -143,13 +148,27 @@ nnoremap \p :lprevious<CR>
 nnoremap ,n :cn<CR>
 nnoremap ,p :cp<CR>
 nnoremap ,r "_diwP
-nnoremap gr Go<esc>pk"zdggzR
+nnoremap gr Go<esc>pk"7dggzRgg=G
+nnoremap ,t :cd ~/programs/test<cr>:e a.cpp<cr>
 nnoremap ,s :so ~/.vimrc<CR>
 nnoremap ,= =i{<C-o>
 autocmd Filetype c nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
 autocmd Filetype cpp nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
 autocmd FileType ruby nnoremap ,h ggdGi#! /usr/bin/env ruby<CR><CR><Esc>
 autocmd FileType python nnoremap ,h ggdGi#! /usr/bin/env python2<CR><CR><Esc>
+
+noremap <silent> <A-c> :call CommentLine()<CR>
+function! CommentLine()
+	if &ft == 'c' || &ft == 'cpp'
+		if match(getline("."), "^[\t ]*//.*") == -1
+			" you should press '0' first (TODO)
+			execute ":silent! normal i// \<ESC>hh\<down>"
+		else
+			execute ":silent! normal :nohlsearch\<CR>:s/\\/\\///\<CR>:nohlsearch\<CR>==\<down>"
+		endif
+	endif
+endfunction
+
 "------------------------------------my config end----------------
 
 "----------------youcompleteme------------------------------------

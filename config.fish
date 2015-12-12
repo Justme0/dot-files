@@ -36,6 +36,11 @@ alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
 alias a='./a.out'
 
+#function fish_user_key_bindings
+	#bind \ef forward-char
+	#bind \cf forward-word
+#end
+
 if test -f /usr/share/autojump/autojump.fish;
 	. /usr/share/autojump/autojump.fish;
 else if test -f ./.autojump/share/autojump/autojump.fish;
