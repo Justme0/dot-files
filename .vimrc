@@ -99,7 +99,7 @@ endif
 
 filetype indent on
 filetype plugin on
-set cinoptions=N-s,g0,+0	" cpp: no indent for namespace; 'public'; template in brace
+"set cinoptions=N-s,g0,+0	" cpp: no indent for namespace; 'public'; template in brace
 set history=2000
 set scrolloff=5
 set number
@@ -113,15 +113,21 @@ set clipboard=unnamedplus
 set guioptions=r
 set cursorline
 set showcmd
+set showmode
+set ruler
 set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 " set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
 set shell=/bin/bash
-"autocmd BufNewFile,BufRead * setlocal formatoptions=
-set formatoptions=
+autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
 
 set foldmethod=syntax
 autocmd BufRead,BufEnter * normal zR
 set nofoldenable
+
+" A tab produces a 2-space indentation
+set softtabstop=2
+set shiftwidth=2
+set expandtab
 
 syntax enable
 syntax on
@@ -148,7 +154,7 @@ nnoremap \p :lprevious<CR>
 nnoremap ,n :cn<CR>
 nnoremap ,p :cp<CR>
 nnoremap ,r "_diwP
-nnoremap gr Go<esc>pk"7dggzRgg=G
+nnoremap gr Go<esc>pk"7dggzR
 nnoremap ,t :cd ~/programs/test<cr>:e a.cpp<cr>
 nnoremap ,s :so ~/.vimrc<CR>
 nnoremap ,= =i{<C-o>
@@ -157,7 +163,7 @@ autocmd Filetype cpp nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR
 autocmd FileType ruby nnoremap ,h ggdGi#! /usr/bin/env ruby<CR><CR><Esc>
 autocmd FileType python nnoremap ,h ggdGi#! /usr/bin/env python2<CR><CR><Esc>
 
-noremap <silent> <A-c> :call CommentLine()<CR>
+noremap <silent> <C-c> :call CommentLine()<CR>
 function! CommentLine()
 	if &ft == 'c' || &ft == 'cpp'
 		if match(getline("."), "^[\t ]*//.*") == -1
@@ -169,6 +175,74 @@ function! CommentLine()
 	endif
 endfunction
 
+"-------- use LLVM style
+" Highlight trailing whitespace and lines longer than 80 columns.
+highlight LongLine ctermbg=DarkYellow guibg=DarkYellow
+highlight WhitespaceEOL ctermbg=DarkYellow guibg=DarkYellow
+if v:version >= 702
+  " Lines longer than 80 columns.
+  au BufWinEnter * let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
+
+  " Whitespace at the end of a line. This little dance suppresses
+  " whitespace that has just been typed.
+  au BufWinEnter * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+  au InsertEnter * call matchdelete(w:m1)
+  au InsertEnter * let w:m2=matchadd('WhitespaceEOL', '\s\+\%#\@<!$', -1)
+  au InsertLeave * call matchdelete(w:m2)
+  au InsertLeave * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+else
+  au BufRead,BufNewFile * syntax match LongLine /\%>80v.\+/
+  au InsertEnter * syntax match WhitespaceEOL /\s\+\%#\@<!$/
+  au InsertLeave * syntax match WhitespaceEOL /\s\+$/
+endif
+
+augroup csrc
+  au!
+  autocmd FileType *      set nocindent smartindent
+  autocmd FileType c,cpp  set cindent
+augroup END
+" Set a few indentation parameters. See the VIM help for cinoptions-values for
+" details.  These aren't absolute rules; they're just an approximation of
+" common style in LLVM source.
+set cinoptions=:0,g0,(0,Ws,l1
+" Add and delete spaces in increments of `shiftwidth' for tabs
+set smarttab
+
+" LLVM Makefiles can have names such as Makefile.rules or TEST.nightly.Makefile,
+" so it's important to categorize them as such.
+augroup filetype
+  au! BufRead,BufNewFile *Makefile* set filetype=make
+augroup END
+
+" In Makefiles, don't expand tabs to spaces, since we need the actual tabs
+autocmd FileType make set noexpandtab
+
+" Useful macros for cleaning up code to conform to LLVM coding guidelines
+
+" Delete trailing whitespace and tabs at the end of each line
+command! DeleteTrailingWs :%s/\s\+$//
+
+" Convert all tab characters to two spaces
+command! Untab :%s/\t/  /g
+
+" Enable syntax highlighting for LLVM files. To use, copy
+" utils/vim/llvm.vim to ~/.vim/syntax .
+augroup filetype
+  au! BufRead,BufNewFile *.ll     set filetype=llvm
+augroup END
+
+" Enable syntax highlighting for tablegen files. To use, copy
+" utils/vim/tablegen.vim to ~/.vim/syntax .
+augroup filetype
+  au! BufRead,BufNewFile *.td     set filetype=tablegen
+augroup END
+
+" Enable syntax highlighting for reStructuredText files. To use, copy
+" rest.vim (http://www.vim.org/scripts/script.php?script_id=973)
+" to ~/.vim/syntax .
+augroup filetype
+ au! BufRead,BufNewFile *.rst     set filetype=rest
+augroup END
 "------------------------------------my config end----------------
 
 "----------------youcompleteme------------------------------------
