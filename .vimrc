@@ -78,19 +78,20 @@ autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -W
 autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:cw<CR>:!./a.out<CR>
 autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>:cw<CR>
 autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<cr>:make<CR>:cw<CR>
-"autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:pdf
+"autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ %<cr>:make<cr>:cw<cr>:!zathura
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
-" set t_Co=256
-set guifont=Courier\ 10\ Pitch\ 12
+"set t_Co=256
+"set guifont=Courier\ 10\ Pitch\ 12
+set guifont=Monospace\ 11
 
-" let g:molokai_original=1
-" let g:rehash256=1
-" colorscheme molokai
+"let g:molokai_original=1
+"let g:rehash256=1
+"colorscheme molokai
 
-" colorscheme evening
-colorscheme gruvbox
-set background=dark
+"colorscheme evening
+"colorscheme gruvbox
+"set background=dark
 
 " go last open line
 if has("autocmd")
@@ -112,6 +113,7 @@ nnoremap <silent> <esc>^[ <esc>^[
 set clipboard=unnamedplus
 set guioptions=r
 set cursorline
+autocmd FileType tex set cursorcolumn
 set showcmd
 set showmode
 set ruler
@@ -181,7 +183,8 @@ highlight LongLine ctermbg=DarkYellow guibg=DarkYellow
 highlight WhitespaceEOL ctermbg=DarkYellow guibg=DarkYellow
 if v:version >= 702
   " Lines longer than 80 columns.
-  au BufWinEnter * let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
+  "au BufWinEnter * let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
+  au Filetype c,cpp,ruby,python let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
 
   " Whitespace at the end of a line. This little dance suppresses
   " whitespace that has just been typed.
