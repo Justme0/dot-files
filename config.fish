@@ -29,17 +29,11 @@ alias info='info --vi-keys'
 alias ll='ls -halF'
 alias lt='ls -halFtr'
 alias rm='sl'
-alias sf='. ~/dot-files/config.fish'
+alias sf='source ~/dot-files/config.fish'
 alias t='gvfs-trash'
 alias v='gvim'
 alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
-alias a='./a.out'
-
-#function fish_user_key_bindings
-	#bind \ef forward-char
-	#bind \cf forward-word
-#end
 
 if test -f /usr/share/autojump/autojump.fish;
 	. /usr/share/autojump/autojump.fish;
