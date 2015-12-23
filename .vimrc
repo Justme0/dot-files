@@ -16,7 +16,7 @@ Plugin 'tomasr/molokai'
 " Plugin 'scrooloose/nerdcommenter'
 " Plugin 'gilligan/vim-lldb'
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
-	Plugin 'Valloric/YouCompleteMe'
+  Plugin 'Valloric/YouCompleteMe'
 endif
 
 " The following are examples of different formats supported.
@@ -78,7 +78,8 @@ autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -W
 autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:cw<CR>:!./a.out<CR>
 autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>:cw<CR>
 autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<cr>:make<CR>:cw<CR>
-"autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ %<cr>:make<cr>:cw<cr>:!zathura
+" TODO: tex map ,m
+autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:!xelatex % && zathura program_transformation_algo.pdf &<cr>
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
 "set t_Co=256
@@ -90,21 +91,21 @@ set guifont=Monospace\ 11
 "colorscheme molokai
 
 "colorscheme evening
-"colorscheme gruvbox
-"set background=dark
+colorscheme gruvbox
+set background=dark
 
 " go last open line
 if has("autocmd")
-	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-filetype indent on
-filetype plugin on
-"set cinoptions=N-s,g0,+0	" cpp: no indent for namespace; 'public'; template in brace
 set history=2000
 set scrolloff=5
 set number
-set autoindent smartindent
+"set listchars=tab:\|\
+"set list
+set smartindent
+au Filetype c,cpp set cindent
 set mouse=a
 set incsearch
 set hlsearch
@@ -149,7 +150,7 @@ inoremap <up> <C-o>g<up>
 nnoremap j gj
 nnoremap k gk
 nnoremap ,, 0D
-nnoremap g= gg=G<C-o><C-o>
+nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<cr>
 nnoremap ,a ggdG
 nnoremap \n :lnext<CR>
 nnoremap \p :lprevious<CR>
@@ -160,54 +161,45 @@ nnoremap gr Go<esc>pk"7dggzR
 nnoremap ,t :cd ~/programs/test<cr>:e a.cpp<cr>
 nnoremap ,s :so ~/.vimrc<CR>
 nnoremap ,= =i{<C-o>
-autocmd Filetype c nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
-autocmd Filetype cpp nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
-autocmd FileType ruby nnoremap ,h ggdGi#! /usr/bin/env ruby<CR><CR><Esc>
+autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
+autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
+autocmd FileType ruby   nnoremap ,h ggdGi#! /usr/bin/env ruby<CR><CR><Esc>
 autocmd FileType python nnoremap ,h ggdGi#! /usr/bin/env python2<CR><CR><Esc>
 
 noremap <silent> <C-c> :call CommentLine()<CR>
 function! CommentLine()
-	if &ft == 'c' || &ft == 'cpp'
-		if match(getline("."), "^[\t ]*//.*") == -1
-			" you should press '0' first (TODO)
-			execute ":silent! normal i// \<ESC>hh\<down>"
-		else
-			execute ":silent! normal :nohlsearch\<CR>:s/\\/\\///\<CR>:nohlsearch\<CR>==\<down>"
-		endif
-	endif
+  if &ft == 'c' || &ft == 'cpp'
+    if match(getline("."), "^[\t ]*//.*") == -1
+      " you should press '0' first (TODO)
+      execute ":silent! normal i// \<ESC>hh\<down>"
+    else
+      execute ":silent! normal :nohlsearch\<CR>:s/\\/\\///\<CR>:nohlsearch\<CR>==\<down>"
+    endif
+  endif
 endfunction
 
 "-------- use LLVM style
 " Highlight trailing whitespace and lines longer than 80 columns.
 highlight LongLine ctermbg=DarkYellow guibg=DarkYellow
 highlight WhitespaceEOL ctermbg=DarkYellow guibg=DarkYellow
-if v:version >= 702
-  " Lines longer than 80 columns.
-  "au BufWinEnter * let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
-  au Filetype c,cpp,ruby,python let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
 
-  " Whitespace at the end of a line. This little dance suppresses
-  " whitespace that has just been typed.
-  au BufWinEnter * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
-  au InsertEnter * call matchdelete(w:m1)
-  au InsertEnter * let w:m2=matchadd('WhitespaceEOL', '\s\+\%#\@<!$', -1)
-  au InsertLeave * call matchdelete(w:m2)
-  au InsertLeave * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
-else
-  au BufRead,BufNewFile * syntax match LongLine /\%>80v.\+/
-  au InsertEnter * syntax match WhitespaceEOL /\s\+\%#\@<!$/
-  au InsertLeave * syntax match WhitespaceEOL /\s\+$/
-endif
+" Lines longer than 80 columns.
+"au BufWinEnter * let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
+au Filetype c,cpp,ruby,python,vim let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
 
-augroup csrc
-  au!
-  autocmd FileType *      set nocindent smartindent
-  autocmd FileType c,cpp  set cindent
-augroup END
+" Whitespace at the end of a line. This little dance suppresses
+" whitespace that has just been typed.
+au BufWinEnter * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+au InsertEnter * call matchdelete(w:m1)
+au InsertEnter * let w:m2=matchadd('WhitespaceEOL', '\s\+\%#\@<!$', -1)
+au InsertLeave * call matchdelete(w:m2)
+au InsertLeave * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+
 " Set a few indentation parameters. See the VIM help for cinoptions-values for
 " details.  These aren't absolute rules; they're just an approximation of
 " common style in LLVM source.
-set cinoptions=:0,g0,(0,Ws,l1
+set cinoptions=:0,g0,(0,Ws,l1,N-s
+"set cinoptions=N-s,g0,+0	" cpp: no indent for namespace; 'public'; template in brace
 " Add and delete spaces in increments of `shiftwidth' for tabs
 set smarttab
 
@@ -244,7 +236,7 @@ augroup END
 " rest.vim (http://www.vim.org/scripts/script.php?script_id=973)
 " to ~/.vim/syntax .
 augroup filetype
- au! BufRead,BufNewFile *.rst     set filetype=rest
+  au! BufRead,BufNewFile *.rst     set filetype=rest
 augroup END
 "------------------------------------my config end----------------
 
@@ -258,11 +250,11 @@ let g:ycm_key_invoke_completion = '<M-;>'
 nnoremap \m :YcmDiags<CR>
 nnoremap ,c :YcmCompleter GoToDeclaration<CR>
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
-	nnoremap ,d :YcmCompleter GoToImprecise<CR>
-	let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
+  nnoremap ,d :YcmCompleter GoToImprecise<CR>
+  let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
 elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
-	nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
-	let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf.py'
+  nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
+  let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf.py'
 endif
 "----------------youcompleteme end---------------------------------
 

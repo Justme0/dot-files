@@ -13,12 +13,13 @@ Theme 'robbyrussell'
 Plugin 'theme'
 Plugin 'vi-mode'
 
-set -gx C_INCLUDE_PATH		/usr/include/x86_64-linux-gnu
-set -gx CPLUS_INCLUDE_PATH	/usr/include/x86_64-linux-gnu
-set -gx LD_LIBRARY_PATH		/usr/local/lib
-set -gx GCC_COLORS		1
-set -gx LLDB /usr/bin/lldb-3.6
-set -gx EDITOR			/usr/bin/vim
+set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
+set -gx CPLUS_INCLUDE_PATH /usr/include/x86_64-linux-gnu
+set -gx LD_LIBRARY_PATH    /usr/local/lib
+set -gx GCC_COLORS         1
+set -gx LLDB               /usr/bin/lldb-3.6
+set -gx EDITOR             /usr/bin/vim
+set PATH /home/justme0/Downloads/clpa/bin $PATH
 
 alias gac='git add --all --verbose; and git commit -v'
 alias gk='gitk --all --date-order'
@@ -36,7 +37,7 @@ alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
 
 if test -f /usr/share/autojump/autojump.fish;
-	. /usr/share/autojump/autojump.fish;
+. /usr/share/autojump/autojump.fish;
 else if test -f ./.autojump/share/autojump/autojump.fish;
-	. ./.autojump/share/autojump/autojump.fish;
+. ./.autojump/share/autojump/autojump.fish;
 end
