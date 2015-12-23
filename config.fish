@@ -25,19 +25,18 @@ alias gac='git add --all --verbose; and git commit -v'
 alias gk='gitk --all --date-order'
 alias gl='git pull'
 alias gs='git status --short'
-alias i='sudo apt-get install'
 alias info='info --vi-keys'
 alias ll='ls -halF'
 alias lt='ls -halFtr'
 alias rm='sl'
-alias sf='source ~/dot-files/config.fish'
+alias sf='. ~/dot-files/config.fish'
 alias t='gvfs-trash'
 alias v='gvim'
 alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
 
 if test -f /usr/share/autojump/autojump.fish;
-. /usr/share/autojump/autojump.fish;
+  . /usr/share/autojump/autojump.fish;
 else if test -f ./.autojump/share/autojump/autojump.fish;
-. ./.autojump/share/autojump/autojump.fish;
+  . ./.autojump/share/autojump/autojump.fish;
 end
