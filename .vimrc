@@ -74,8 +74,8 @@ autocmd Filetype ruby inoremap <buffer> class<Space>	class<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> def<Space>	def<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> while<Space>	while<Space><CR>end<Esc>kA
 
-autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:cw<CR>:!./a.out<CR>
-autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:cw<CR>:!./a.out<CR>
+autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:!./a.out<CR>
+autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:!./a.out<CR>
 autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>:cw<CR>
 autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<cr>:make<CR>:cw<CR>
 " TODO: tex map ,m
@@ -180,8 +180,8 @@ endfunction
 
 "-------- use LLVM style
 " Highlight trailing whitespace and lines longer than 80 columns.
-highlight LongLine ctermbg=DarkYellow guibg=DarkYellow
-highlight WhitespaceEOL ctermbg=DarkYellow guibg=DarkYellow
+highlight LongLine ctermbg=DarkBlue guibg=DarkBlue
+highlight WhitespaceEOL ctermbg=DarkBlue guibg=DarkBlue
 
 " Lines longer than 80 columns.
 "au BufWinEnter * let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
