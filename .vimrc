@@ -79,7 +79,7 @@ autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g
 autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>
 autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<cr>:make<CR>
 " TODO: tex map ,m
-autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:!xelatex % && zathura program_transformation_algo.pdf &<cr>
+autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:!xelatex % && zathura program_transformation.pdf &<cr>
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
 "set t_Co=256
