@@ -21,7 +21,8 @@ set -gx LLDB               /usr/bin/lldb-3.6
 set -gx EDITOR             /usr/bin/vim
 set PATH /home/justme0/Downloads/clpa/bin $PATH
 
-alias gac='git add --all --verbose; and git commit -v'
+#alias gac='git add --all --verbose; and git commit -v'
+alias gac='git add --all :/ --verbose; and git commit -v'
 alias gk='gitk --all --date-order'
 alias gl='git pull'
 alias gs='git status --short'
