@@ -76,8 +76,8 @@ autocmd Filetype ruby inoremap <buffer> while<Space>	while<Space><CR>end<Esc>kA
 
 autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:!./a.out<CR>
 autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:!./a.out<CR>
-autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>:cw<CR>
-autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<cr>:make<CR>:cw<CR>
+autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>
+autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<cr>:make<CR>
 " TODO: tex map ,m
 autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:!xelatex % && zathura program_transformation_algo.pdf &<cr>
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
