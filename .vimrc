@@ -74,12 +74,12 @@ autocmd Filetype ruby inoremap <buffer> class<Space>	class<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> def<Space>	def<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> while<Space>	while<Space><CR>end<Esc>kA
 
-autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:!./a.out<CR>
-autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:!./a.out<CR>
-autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>:cw<CR>
-autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<cr>:make<CR>:cw<CR>
+autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
+autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
+autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>:cw<CR>
+autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<CR>:make<CR>:cw<CR>
 " TODO: tex map ,m
-autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:!xelatex % && zathura program_transformation.pdf &<cr>
+autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ %<CR>:make<CR>:!zathura program_transformation.pdf &<CR>
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
 "set t_Co=256
@@ -150,7 +150,7 @@ inoremap <up> <C-o>g<up>
 nnoremap j gj
 nnoremap k gk
 nnoremap ,, 0D
-nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<cr>
+nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<CR>
 nnoremap ,a ggdG
 nnoremap \n :lnext<CR>
 nnoremap \p :lprevious<CR>
@@ -158,7 +158,7 @@ nnoremap ,n :cn<CR>
 nnoremap ,p :cp<CR>
 nnoremap ,r "_diwP
 nnoremap gr Go<esc>pk"7dggzR
-nnoremap ,t :cd ~/programs/test<cr>:e a.cpp<cr>
+nnoremap ,t :cd ~/programs/test<CR>:e a.cpp<CR>
 nnoremap ,s :so ~/.vimrc<CR>
 nnoremap ,= =i{<C-o>
 autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
