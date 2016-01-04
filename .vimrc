@@ -74,12 +74,18 @@ autocmd Filetype ruby inoremap <buffer> class<Space>	class<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> def<Space>	def<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> while<Space>	while<Space><CR>end<Esc>kA
 
-autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:!./a.out<CR>
-autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<cr>:make<CR>:!./a.out<CR>
-autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<cr>:make<CR>
-autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<cr>:make<CR>
-" TODO: tex map ,m
-autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ %<CR>:make<CR>:!zathura %:r.pdf &<CR>
+autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
+autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
+autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>
+autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<CR>:make<CR>
+autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf<CR>
+"function! RunTeX()
+"  " !zathura %:r.pdf
+"  if len(getqflist()) == 0
+"    !zathura %:r.pdf
+"  endif
+"endfunction
+
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
 "set t_Co=256
