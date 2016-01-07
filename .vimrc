@@ -78,7 +78,7 @@ autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -W
 autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
 autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>
 autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<CR>:make<CR>
-autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf<CR>
+autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf &<CR>
 "function! RunTeX()
 "  " !zathura %:r.pdf
 "  if len(getqflist()) == 0
