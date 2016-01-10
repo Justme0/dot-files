@@ -26,7 +26,7 @@ alias gac='git add --all :/ --verbose; and git commit -v'
 alias gk='gitk --all --date-order'
 alias gl='git pull'
 alias gs='git status --short'
-alias info='info --vi-keys'
+alias iv='info --vi-keys'
 alias ll='ls -halF'
 alias lt='ls -halFtr --full-time'
 alias rm='sl'
@@ -36,6 +36,7 @@ alias v='gvim'
 alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
 alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --date-order"
+alias dus="du -sch * .* | sort -h" # in current dir
 
 if test -f /usr/share/autojump/autojump.fish;
   . /usr/share/autojump/autojump.fish;
