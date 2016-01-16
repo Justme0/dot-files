@@ -13,6 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'tomasr/molokai'
+Plugin 'chase/vim-ansible-yaml'
 " Plugin 'scrooloose/nerdcommenter'
 " Plugin 'gilligan/vim-lldb'
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
@@ -266,4 +267,11 @@ endif
 
 "----------------ctrlp---------------------------------------------
 let g:ctrlp_by_filename = 1
+let g:ctrlp_max_files = 0
+if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
+  let g:ctrlp_custom_ignore = {
+        \ 'dir': '\vdocs$',
+        \ 'file': '\v[^hp]$',
+        \ }
+endif
 "----------------ctrlp end-----------------------------------------

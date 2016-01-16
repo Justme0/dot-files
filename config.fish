@@ -21,8 +21,9 @@ set -gx LLDB               /usr/bin/lldb-3.6
 set -gx EDITOR             /usr/bin/vim
 set PATH /home/justme0/Downloads/clpa/bin $PATH
 
-#alias gac='git add --all --verbose; and git commit -v'
+alias ds="du -sch * .* | sort -h" # in current dir
 alias gac='git add --all :/ --verbose; and git commit -v'
+alias gg="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --date-order"
 alias gk='gitk --all --date-order'
 alias gl='git pull'
 alias gs='git status --short'
@@ -35,8 +36,6 @@ alias t='gvfs-trash'
 alias v='gvim'
 alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
-alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --date-order"
-alias dus="du -sch * .* | sort -h" # in current dir
 
 if test -f /usr/share/autojump/autojump.fish;
   . /usr/share/autojump/autojump.fish;
