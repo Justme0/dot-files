@@ -131,7 +131,8 @@ set shell=/bin/bash
 autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
 
 set foldmethod=syntax
-autocmd BufRead,BufEnter * normal zR
+"autocmd BufRead,BufEnter * normal zR
+autocmd BufRead * normal zR
 set nofoldenable
 
 " A tab produces a 2-space indentation
