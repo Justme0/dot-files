@@ -131,7 +131,8 @@ set shell=/bin/bash
 autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
 
 set foldmethod=syntax
-autocmd BufRead,BufEnter * normal zR
+"autocmd BufRead,BufEnter * normal zR
+autocmd BufRead * normal zR
 set nofoldenable
 
 " A tab produces a 2-space indentation
@@ -270,7 +271,7 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 0
 if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
   let g:ctrlp_custom_ignore = {
-        \ 'dir': '\vdocs$',
+        \ 'dir': '\v(docs|_test|testsuit)$',
         \ 'file': '\v[^hp]$',
         \ }
 endif

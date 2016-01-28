@@ -23,20 +23,20 @@ set PATH /home/justme0/Downloads/clpa/bin $PATH
 
 alias ds="du -sch * .* | sort -h" # in current dir
 alias gac='git add --all :/ --verbose; and git commit -v'
-alias gg="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --date-order"
-alias gk='gitk --all --date-order'
+alias gg="git log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset'"
+alias gk='gitk --date-order --all'
 alias gl='git pull'
 #alias gs='git status --short'
 alias gs='git status'
 alias iv='info --vi-keys'
-alias ll='ls -halF'
-alias lt='ls -halFtr --time-style=long-iso'
+alias ll='ls -halF --time-style=long-iso'
+alias lt='ls -halF --time-style=long-iso -tr'
 alias rm='sl'
 alias sf='. ~/dot-files/config.fish'
 alias t='gvfs-trash'
-alias tr='gvfs-tree'
+alias tree='gvfs-tree'
 alias v='gvim'
-alias vf='vi ~/dot-files/config.fish'
+alias vf='vi ~/dot-files/config.fish' # link is ~/.config/fish/config.fish
 alias vv='vi ~/.vimrc'
 
 if test -f /usr/share/autojump/autojump.fish;
