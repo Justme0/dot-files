@@ -13,9 +13,9 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'tomasr/molokai'
-Plugin 'chase/vim-ansible-yaml'
-" Plugin 'scrooloose/nerdcommenter'
-" Plugin 'gilligan/vim-lldb'
+"Plugin 'chase/vim-ansible-yaml'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'gilligan/vim-lldb'
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
   Plugin 'Valloric/YouCompleteMe'
 endif
