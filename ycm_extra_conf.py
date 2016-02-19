@@ -43,9 +43,9 @@ flags = [
 #'/usr/include/python2.7',
 
 # made by $ echo | clang -v -E -x c++ -
-'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.2.1/../../../../include/c++/5.2.1',
-'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.2.1/../../../../include/i386-linux-gnu/c++/5.2.1',
-'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.2.1/../../../../include/c++/5.2.1/backward',
+'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.3.0/../../../../include/c++/5.3.0',
+'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.3.0/../../../../include/i386-linux-gnu/c++/5.3.0',
+'-isystem', '/usr/lib/gcc/i686-linux-gnu/5.3.0/../../../../include/c++/5.3.0/backward',
 '-isystem', '/usr/local/include',
 '-isystem', '/usr/local/bin/../lib/clang/3.5.0/include',
 '-isystem', '/usr/include/i386-linux-gnu',
