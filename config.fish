@@ -24,7 +24,9 @@ set PATH /home/justme0/Downloads/clpa/bin $PATH
 alias ds="du -sch * .* | sort -h" # in current dir
 alias gac='git add --all :/ --verbose; and git commit -v'
 alias gg="git log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset'"
-alias gk='gitk --date-order --all'
+function gk
+	gitk --date-order --all &
+end
 alias gl='git pull'
 #alias gs='git status --short'
 alias gs='git status'
