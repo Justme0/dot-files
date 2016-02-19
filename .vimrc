@@ -68,12 +68,12 @@ autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
 
 " edit and compile for programming
 inoremap {<CR> {<CR>}<Esc>O
-autocmd Filetype ruby inoremap <buffer> do<CR>		do<CR>end<Esc>O
-autocmd Filetype ruby inoremap <buffer> do<Space>	do<Space><CR>end<Esc>kA
-autocmd Filetype ruby inoremap <buffer> module<Space>	module<Space><CR>end<Esc>kA
-autocmd Filetype ruby inoremap <buffer> class<Space>	class<Space><CR>end<Esc>kA
-autocmd Filetype ruby inoremap <buffer> def<Space>	def<Space><CR>end<Esc>kA
-autocmd Filetype ruby inoremap <buffer> while<Space>	while<Space><CR>end<Esc>kA
+autocmd Filetype ruby inoremap <buffer> do<CR>     do<CR>end<Esc>O
+autocmd Filetype ruby inoremap <buffer> do<Space>  do<Space>\|\|<CR>end<Esc>k$i
+autocmd Filetype ruby inoremap <buffer> cla        class<Space><CR>end<Esc>kA
+autocmd Filetype ruby inoremap <buffer> if<Space>  if<Space><CR>end<Esc>kA
+autocmd Filetype ruby inoremap <buffer> def<Space> def<Space><CR>end<Esc>kA
+autocmd Filetype ruby inoremap <buffer> whi        while<Space><CR>end<Esc>kA
 
 autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
 autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
@@ -188,7 +188,7 @@ endfunction
 
 "-------- use LLVM style
 " Highlight trailing whitespace and lines longer than 80 columns.
-highlight LongLine ctermbg=DarkBlue guibg=DarkBlue
+highlight LongLine ctermbg=Black guibg=Black
 highlight WhitespaceEOL ctermbg=DarkBlue guibg=DarkBlue
 
 " Lines longer than 80 columns.
@@ -270,6 +270,10 @@ endif
 let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 0
 if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
+  if expand("%:p") =~ "klee-base" && (expand("%:p") =~ "include" || expand("%:p") =~ "lib")
+    au BufEnter,Filetype c,cpp set softtabstop=4
+    au BufEnter,Filetype c,cpp set shiftwidth=4
+  endif
   let g:ctrlp_custom_ignore = {
         \ 'dir': '\v(docs|_test|testsuit)$',
         \ 'file': '\v[^hp]$',
