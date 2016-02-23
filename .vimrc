@@ -143,6 +143,12 @@ set expandtab
 syntax enable
 syntax on
 
+" fullscreen only in Linux, first `sudo apt-get install wmctrl'
+function! ToggleFullScreen()
+call system("wmctrl -r :ACTIVE: -b toggle,fullscreen")
+endfunction
+map <silent> <F11> :call ToggleFullScreen()<CR>
+
 nnoremap <C-h> <Esc><C-w>h
 nnoremap <C-j> <Esc><C-w>j
 nnoremap <C-k> <Esc><C-w>k
