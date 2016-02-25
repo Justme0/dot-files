@@ -25,13 +25,13 @@ alias ds="du -sch * .* | sort -h" # in current dir
 alias gac='git add --all :/ --verbose; and git commit -v'
 alias gg="git log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset'"
 function gk
-	gitk --date-order --all &
+	gitk --date-order --all $argv &;
 end
 alias gl='git pull'
 #alias gs='git status --short'
 alias gs='git status'
 alias iv='info --vi-keys'
-alias ll='ls -halF --time-style=long-iso'
+alias ll='ls -halFv --time-style=long-iso'
 alias lt='ls -halF --time-style=long-iso -tr'
 alias rm='sl'
 alias sf='. ~/dot-files/config.fish'
