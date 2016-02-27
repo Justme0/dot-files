@@ -30,6 +30,7 @@ end
 alias gl='git pull'
 #alias gs='git status --short'
 alias gs='git status'
+alias gd='git diff -w'
 alias iv='info --vi-keys'
 alias ll='ls -halFv --time-style=long-iso'
 alias lt='ls -halF --time-style=long-iso -tr'
