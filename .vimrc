@@ -68,18 +68,19 @@ autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
 
 " edit and compile for programming
 inoremap {<CR> {<CR>}<Esc>O
-autocmd Filetype ruby inoremap <buffer> do<CR>     do<CR>end<Esc>O
-autocmd Filetype ruby inoremap <buffer> do<Space>  do<Space>\|\|<CR>end<Esc>k$i
-autocmd Filetype ruby inoremap <buffer> cla        class<Space><CR>end<Esc>kA
-"autocmd Filetype ruby inoremap <buffer> if<Space>  if<Space><CR>end<Esc>kA
-autocmd Filetype ruby inoremap <buffer> def<Space> def<Space><CR>end<Esc>kA
-autocmd Filetype ruby inoremap <buffer> whi        while<Space><CR>end<Esc>kA
+autocmd Filetype ruby inoremap <buffer> do<CR>       do<CR>end<Esc>O
+autocmd Filetype ruby inoremap <buffer> do<Space>    do<Space>\|\|<CR>end<Esc>k$i
+autocmd Filetype ruby inoremap <buffer> class<Space> class<Space><CR>end<Esc>kA
+"autocmd Filetype ruby inoremap <buffer> if<Space>    if<Space><CR>end<Esc>kA
+autocmd Filetype ruby inoremap <buffer> def<Space>   def<Space><CR>end<Esc>kA
+autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><CR>end<Esc>kA
 
-autocmd Filetype c	nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
-autocmd Filetype cpp	nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
-autocmd Filetype ruby	nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>
-autocmd Filetype python	nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<CR>:make<CR>
-autocmd Filetype tex	nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf &<CR>
+autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
+autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
+autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>
+autocmd Filetype lisp   nnoremap <buffer> ,m :w<CR>:set makeprg=emacs\ --no-site-file\ --script\ %<CR>:make<CR>
+autocmd Filetype python nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<CR>:make<CR>
+autocmd Filetype tex    nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf &<CR>
 "function! RunTeX()
 "  " !zathura %:r.pdf
 "  if len(getqflist()) == 0
@@ -147,7 +148,8 @@ syntax on
 function! ToggleFullScreen()
 call system("wmctrl -r :ACTIVE: -b toggle,fullscreen")
 endfunction
-map <silent> <F11> :call ToggleFullScreen()<CR>
+noremap <silent> <F11> :call ToggleFullScreen()<CR>
+inoremap <silent> <F11> <Esc>:call ToggleFullScreen()<CR>
 
 nnoremap <C-h> <Esc><C-w>h
 nnoremap <C-j> <Esc><C-w>j
@@ -275,6 +277,8 @@ endif
 "----------------ctrlp---------------------------------------------
 let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 0
+
+" for KLEE project
 if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
   if expand("%:p") =~ "klee-base" && (expand("%:p") =~ "include" || expand("%:p") =~ "lib")
     au BufEnter,Filetype c,cpp set softtabstop=4

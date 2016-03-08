@@ -19,11 +19,13 @@ set -gx LD_LIBRARY_PATH    /usr/local/lib
 set -gx GCC_COLORS         1
 set -gx LLDB               /usr/bin/lldb-3.6
 set -gx EDITOR             /usr/bin/vim
+set -gx LESS               -iR # http://stackoverflow.com/a/26069/1204713
 set PATH /home/justme0/Downloads/clpa/bin $PATH
 
 alias ds="du -sch * .* | sort -h" # in current dir
 alias gac='git add --all :/ --verbose; and git commit -v'
 alias gg="git log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset'"
+alias gga="git log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --all"
 function gk
 	gitk --date-order --all $argv &;
 end
