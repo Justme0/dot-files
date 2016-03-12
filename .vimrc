@@ -70,7 +70,7 @@ autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
 inoremap {<CR> {<CR>}<Esc>O
 autocmd Filetype ruby inoremap <buffer> do<CR>     do<CR>end<Esc>O
 autocmd Filetype ruby inoremap <buffer> do<Space>  do<Space>\|\|<CR>end<Esc>k$i
-autocmd Filetype ruby inoremap <buffer> cla        class<Space><CR>end<Esc>kA
+autocmd Filetype ruby inoremap <buffer> class<Space> class<Space><CR>end<Esc>kA
 "autocmd Filetype ruby inoremap <buffer> if<Space>  if<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> def<Space> def<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> whi        while<Space><CR>end<Esc>kA
