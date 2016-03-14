@@ -68,6 +68,7 @@ autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
 
 " edit and compile for programming
 inoremap {<CR> {<CR>}<Esc>O
+
 autocmd Filetype ruby inoremap <buffer> do<CR>       do<CR>end<Esc>O
 autocmd Filetype ruby inoremap <buffer> do<Space>    do<Space>\|\|<CR>end<Esc>k$i
 autocmd Filetype ruby inoremap <buffer> class<Space> class<Space><CR>end<Esc>kA
@@ -81,6 +82,7 @@ autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<CR>:set makeprg=emacs\ --no-site-file\ --script\ %<CR>:make<CR>
 autocmd Filetype python nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<CR>:make<CR>
 autocmd Filetype tex    nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf &<CR>
+
 "function! RunTeX()
 "  " !zathura %:r.pdf
 "  if len(getqflist()) == 0
