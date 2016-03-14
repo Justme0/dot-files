@@ -75,8 +75,8 @@ autocmd Filetype ruby inoremap <buffer> class<Space> class<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> def<Space>   def<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><CR>end<Esc>kA
 
-autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
-autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
+autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:!gvfs-trash -f a.out<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
+autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:!gvfs-trash -f a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<CR>:set makeprg=emacs\ --no-site-file\ --script\ %<CR>:make<CR>
 autocmd Filetype python nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<CR>:make<CR>
@@ -107,6 +107,7 @@ if has("autocmd")
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+set shellcmdflag=-ic
 set history=2000
 set scrolloff=5
 set number
