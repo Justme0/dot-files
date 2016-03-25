@@ -54,14 +54,14 @@ filetype plugin indent on    " required
 
 "------------------------------------coq-------------------------------------
 autocmd FileType coq highlight SentToCoq ctermbg=17 guibg=#000045
-autocmd FileType coq nnoremap <silent> <C-Up>		<Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq nnoremap <silent> <C-Down>		<Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq nnoremap <silent> <C-Right>	<Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq nnoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
-autocmd FileType coq inoremap <silent> <C-Up>		<Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq inoremap <silent> <C-Down>		<Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq inoremap <silent> <C-Right>	<Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq inoremap <silent> <F5>		<Esc>:w<CR>:! coqc %<CR>
+autocmd FileType coq nnoremap <silent> <C-Up>	 <Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq nnoremap <silent> <C-Down>	 <Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq nnoremap <silent> <C-Right> <Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq nnoremap <silent> <F5>	 <Esc>:w<CR>:! coqc %<CR>
+autocmd FileType coq inoremap <silent> <C-Up>	 <Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq inoremap <silent> <C-Down>	 <Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq inoremap <silent> <C-Right> <Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq inoremap <silent> <F5>	 <Esc>:w<CR>:! coqc %<CR>
 "------------------------------------coq end---------------------------------
 
 "------------------------------------my config-------------------------------
@@ -76,8 +76,8 @@ autocmd Filetype ruby inoremap <buffer> class<Space> class<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> def<Space>   def<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><CR>end<Esc>kA
 
-autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:!gvfs-trash -f a.out<CR>:set makeprg=gcc\ -std=c11\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
-autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:!gvfs-trash -f a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
+autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f a.out<CR>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ %<CR>:silent make<CR>:!./a.out<CR>
+autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:silent make<CR>:!./a.out<CR>
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<CR>:set makeprg=emacs\ --no-site-file\ --script\ %<CR>:make<CR>
 autocmd Filetype python nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<CR>:make<CR>
@@ -109,7 +109,6 @@ if has("autocmd")
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-set shellcmdflag=-ic
 set history=2000
 set scrolloff=5
 set number
@@ -132,6 +131,7 @@ set ruler
 set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 " set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
 set shell=/bin/bash
+"set shellcmdflag=-ic
 autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
 
 set foldmethod=syntax
@@ -275,6 +275,9 @@ elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
   nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
   let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf.py'
 endif
+
+autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
+
 "----------------youcompleteme end---------------------------------
 
 "----------------ctrlp---------------------------------------------
