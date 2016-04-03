@@ -111,6 +111,7 @@ if has("autocmd")
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+autocmd VimResized * wincmd =
 set history=2000
 set scrolloff=5
 set number
