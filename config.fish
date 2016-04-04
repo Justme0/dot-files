@@ -20,7 +20,14 @@ set -gx GCC_COLORS         1
 set -gx LLDB               /usr/bin/lldb-3.6
 set -gx EDITOR             /usr/bin/vim
 set -gx LESS               -iR # http://stackoverflow.com/a/26069/1204713
-set PATH /home/justme0/Downloads/clpa/bin $PATH
+
+#enable the following when YCM git clone failed
+#https://confluence.atlassian.com/stashkb/git-clone-fails-error-rpc-failed-result-56-http-code-200-693897332.html
+#set -gx GIT_TRACE_PACKET   1
+#set -gx GIT_TRACE          1
+#set -gx GIT_CURL_VERBOSE   1
+
+#set PATH /home/justme0/Downloads/clpa/bin $PATH
 
 alias ds="du -sch * .* | sort -h" # in current dir
 alias gac='git add --all :/ --verbose; and git commit -v'

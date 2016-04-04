@@ -12,6 +12,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'vim-scripts/matchit.zip'
 Plugin 'tomasr/molokai'
 "Plugin 'chase/vim-ansible-yaml'
 "Plugin 'scrooloose/nerdcommenter'
@@ -263,6 +264,11 @@ augroup END
 "------------------------------------my config end----------------
 
 "----------------youcompleteme------------------------------------
+
+"ycm compile lib
+"cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=/home/justme0/.vim/bundle/YouCompleteMe/third_party/ycmd/libclang.so . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp # note: may replace libclang.so position
+"cmake --build . --target ycm_core --config Release
+
 " if vim-youcompleteme	/usr/lib/vim-youcompleteme/ycm_extra_conf.py
 " else			~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
 let g:ycm_autoclose_preview_window_after_insertion = 1
