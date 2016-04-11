@@ -77,7 +77,8 @@ autocmd Filetype ruby inoremap <buffer> class<Space> class<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> def<Space>   def<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><CR>end<Esc>kA
 
-autocmd Filetype c,cpp inoremap <buffer> #in         #include<Space><><Esc>i
+autocmd Filetype c,cpp inoremap <buffer> #in          #include<Space><><Esc>i
+autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<CR>};<Esc>k$hi<space>
 
 autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f a.out<CR>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
@@ -170,6 +171,7 @@ nnoremap <down> g<down>
 nnoremap <up> g<up>
 inoremap <down> <C-o>g<down>
 inoremap <up> <C-o>g<up>
+nnoremap <space> :q<cr>
 nnoremap j gj
 nnoremap k gk
 nnoremap ,, 0D
@@ -184,8 +186,8 @@ nnoremap gr Go<esc>pk"7dggzR
 nnoremap ,t :cd ~/programs/test<CR>:e a.cpp<CR>
 nnoremap ,s :so ~/.vimrc<CR>
 nnoremap ,= =i{<C-o>
-autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
-autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>kkk
+autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>ggo<cr>
+autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>ggo<cr>
 autocmd FileType ruby   nnoremap ,h ggdGi#! /usr/bin/env ruby<CR><CR><Esc>
 autocmd FileType python nnoremap ,h ggdGi#! /usr/bin/env python2<CR><CR><Esc>
 
