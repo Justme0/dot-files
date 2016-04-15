@@ -85,7 +85,8 @@ autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f a.out<
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<CR>:set makeprg=emacs\ --no-site-file\ --script\ %<CR>:make<CR>
 autocmd Filetype python nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<CR>:make<CR>
-autocmd Filetype tex    nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf &<CR>
+"autocmd Filetype tex    nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf &<CR>
+autocmd Filetype tex    nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>
 
 "function! RunTeX()
 "  " !zathura %:r.pdf
@@ -279,6 +280,8 @@ let g:ycm_key_invoke_completion = '<M-;>'
 " let g:ycm_key_detailed_diagnostics = '<leader>d'
 nnoremap \m :YcmDiags<CR>
 nnoremap ,c :YcmCompleter GoToDeclaration<CR>
+nnoremap ,p :YcmCompleter GetParent<CR>
+
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
   nnoremap ,d :YcmCompleter GoToImprecise<CR>
   let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
@@ -288,7 +291,6 @@ elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
 endif
 
 autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
-
 "----------------youcompleteme end---------------------------------
 
 "----------------ctrlp---------------------------------------------

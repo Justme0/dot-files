@@ -64,7 +64,7 @@ flags = [
 '-isystem', '/usr/lib/gcc/x86_64-linux-gnu/4.9/../../../../include/x86_64-linux-gnu/c++/4.9',
 '-isystem', '/usr/lib/gcc/x86_64-linux-gnu/4.9/../../../../include/c++/4.9/backward',
 '-isystem', '/usr/local/include',
-'-isystem', '/usr/local/bin/../lib/clang/3.6.1/include',
+'-isystem', '/usr/local/bin/../lib/clang/3.8.0/include',
 '-isystem', '/usr/include',
 
 '-I', '.',
