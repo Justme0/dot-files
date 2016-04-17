@@ -29,27 +29,39 @@ set -gx LESS               -iR # http://stackoverflow.com/a/26069/1204713
 
 #set PATH /home/justme0/Downloads/clpa/bin $PATH
 
-alias ds="du -sch * .* | sort -h" # in current dir
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm='sl' # please use gvfs-trash instread, remove to recycle bin
+
 alias gac='git add --all :/ --verbose; and git commit -v'
 alias gg="git log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset'"
 alias gga="git log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --all"
-function gk
-	gitk --date-order --all $argv &;
-end
 alias gl='git pull'
 #alias gs='git status --short'
 alias gs='git status'
 alias gd='git diff -w'
+
 alias iv='info --vi-keys'
 alias ll='ls -halFv --time-style=long-iso'
 alias lt='ls -halF --time-style=long-iso -tr'
-alias rm='sl'
 alias sf='. ~/dot-files/config.fish'
 alias t='gvfs-trash'
 alias tree='gvfs-tree'
 alias v='gvim'
 alias vf='vi ~/dot-files/config.fish' # link is ~/.config/fish/config.fish
 alias vv='vi ~/.vimrc'
+
+function ds
+  if test (count $argv) = 0 # if given directory, du that
+    du -sch ./* ./.* | sort -h
+  else
+    du -sch $argv/* $argv/.* | sort -h
+  end
+end
+
+function gk
+  gitk --date-order --all $argv &
+end
 
 if test -f /usr/share/autojump/autojump.fish;
   . /usr/share/autojump/autojump.fish;
