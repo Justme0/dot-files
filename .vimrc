@@ -13,7 +13,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-scripts/matchit.zip'
-Plugin 'tomasr/molokai'
+"Plugin 'tomasr/molokai'
+Plugin 'mileszs/ack.vim'
 "Plugin 'chase/vim-ansible-yaml'
 "Plugin 'scrooloose/nerdcommenter'
 "Plugin 'gilligan/vim-lldb'
@@ -155,7 +156,7 @@ syntax on
 
 " fullscreen only in Linux, first `sudo apt-get install wmctrl'
 function! ToggleFullScreen()
-call system("wmctrl -r :ACTIVE: -b toggle,fullscreen")
+  call system("wmctrl -r :ACTIVE: -b toggle,fullscreen")
 endfunction
 noremap <silent> <F11> :call ToggleFullScreen()<CR>
 inoremap <silent> <F11> <Esc>:call ToggleFullScreen()<CR>
@@ -283,7 +284,8 @@ nnoremap ,c :YcmCompleter GoToDeclaration<CR>
 nnoremap ,p :YcmCompleter GetParent<CR>
 
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
-  nnoremap ,d :YcmCompleter GoToImprecise<CR>
+  "nnoremap ,d :YcmCompleter GoToImprecise<CR>
+  nnoremap ,d :YcmCompleter GoTo<CR>
   let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
 elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
   nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -309,3 +311,10 @@ if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
         \ }
 endif
 "----------------ctrlp end-----------------------------------------
+
+"----------------ack for ag----------------------------------------
+" sudo apt-get install silversearcher-ag
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+"----------------ack for ag end------------------------------------
