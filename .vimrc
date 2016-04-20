@@ -1,3 +1,7 @@
+" some useful Vim operation:
+" To begin diffing on all visible windows: :windo diffthis
+" To end diff mode: :diffoff!
+
 "-----------------------------------vundle---------------------------------
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -122,7 +126,7 @@ set number
 "set listchars=tab:\|\
 "set list
 set smartindent
-au Filetype c,cpp set cindent
+autocmd Filetype c,cpp set cindent
 set mouse=a
 set incsearch
 set hlsearch
@@ -183,10 +187,14 @@ nnoremap \n :lnext<CR>
 nnoremap \p :lprevious<CR>
 nnoremap ,n :cn<CR>
 nnoremap ,p :cp<CR>
-nnoremap ,r "_diwP
+nnoremap \r "_diwP
 nnoremap gr Go<esc>pk"7dggzR
 nnoremap ,t :cd ~/programs/test<CR>:e a.cpp<CR>
-nnoremap ,s :so ~/.vimrc<CR>
+
+nnoremap ,s :source ~/.vimrc<CR>
+nnoremap ,v :sp ~/.vimrc<CR>
+autocmd! bufwritepost .vimrc source ~/.vimrc " reload vimrc once it's edited
+
 nnoremap ,= =i{<C-o>
 autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>ggo<cr>
 autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>ggo<cr>
@@ -211,16 +219,16 @@ highlight LongLine ctermbg=Black guibg=Black
 highlight WhitespaceEOL ctermbg=DarkBlue guibg=DarkBlue
 
 " Lines longer than 80 columns.
-"au BufWinEnter * let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
-au Filetype c,cpp,ruby,python,vim let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
+"autocmd BufWinEnter * let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
+autocmd Filetype c,cpp,ruby,python,vim let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
 
 " Whitespace at the end of a line. This little dance suppresses
 " whitespace that has just been typed.
-au BufWinEnter * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
-au InsertEnter * call matchdelete(w:m1)
-au InsertEnter * let w:m2=matchadd('WhitespaceEOL', '\s\+\%#\@<!$', -1)
-au InsertLeave * call matchdelete(w:m2)
-au InsertLeave * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+autocmd BufWinEnter * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+autocmd InsertEnter * call matchdelete(w:m1)
+autocmd InsertEnter * let w:m2=matchadd('WhitespaceEOL', '\s\+\%#\@<!$', -1)
+autocmd InsertLeave * call matchdelete(w:m2)
+autocmd InsertLeave * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
 
 " Set a few indentation parameters. See the VIM help for cinoptions-values for
 " details.  These aren't absolute rules; they're just an approximation of
@@ -233,7 +241,7 @@ set smarttab
 " LLVM Makefiles can have names such as Makefile.rules or TEST.nightly.Makefile,
 " so it's important to categorize them as such.
 augroup filetype
-  au! BufRead,BufNewFile *Makefile* set filetype=make
+  autocmd! BufRead,BufNewFile *Makefile* set filetype=make
 augroup END
 
 " In Makefiles, don't expand tabs to spaces, since we need the actual tabs
@@ -250,20 +258,20 @@ command! Untab :%s/\t/  /g
 " Enable syntax highlighting for LLVM files. To use, copy
 " utils/vim/llvm.vim to ~/.vim/syntax .
 augroup filetype
-  au! BufRead,BufNewFile *.ll     set filetype=llvm
+  autocmd! BufRead,BufNewFile *.ll     set filetype=llvm
 augroup END
 
 " Enable syntax highlighting for tablegen files. To use, copy
 " utils/vim/tablegen.vim to ~/.vim/syntax .
 augroup filetype
-  au! BufRead,BufNewFile *.td     set filetype=tablegen
+  autocmd! BufRead,BufNewFile *.td     set filetype=tablegen
 augroup END
 
 " Enable syntax highlighting for reStructuredText files. To use, copy
 " rest.vim (http://www.vim.org/scripts/script.php?script_id=973)
 " to ~/.vim/syntax .
 augroup filetype
-  au! BufRead,BufNewFile *.rst     set filetype=rest
+  autocmd! BufRead,BufNewFile *.rst     set filetype=rest
 augroup END
 "------------------------------------my config end----------------
 
@@ -278,8 +286,8 @@ augroup END
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<M-;>'
-" let g:ycm_key_detailed_diagnostics = '<leader>d'
-nnoremap \m :YcmDiags<CR>
+" let g:ycm_key_detailed_diagnostics = ',d'
+"nnoremap \d :YcmDiags<CR>
 nnoremap ,c :YcmCompleter GoToDeclaration<CR>
 nnoremap ,p :YcmCompleter GetParent<CR>
 
@@ -302,8 +310,8 @@ let g:ctrlp_max_files = 0
 " for KLEE project
 if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
   if expand("%:p") =~ "klee-base" && (expand("%:p") =~ "include" || expand("%:p") =~ "lib")
-    au BufEnter,Filetype c,cpp set softtabstop=4
-    au BufEnter,Filetype c,cpp set shiftwidth=4
+    autocmd BufEnter,Filetype c,cpp set softtabstop=4
+    autocmd BufEnter,Filetype c,cpp set shiftwidth=4
   endif
   let g:ctrlp_custom_ignore = {
         \ 'dir': '\v(docs|_test|testsuit)$',
@@ -317,4 +325,8 @@ endif
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" Perl regex match whole word, use \b instead of \< in Vim
+" special for KLEE:
+autocmd Filetype cpp nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cpp -w <cword> <cr>
 "----------------ack for ag end------------------------------------
