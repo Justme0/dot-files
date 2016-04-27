@@ -84,6 +84,7 @@ autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><CR>end<Esc>kA
 
 autocmd Filetype c,cpp inoremap <buffer> #in          #include<Space><><Esc>i
 autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<CR>};<Esc>k$hi<space>
+"autocmd Filetype cpp   inoremap <buffer> struct<Space> struct<Space>{<CR>};<Esc>k$hi<space>
 
 autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f a.out<CR>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
@@ -196,8 +197,8 @@ nnoremap ,v :sp ~/.vimrc<CR>
 autocmd! bufwritepost .vimrc source ~/.vimrc " reload vimrc once it's edited
 
 nnoremap ,= =i{<C-o>
-autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>ggo<cr>
-autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>ggo<cr>
+autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>gg
+autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>gg
 autocmd FileType ruby   nnoremap ,h ggdGi#! /usr/bin/env ruby<CR><CR><Esc>
 autocmd FileType python nnoremap ,h ggdGi#! /usr/bin/env python2<CR><CR><Esc>
 
@@ -242,6 +243,7 @@ set smarttab
 " so it's important to categorize them as such.
 augroup filetype
   autocmd! BufRead,BufNewFile *Makefile* set filetype=make
+  autocmd! BufRead,BufNewFile *makefile* set filetype=make
 augroup END
 
 " In Makefiles, don't expand tabs to spaces, since we need the actual tabs
@@ -289,7 +291,7 @@ let g:ycm_key_invoke_completion = '<M-;>'
 " let g:ycm_key_detailed_diagnostics = ',d'
 "nnoremap \d :YcmDiags<CR>
 nnoremap ,c :YcmCompleter GoToDeclaration<CR>
-nnoremap ,p :YcmCompleter GetParent<CR>
+"nnoremap ,p :YcmCompleter GetParent<CR> " conflict with :cp
 
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
   "nnoremap ,d :YcmCompleter GoToImprecise<CR>
@@ -309,10 +311,10 @@ let g:ctrlp_max_files = 0
 
 " for KLEE project
 if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
-  if expand("%:p") =~ "klee-base" && (expand("%:p") =~ "include" || expand("%:p") =~ "lib")
-    autocmd BufEnter,Filetype c,cpp set softtabstop=4
-    autocmd BufEnter,Filetype c,cpp set shiftwidth=4
-  endif
+  "if expand("%:p") =~ "klee-base" && (expand("%:p") =~ "include" || expand("%:p") =~ "lib")
+  "  autocmd BufEnter,Filetype c,cpp set softtabstop=4
+  "  autocmd BufEnter,Filetype c,cpp set shiftwidth=4
+  "endif
   let g:ctrlp_custom_ignore = {
         \ 'dir': '\v(docs|_test|testsuit)$',
         \ 'file': '\v[^hp]$',
@@ -328,5 +330,7 @@ endif
 
 " Perl regex match whole word, use \b instead of \< in Vim
 " special for KLEE:
+" FIXME: head file's filetype is cpp
+autocmd Filetype c   nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cc  -w <cword> <cr>
 autocmd Filetype cpp nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cpp -w <cword> <cr>
 "----------------ack for ag end------------------------------------
