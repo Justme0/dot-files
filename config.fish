@@ -50,6 +50,7 @@ alias tree='gvfs-tree'
 alias v='gvim'
 alias vf='vi ~/dot-files/config.fish' # link is ~/.config/fish/config.fish
 alias vv='vi ~/.vimrc'
+alias m='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit; and ./test.py; and cd ..'
 
 function ds
   if test (count $argv) = 0 # if given directory, du that

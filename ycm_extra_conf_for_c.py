@@ -31,12 +31,12 @@ flags = [
 
 # std is required
 # clang won't know which language to use compiling headers
-'-std=c++14',       # update on 2015.12.4 by justme0
+'-std=c11',       # update on 2015.12.4 by justme0
 #'-stdlib=libc++',   # add on 2015.4.29 by justme0
 
 # '-x' and 'c++' also required
 # use 'c' for C projects
-'-x', 'c++',
+'-x', 'c',
 
 # include third party libraries
 #'-isystem',

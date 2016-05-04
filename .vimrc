@@ -1,4 +1,6 @@
 " some useful Vim operation:
+
+" 1. diff
 " To begin diffing on all visible windows: :windo diffthis
 " To end diff mode: :diffoff!
 
@@ -278,7 +280,6 @@ augroup END
 "------------------------------------my config end----------------
 
 "----------------youcompleteme------------------------------------
-
 "ycm compile lib
 "cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=/home/justme0/.vim/bundle/YouCompleteMe/third_party/ycmd/libclang.so . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp # note: may replace libclang.so position
 "cmake --build . --target ycm_core --config Release
@@ -293,16 +294,17 @@ let g:ycm_key_invoke_completion = '<M-;>'
 nnoremap ,c :YcmCompleter GoToDeclaration<CR>
 "nnoremap ,p :YcmCompleter GetParent<CR> " conflict with :cp
 
+autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
   "nnoremap ,d :YcmCompleter GoToImprecise<CR>
   nnoremap ,d :YcmCompleter GoTo<CR>
   let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
+  autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
 elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
   nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
   let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf.py'
+  autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf_for_c.py'
 endif
-
-autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
 "----------------youcompleteme end---------------------------------
 
 "----------------ctrlp---------------------------------------------
