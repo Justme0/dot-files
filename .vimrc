@@ -16,17 +16,18 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'vim-scripts/Conque-GDB'
 Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-scripts/matchit.zip'
-"Plugin 'tomasr/molokai'
-Plugin 'mileszs/ack.vim'
-"Plugin 'chase/vim-ansible-yaml'
-"Plugin 'scrooloose/nerdcommenter'
-"Plugin 'gilligan/vim-lldb'
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
   Plugin 'Valloric/YouCompleteMe'
 endif
+"Plugin 'chase/vim-ansible-yaml'
+"Plugin 'gilligan/vim-lldb'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'tomasr/molokai'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -219,7 +220,7 @@ endfunction
 "-------- use LLVM style
 " Highlight trailing whitespace and lines longer than 80 columns.
 highlight LongLine ctermbg=Black guibg=Black
-highlight WhitespaceEOL ctermbg=DarkBlue guibg=DarkBlue
+highlight WhitespaceEOL ctermbg=Black guibg=Black
 
 " Lines longer than 80 columns.
 "autocmd BufWinEnter * let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
@@ -228,10 +229,11 @@ autocmd Filetype c,cpp,ruby,python,vim let w:m0=matchadd('LongLine', '\%>80v.\+'
 " Whitespace at the end of a line. This little dance suppresses
 " whitespace that has just been typed.
 autocmd BufWinEnter * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
-autocmd InsertEnter * call matchdelete(w:m1)
-autocmd InsertEnter * let w:m2=matchadd('WhitespaceEOL', '\s\+\%#\@<!$', -1)
-autocmd InsertLeave * call matchdelete(w:m2)
-autocmd InsertLeave * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+" why the following always yield shit?
+" autocmd InsertEnter * call matchdelete(w:m1)
+" autocmd InsertEnter * let w:m2=matchadd('WhitespaceEOL', '\s\+\%#\@<!$', -1)
+" autocmd InsertLeave * call matchdelete(w:m2)
+" autocmd InsertLeave * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
 
 " Set a few indentation parameters. See the VIM help for cinoptions-values for
 " details.  These aren't absolute rules; they're just an approximation of
