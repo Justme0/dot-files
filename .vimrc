@@ -76,7 +76,7 @@ autocmd FileType coq inoremap <silent> <F5>	 <Esc>:w<CR>:! coqc %<CR>
 "------------------------------------my config-------------------------------
 
 " edit and compile for programming
-inoremap {<CR> {<CR>}<Esc>O
+inoremap <buffer> {<CR> {<CR>}<Esc>O
 
 autocmd Filetype ruby inoremap <buffer> do<CR>       do<CR>end<Esc>O
 autocmd Filetype ruby inoremap <buffer> do<Space>    do<Space>\|<CR>end<Esc>k$a
@@ -224,7 +224,7 @@ highlight WhitespaceEOL ctermbg=Black guibg=Black
 
 " Lines longer than 80 columns.
 "autocmd BufWinEnter * let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
-autocmd Filetype c,cpp,ruby,python,vim let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
+autocmd BufEnter,BufRead,Filetype c,cpp,ruby,python,vim let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
 
 " Whitespace at the end of a line. This little dance suppresses
 " whitespace that has just been typed.
@@ -338,3 +338,7 @@ endif
 autocmd Filetype c   nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cc  -w <cword> <cr>
 autocmd Filetype cpp nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cpp -w <cword> <cr>
 "----------------ack for ag end------------------------------------
+
+"----------------ConqueGDB-----------------------------------------
+let g:ConqueGdb_SaveHistory = 1
+"----------------ConqueGDB end-------------------------------------
