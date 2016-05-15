@@ -116,11 +116,7 @@ set guifont=Monospace\ 11
 
 "colorscheme evening
 colorscheme gruvbox
-if has('gui_running')
-  set background=dark
-else
-  set background=light
-endif
+set background=dark
 
 " go last open line
 if has("autocmd")
