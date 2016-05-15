@@ -202,8 +202,8 @@ autocmd! bufwritepost .vimrc source ~/.vimrc " reload vimrc once it's edited
 nnoremap ,= =i{<C-o>
 autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>gg
 autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>gg
-autocmd FileType ruby   nnoremap ,h ggdGi#! /usr/bin/env ruby<CR><CR><Esc>
-autocmd FileType python nnoremap ,h ggdGi#! /usr/bin/env python2<CR><CR><Esc>
+autocmd FileType ruby   nnoremap ,h ggdGi#!/usr/bin/env ruby<CR><CR><Esc>
+autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python2<CR><CR><Esc>
 
 noremap <silent> <C-c> :call CommentLine()<CR>
 function! CommentLine()
