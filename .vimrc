@@ -93,7 +93,7 @@ autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f a.out<
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ %<CR>:make<CR>:!./a.out<CR>
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<CR>:set makeprg=emacs\ --no-site-file\ --script\ %<CR>:make<CR>
-autocmd Filetype python nnoremap <buffer> ,m :w<CR>:set makeprg=python2\ %<CR>:make<CR>
+autocmd Filetype python nnoremap <buffer> ,m :w<CR>:set makeprg=python3\ %<CR>:make<CR>
 "autocmd Filetype tex    nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf &<CR>
 autocmd Filetype tex    nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>
 
@@ -116,7 +116,11 @@ set guifont=Monospace\ 11
 
 "colorscheme evening
 colorscheme gruvbox
-set background=dark
+if has('gui_running')
+  set background=dark
+else
+  set background=light
+endif
 
 " go last open line
 if has("autocmd")
@@ -203,7 +207,7 @@ nnoremap ,= =i{<C-o>
 autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>gg
 autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>gg
 autocmd FileType ruby   nnoremap ,h ggdGi#!/usr/bin/env ruby<CR><CR><Esc>
-autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python2<CR><CR><Esc>
+autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python3<CR># -*- coding: utf-8 -*-<CR><Esc>
 
 noremap <silent> <C-c> :call CommentLine()<CR>
 function! CommentLine()
