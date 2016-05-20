@@ -34,7 +34,7 @@ set -gx MANWIDTH           80
 
 alias cp="cp -i"
 alias mv="mv -i"
-alias rm='sl' # please use gvfs-trash instread, remove to recycle bin
+alias rm='shit' # please use gvfs-trash instread, remove to recycle bin
 
 alias gac='git add --all :/ --verbose; and git commit -v'
 alias gg="git log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset'"

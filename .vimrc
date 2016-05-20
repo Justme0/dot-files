@@ -27,7 +27,7 @@ endif
 "Plugin 'chase/vim-ansible-yaml'
 "Plugin 'gilligan/vim-lldb'
 "Plugin 'scrooloose/nerdcommenter'
-"Plugin 'tomasr/molokai'
+Plugin 'tomasr/molokai'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -220,20 +220,28 @@ endfunction
 "-------- use LLVM style
 " Highlight trailing whitespace and lines longer than 80 columns.
 highlight LongLine ctermbg=Black guibg=Black
-highlight WhitespaceEOL ctermbg=Black guibg=Black
+autocmd BufEnter,BufRead,Filetype c,cpp,ruby,python,vim,sh let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
+"highlight WhitespaceEOL ctermbg=Black guibg=Black
 
 " Lines longer than 80 columns.
 "autocmd BufWinEnter * let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
-autocmd BufEnter,BufRead,Filetype c,cpp,ruby,python,vim let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
 
 " Whitespace at the end of a line. This little dance suppresses
 " whitespace that has just been typed.
-autocmd BufWinEnter * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+"autocmd BufWinEnter * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+"let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
 " why the following always yield shit?
-" autocmd InsertEnter * call matchdelete(w:m1)
+"autocmd InsertEnter * call matchdelete(w:m1)
 " autocmd InsertEnter * let w:m2=matchadd('WhitespaceEOL', '\s\+\%#\@<!$', -1)
 " autocmd InsertLeave * call matchdelete(w:m2)
-" autocmd InsertLeave * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+"autocmd InsertLeave * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+
+:highlight ExtraWhitespace ctermbg=Black guibg=Black
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+"autocmd BufWinLeave * call clearmatches()
 
 " Set a few indentation parameters. See the VIM help for cinoptions-values for
 " details.  These aren't absolute rules; they're just an approximation of
@@ -298,8 +306,8 @@ nnoremap ,c :YcmCompleter GoToDeclaration<CR>
 
 autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
-  "nnoremap ,d :YcmCompleter GoToImprecise<CR>
-  nnoremap ,d :YcmCompleter GoTo<CR>
+  nnoremap ,d :YcmCompleter GoToImprecise<CR>
+  "nnoremap ,d :YcmCompleter GoTo<CR>
   let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
   autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
 elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
@@ -326,6 +334,10 @@ if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
 endif
 "----------------ctrlp end-----------------------------------------
 
+"----------------ConqueGDB-----------------------------------------
+let g:ConqueGdb_SaveHistory = 1
+"----------------ConqueGDB end-------------------------------------
+
 "----------------ack for ag----------------------------------------
 " sudo apt-get install silversearcher-ag
 if executable('ag')
@@ -339,6 +351,25 @@ autocmd Filetype c   nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sens
 autocmd Filetype cpp nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cpp -w <cword> <cr>
 "----------------ack for ag end------------------------------------
 
-"----------------ConqueGDB-----------------------------------------
-let g:ConqueGdb_SaveHistory = 1
-"----------------ConqueGDB end-------------------------------------
+"----------------cscope--------------------------------------------
+" extract from http://cscope.sourceforge.net/cscope_maps.vim
+"if has("cscope")
+"  " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+"  set cscopetag
+"
+"  " check cscope for definition of a symbol before checking ctags: set to 1
+"  " if you want the reverse search order.
+"  set csto=0
+"
+"  " add any cscope database in current directory
+"  if filereadable("cscope.out")
+"    cs add cscope.out
+"    " else add the database pointed to by environment variable
+"  elseif $CSCOPE_DB != ""
+"    cs add $CSCOPE_DB
+"  endif
+"
+"  " show msg when any other cscope db added
+"  set cscopeverbose
+"endif
+"----------------cscope end----------------------------------------
