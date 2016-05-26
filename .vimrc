@@ -86,7 +86,8 @@ autocmd Filetype ruby inoremap <buffer> def<Space>   def<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><CR>end<Esc>kA
 
 autocmd Filetype c,cpp inoremap <buffer> #in          #include<Space><><Esc>i
-autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<CR>};<Esc>k$hi<space>
+" class as template name:
+"autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<CR>};<Esc>k$hi<space>
 "autocmd Filetype cpp   inoremap <buffer> struct<Space> struct<Space>{<CR>};<Esc>k$hi<space>
 
 autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f %:p:h/a.out<CR>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
@@ -185,7 +186,10 @@ nnoremap <space> :q<cr>
 nnoremap j gj
 nnoremap k gk
 nnoremap ,, 0D
+
 nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<CR>
+nnoremap gc :w<cr>:!clang-format -i %:p<cr>
+
 nnoremap ,a ggdG
 nnoremap \n :lnext<CR>
 nnoremap \p :lprevious<CR>
@@ -194,6 +198,7 @@ nnoremap ,p :cp<CR>
 nnoremap \r "_diwP
 nnoremap gr Go<esc>pk"7dggzR
 nnoremap ,t :cd ~/programs/test<CR>:e a.cpp<CR>
+nnoremap gp :!git log -p --stat --follow -- %:p > /tmp/gitLogPatch<cr>:vsp /tmp/gitLogPatch<cr>
 
 nnoremap ,s :source ~/.vimrc<CR>
 nnoremap ,v :sp ~/.vimrc<CR>
@@ -205,12 +210,11 @@ autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {
 autocmd FileType ruby   nnoremap ,h ggdGi#!/usr/bin/env ruby<CR><CR><Esc>
 autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python3<CR># -*- coding: utf-8 -*-<CR><Esc>
 
-noremap <silent> <C-c> :call CommentLine()<CR>
+noremap <silent> <C-S-c> :call CommentLine()<CR>
 function! CommentLine()
   if &ft == 'c' || &ft == 'cpp'
     if match(getline("."), "^[\t ]*//.*") == -1
-      " you should press '0' first (TODO)
-      execute ":silent! normal i// \<ESC>hh\<down>"
+      execute ":silent! normal I// \<ESC>hh\<down>"
     else
       execute ":silent! normal :nohlsearch\<CR>:s/\\/\\///\<CR>:nohlsearch\<CR>==\<down>"
     endif
@@ -299,12 +303,13 @@ augroup END
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<M-;>'
+" let g:ycm_key_invoke_completion = '<S-Space>'
 " let g:ycm_key_detailed_diagnostics = ',d'
-"nnoremap \d :YcmDiags<CR>
+" nnoremap \d :YcmDiags<CR>
+" YCM default: let g:ycm_key_detailed_diagnostics = '<leader>d'
 nnoremap ,c :YcmCompleter GoToDeclaration<CR>
 "nnoremap ,p :YcmCompleter GetParent<CR> " conflict with :cp
 
-autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
 if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
   nnoremap ,d :YcmCompleter GoToImprecise<CR>
   "nnoremap ,d :YcmCompleter GoTo<CR>
@@ -315,6 +320,7 @@ elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
   let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf.py'
   autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf_for_c.py'
 endif
+autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
 "----------------youcompleteme end---------------------------------
 
 "----------------ctrlp---------------------------------------------

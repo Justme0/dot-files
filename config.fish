@@ -1,3 +1,7 @@
+# some useful cmd:
+# 1. view all diffs
+# git log -p --stat --follow -- hello.txt
+
 # Path to your oh-my-fish.
 set fish_path $HOME/.oh-my-fish
 
@@ -43,6 +47,7 @@ alias gl='git pull'
 #alias gs='git status --short'
 alias gs='git status'
 alias gd='git diff -w'
+alias gp='git log -p --stat --follow --'
 
 alias iv='info --vi-keys'
 
