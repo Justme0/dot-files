@@ -210,7 +210,7 @@ autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {
 autocmd FileType ruby   nnoremap ,h ggdGi#!/usr/bin/env ruby<CR><CR><Esc>
 autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python3<CR># -*- coding: utf-8 -*-<CR><Esc>
 
-noremap <silent> <C-S-c> :call CommentLine()<CR>
+"noremap <silent> <C-C> :call CommentLine()<CR>
 function! CommentLine()
   if &ft == 'c' || &ft == 'cpp'
     if match(getline("."), "^[\t ]*//.*") == -1
