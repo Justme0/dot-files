@@ -58,6 +58,7 @@ alias lt='ls -halF --time-style=long-iso -tr'
 alias sf='. ~/dot-files/config.fish'
 alias t='gvfs-trash'
 alias tree='gvfs-tree'
+alias e='emacs'
 alias v='gvim'
 alias vf='vi ~/dot-files/config.fish' # link is ~/.config/fish/config.fish
 alias vv='vi ~/.vimrc'
