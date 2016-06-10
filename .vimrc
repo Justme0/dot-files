@@ -16,7 +16,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'vim-scripts/Conque-GDB'
+"Plugin 'vim-scripts/Conque-GDB' " use emacs gdb
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
@@ -139,11 +139,11 @@ nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <silent> <esc>^[ <esc>^[
 set clipboard=unnamedplus
 set guioptions=r
-set cursorline
 autocmd FileType tex set cursorcolumn
 set showcmd
 set showmode
 set ruler
+set wildmenu
 set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 " set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
 set shell=/bin/bash
@@ -178,15 +178,20 @@ inoremap <C-h> <Esc><C-w>h
 inoremap <C-j> <Esc><C-w>j
 inoremap <C-k> <Esc><C-w>k
 inoremap <C-l> <Esc><C-w>l
+
 nnoremap <down> g<down>
 nnoremap <up> g<up>
 inoremap <down> <C-o>g<down>
 inoremap <up> <C-o>g<up>
+
 nnoremap <space> :q<cr>
-nnoremap j gj
-nnoremap k gk
+
+set cursorline
+nnoremap j gjzz
+nnoremap k gkzz
 nnoremap ,, 0D
 
+"nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<CR>:%s///g<cr>
 nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<CR>
 nnoremap gc :w<cr>:!clang-format -i %:p<cr>
 
@@ -240,7 +245,7 @@ autocmd BufEnter,BufRead,Filetype c,cpp,ruby,python,vim,sh let w:m0=matchadd('Lo
 " autocmd InsertLeave * call matchdelete(w:m2)
 "autocmd InsertLeave * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
 
-:highlight ExtraWhitespace ctermbg=Black guibg=Black
+highlight ExtraWhitespace ctermbg=Black guibg=Black
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -291,6 +296,8 @@ augroup END
 augroup filetype
   autocmd! BufRead,BufNewFile *.rst     set filetype=rest
 augroup END
+
+autocmd Filetype gitcommit setlocal spell textwidth=72
 "------------------------------------my config end----------------
 
 "----------------youcompleteme------------------------------------
@@ -341,7 +348,7 @@ endif
 "----------------ctrlp end-----------------------------------------
 
 "----------------ConqueGDB-----------------------------------------
-let g:ConqueGdb_SaveHistory = 1
+"let g:ConqueGdb_SaveHistory = 1
 "----------------ConqueGDB end-------------------------------------
 
 "----------------ack for ag----------------------------------------
