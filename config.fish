@@ -80,6 +80,6 @@ end
 
 if test -f /usr/share/autojump/autojump.fish;
   . /usr/share/autojump/autojump.fish;
-else if test -f ./.autojump/share/autojump/autojump.fish;
-  . ./.autojump/share/autojump/autojump.fish;
+else if test -f ~/.autojump/share/autojump/autojump.fish;
+  . ~/.autojump/share/autojump/autojump.fish;
 end
