@@ -47,7 +47,6 @@ alias gl='git pull'
 #alias gs='git status --short'
 alias gs='git status'
 alias gd='git diff -w'
-alias gp='git log -p --stat'
 alias gm='git diff --name-only | uniq | xargs vi -p' # open conflict files in one go
 
 alias iv='info --vi-keys'
@@ -67,10 +66,18 @@ alias m='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd t
 alias tm='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit/transform_test/demo; and ./trans.rb demo1_if.c'
 
 function ds
-  if test (count $argv) = 0 # if given directory, du that
+  if test (count $argv) = 0 # if not given directory
     du -sch ./* ./.* | sort -h
   else
     du -sch $argv/* $argv/.* | sort -h
+  end
+end
+
+function gp
+  if test (count $argv) = 0
+    git log -p --stat
+  else
+    git log -p --stat --follow -- $argv # a file's history
   end
 end
 
