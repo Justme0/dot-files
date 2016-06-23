@@ -3,21 +3,21 @@
 # git log -p --stat --follow -- hello.txt
 
 # Path to your oh-my-fish.
-set fish_path $HOME/.oh-my-fish
+#set fish_path $HOME/.oh-my-fish
 
 # Path to your custom folder (default path is ~/.oh-my-fish/custom)
 #set fish_custom $HOME/dotfiles/oh-my-fish
 
 # Load oh-my-fish configuration.
-. $fish_path/oh-my-fish.fish
+#. $fish_path/oh-my-fish.fish
 
 # Custom plugins and themes may be added to ~/.oh-my-fish/custom
 # Plugins and themes can be found at https://github.com/oh-my-fish/
-Theme 'robbyrussell'
-Plugin 'theme'
-Plugin 'vi-mode'
+#Theme 'robbyrussell'
+#Plugin 'theme'
+#Plugin 'vi-mode'
 
-set PATH ~/Downloads/jruby-9.1.2.0/bin $PATH
+set PATH ~/programs/mruby/bin $PATH
 
 set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
 set -gx CPLUS_INCLUDE_PATH /usr/include/x86_64-linux-gnu
@@ -90,3 +90,35 @@ if test -f /usr/share/autojump/autojump.fish;
 else if test -f ~/.autojump/share/autojump/autojump.fish;
   . ~/.autojump/share/autojump/autojump.fish;
 end
+
+#function fish_prompt
+#  set -l last_status $status
+#  set -l cyan (set_color -o cyan)
+#  set -l yellow (set_color -o yellow)
+#  set -l red (set_color -o red)
+#  set -l blue (set_color -o blue)
+#  set -l green (set_color -o green)
+#  set -l normal (set_color normal)
+#
+#  if test $last_status = 0
+#      set arrow "$green➜ "
+#  else
+#      set arrow "$red➜ "
+#  end
+#
+#  # 2016.06.23
+#  #set -l cwd $cyan(basename (prompt_pwd))
+#  set -l cwd $cyan(prompt_pwd)
+#
+#  if [ (_git_branch_name) ]
+#    set -l git_branch $red(_git_branch_name)
+#    set git_info "$blue git:($git_branch$blue)"
+#
+#    if [ (_is_git_dirty) ]
+#      set -l dirty "$yellow ✗"
+#      set git_info "$git_info$dirty"
+#    end
+#  end
+#
+#  echo -n -s $arrow ' ' $cwd $git_info $normal ' '
+#end
