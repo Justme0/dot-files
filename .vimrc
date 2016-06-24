@@ -62,105 +62,6 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 "-----------------------------------vundle end-------------------------------
 
-"------------------------------------coq-------------------------------------
-autocmd FileType coq highlight SentToCoq ctermbg=17 guibg=#000045
-autocmd FileType coq nnoremap <silent> <C-Up>	 <Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq nnoremap <silent> <C-Down>	 <Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq nnoremap <silent> <C-Right> <Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq nnoremap <silent> <F5>	 <Esc>:w<CR>:! coqc %<CR>
-autocmd FileType coq inoremap <silent> <C-Up>	 <Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq inoremap <silent> <C-Down>	 <Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq inoremap <silent> <C-Right> <Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq inoremap <silent> <F5>	 <Esc>:w<CR>:! coqc %<CR>
-"------------------------------------coq end---------------------------------
-
-"----------------youcompleteme------------------------------------
-"ycm compile lib
-"cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=/home/justme0/.vim/bundle/YouCompleteMe/third_party/ycmd/libclang.so . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp # note: may replace libclang.so position
-"cmake --build . --target ycm_core --config Release
-
-" if vim-youcompleteme	/usr/lib/vim-youcompleteme/ycm_extra_conf.py
-" else			~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_key_invoke_completion = '<M-;>'
-" let g:ycm_key_invoke_completion = '<S-Space>'
-" let g:ycm_key_detailed_diagnostics = ',d'
-" nnoremap \d :YcmDiags<CR>
-" YCM default: let g:ycm_key_detailed_diagnostics = '<leader>d'
-nnoremap ,c :YcmCompleter GoToDeclaration<CR>
-"nnoremap ,p :YcmCompleter GetParent<CR> " conflict with :cp
-
-if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
-  nnoremap ,d :YcmCompleter GoToImprecise<CR>
-  "nnoremap ,d :YcmCompleter GoTo<CR>
-  let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
-  autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
-elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
-  nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
-  let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf.py'
-  autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf_for_c.py'
-endif
-autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
-"----------------youcompleteme end---------------------------------
-
-"----------------ctrlp---------------------------------------------
-let g:ctrlp_by_filename = 1
-let g:ctrlp_max_files = 0
-
-" for KLEE project
-if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
-  "if expand("%:p") =~ "klee-base" && (expand("%:p") =~ "include" || expand("%:p") =~ "lib")
-  "  autocmd BufEnter,Filetype c,cpp set softtabstop=4
-  "  autocmd BufEnter,Filetype c,cpp set shiftwidth=4
-  "endif
-  let g:ctrlp_custom_ignore = {
-        \ 'dir': '\v(docs|_test|testsuit)$',
-        \ 'file': '\v[^hp]$',
-        \ }
-endif
-"----------------ctrlp end-----------------------------------------
-
-"----------------ConqueGDB-----------------------------------------
-"let g:ConqueGdb_SaveHistory = 1
-"----------------ConqueGDB end-------------------------------------
-
-"----------------ack for ag----------------------------------------
-" sudo apt-get install silversearcher-ag
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-" Perl regex match whole word, use \b instead of \< in Vim
-" special for KLEE:
-" FIXME: head file's filetype is cpp
-autocmd Filetype c   nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cc  -w <cword> <cr>
-autocmd Filetype cpp nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cpp -w <cword> <cr>
-"----------------ack for ag end------------------------------------
-
-"----------------cscope--------------------------------------------
-" extract from http://cscope.sourceforge.net/cscope_maps.vim
-"if has("cscope")
-"  " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
-"  set cscopetag
-"
-"  " check cscope for definition of a symbol before checking ctags: set to 1
-"  " if you want the reverse search order.
-"  set csto=0
-"
-"  " add any cscope database in current directory
-"  if filereadable("cscope.out")
-"    cs add cscope.out
-"    " else add the database pointed to by environment variable
-"  elseif $CSCOPE_DB != ""
-"    cs add $CSCOPE_DB
-"  endif
-"
-"  " show msg when any other cscope db added
-"  set cscopeverbose
-"endif
-"----------------cscope end----------------------------------------
-
 "------------------------------------my config-------------------------------
 
 " edit and compile for programming
@@ -399,3 +300,102 @@ EOF
 endfunction
 
 "------------------------------------my config end----------------
+
+"------------------------------------coq-------------------------------------
+autocmd FileType coq highlight SentToCoq ctermbg=17 guibg=#000045
+autocmd FileType coq nnoremap <silent> <C-Up>	 <Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq nnoremap <silent> <C-Down>	 <Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq nnoremap <silent> <C-Right> <Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq nnoremap <silent> <F5>	 <Esc>:w<CR>:! coqc %<CR>
+autocmd FileType coq inoremap <silent> <C-Up>	 <Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq inoremap <silent> <C-Down>	 <Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq inoremap <silent> <C-Right> <Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
+autocmd FileType coq inoremap <silent> <F5>	 <Esc>:w<CR>:! coqc %<CR>
+"------------------------------------coq end---------------------------------
+
+"----------------youcompleteme------------------------------------
+"ycm compile lib
+"cmake -G 'Unix Makefiles' -DEXTERNAL_LIBCLANG_PATH=/home/justme0/.vim/bundle/YouCompleteMe/third_party/ycmd/libclang.so . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp # note: may replace libclang.so position
+"cmake --build . --target ycm_core --config Release
+
+" if vim-youcompleteme	/usr/lib/vim-youcompleteme/ycm_extra_conf.py
+" else			~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_key_invoke_completion = '<M-;>'
+" let g:ycm_key_invoke_completion = '<S-Space>'
+" let g:ycm_key_detailed_diagnostics = ',d'
+" nnoremap \d :YcmDiags<CR>
+" YCM default: let g:ycm_key_detailed_diagnostics = '<leader>d'
+nnoremap ,c :YcmCompleter GoToDeclaration<CR>
+"nnoremap ,p :YcmCompleter GetParent<CR> " conflict with :cp
+
+if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
+  nnoremap ,d :YcmCompleter GoToImprecise<CR>
+  "nnoremap ,d :YcmCompleter GoTo<CR>
+  let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
+  autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
+elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
+  nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
+  let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf.py'
+  autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf_for_c.py'
+endif
+autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
+"----------------youcompleteme end---------------------------------
+
+"----------------ctrlp---------------------------------------------
+let g:ctrlp_by_filename = 1
+let g:ctrlp_max_files = 0
+
+" for KLEE project
+if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
+  "if expand("%:p") =~ "klee-base" && (expand("%:p") =~ "include" || expand("%:p") =~ "lib")
+  "  autocmd BufEnter,Filetype c,cpp set softtabstop=4
+  "  autocmd BufEnter,Filetype c,cpp set shiftwidth=4
+  "endif
+  let g:ctrlp_custom_ignore = {
+        \ 'dir': '\v(docs|_test|testsuit)$',
+        \ 'file': '\v[^hp]$',
+        \ }
+endif
+"----------------ctrlp end-----------------------------------------
+
+"----------------ConqueGDB-----------------------------------------
+"let g:ConqueGdb_SaveHistory = 1
+"----------------ConqueGDB end-------------------------------------
+
+"----------------ack for ag----------------------------------------
+" sudo apt-get install silversearcher-ag
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Perl regex match whole word, use \b instead of \< in Vim
+" special for KLEE:
+" FIXME: head file's filetype is cpp
+autocmd Filetype c   nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cc  -w <cword> <cr>
+autocmd Filetype cpp nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cpp -w <cword> <cr>
+"----------------ack for ag end------------------------------------
+
+"----------------cscope--------------------------------------------
+" extract from http://cscope.sourceforge.net/cscope_maps.vim
+"if has("cscope")
+"  " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+"  set cscopetag
+"
+"  " check cscope for definition of a symbol before checking ctags: set to 1
+"  " if you want the reverse search order.
+"  set csto=0
+"
+"  " add any cscope database in current directory
+"  if filereadable("cscope.out")
+"    cs add cscope.out
+"    " else add the database pointed to by environment variable
+"  elseif $CSCOPE_DB != ""
+"    cs add $CSCOPE_DB
+"  endif
+"
+"  " show msg when any other cscope db added
+"  set cscopeverbose
+"endif
+"----------------cscope end----------------------------------------
