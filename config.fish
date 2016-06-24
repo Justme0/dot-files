@@ -11,7 +11,9 @@ source $OMF_PATH/init.fish
 
 fish_vi_key_bindings
 
-set PATH ~/programs/mruby/bin $PATH
+if test -d ~/programs/mruby/bin
+  set PATH ~/programs/mruby/bin $PATH
+end
 
 set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
 set -gx CPLUS_INCLUDE_PATH /usr/include/x86_64-linux-gnu
@@ -85,8 +87,8 @@ function ds
   end
 end
 
-if test -f /usr/share/autojump/autojump.fish;
-  . /usr/share/autojump/autojump.fish;
-else if test -f ~/.autojump/share/autojump/autojump.fish;
-  . ~/.autojump/share/autojump/autojump.fish;
+if test -f /usr/share/autojump/autojump.fish
+  . /usr/share/autojump/autojump.fish
+else if test -f ~/.autojump/share/autojump/autojump.fish
+  . ~/.autojump/share/autojump/autojump.fish
 end

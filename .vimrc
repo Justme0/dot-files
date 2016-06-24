@@ -106,7 +106,7 @@ set guifont=Monospace\ 11
 "colorscheme molokai
 
 "colorscheme evening
-colorscheme gruvbox
+:silent! colorscheme gruvbox "if have no the colorscheme, do nothing
 set background=dark
 
 " go last open line
@@ -181,7 +181,6 @@ nnoremap j gjzz
 nnoremap k gkzz
 nnoremap ,, 0D
 
-"nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<CR>:%s///g<cr>
 nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<CR>
 nnoremap gc :w<cr>:!clang-format -i %:p<cr>
 
