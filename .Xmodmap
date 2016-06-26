@@ -1,8 +1,15 @@
-! key names are: Caps_Lock, Escape, Control_L
+! from `man xmodmap`
+! reverse swap caps lock and left control
+!remove Lock = Caps_Lock
+!remove Control = Control_L
+!keysym Control_L = Caps_Lock
+!keysym Caps_Lock = Control_L
+!add Lock = Caps_Lock
+!add Control = Control_L
 
-remove Lock = Caps_Lock
-remove Control = Control_L
-keysym Control_L = Caps_Lock
-keysym Caps_Lock = Control_L
-add Lock = Caps_Lock
-add Control = Control_L
+!https://wiki.archlinux.org/index.php/xmodmap
+!The following example modifies CapsLock to Control, and Shift+CapsLock to CapsLock:
+clear lock
+clear control
+add control = Caps_Lock Control_L Control_R
+keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol
