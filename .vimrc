@@ -78,9 +78,15 @@ autocmd Filetype c,cpp inoremap <buffer> #in          #include<Space><><Esc>i
 "autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<CR>};<Esc>k$hi<space>
 "autocmd Filetype cpp   inoremap <buffer> struct<Space> struct<Space>{<CR>};<Esc>k$hi<space>
 
+<<<<<<< HEAD
 autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:silent !/bin/rm -f %:p:h/a.out<CR>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:silent !/bin/rm -f %:p:h/a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>
+=======
+autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f %:p:h/a.out<CR>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
+autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f %:p:h/a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
+autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ -w\ %<CR>:make<CR>
+>>>>>>> 036a51ce9a32685c97d97ca31532a36e6afa1f75
 autocmd Filetype python nnoremap <buffer> ,m :w<CR>:set makeprg=python3\ %<CR>:make<CR>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<CR>:set makeprg=emacs\ --no-site-file\ --script\ %<CR>:make<CR>
 "autocmd Filetype tex    nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf &<CR>
