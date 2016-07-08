@@ -68,10 +68,11 @@ flags = [
 '-isystem', '/usr/include',
 
 '-I', '.',
-'-I', '../include',
 '-I', './include',
+'-I', 'src/include',
+'-I', 'lib/include',
 
- # for testing coreutils in shapechecker
+# for testing coreutils in shapechecker
 '-I', './testsuit/juliet_test_suite/testcasesupport',
 '-I', './testsuit/coreutils/lib',
 '-DTOOL_DEBUG',

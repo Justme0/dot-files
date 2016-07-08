@@ -1,2 +1,2 @@
 # dot-files
-some of my config
+Here are my configuration files in Linux.

@@ -34,7 +34,7 @@ set -gx MANWIDTH           72
 
 alias cp="cp -i"
 alias mv="mv -i"
-alias rm='shit' # Please use `gvfs-trash` instead. Remove trash to recycle bin.
+alias rm='shit' # Please use `gvfs-trash` instead. Remove trash to recycle bin. Or `/bin/rm`.
 
 alias iv='info --vi-keys'
 
@@ -43,8 +43,6 @@ alias ll='ls -halF --time-style=long-iso'
 alias lt='ls -halF --time-style=long-iso -tr'
 
 alias sf='. ~/dot-files/config.fish'
-alias t='gvfs-trash'
-alias tree='gvfs-tree'
 alias e='emacs'
 alias en='emacs -nw'
 alias v='gvim'
@@ -92,3 +90,17 @@ if test -f /usr/share/autojump/autojump.fish
 else if test -f ~/.autojump/share/autojump/autojump.fish
   . ~/.autojump/share/autojump/autojump.fish
 end
+
+if type gvfs-trash > /dev/null 2>&1
+  alias t='gvfs-trash'
+else
+  function t
+    kioclient move $argv trash:/
+  end
+end
+
+if type gvfs-tree > /dev/null 2>&1
+  alias tree='gvfs-tree'
+end
+
+# xmodmap ~/dot-files/.xmodmaprc # using /etc/default/keyboard

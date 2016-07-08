@@ -1,0 +1,23 @@
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="us"
+XKBVARIANT=""
+XKBOPTIONS="ctrl:nocaps"
+
+BACKSPACE="guess"
+
+# https://www.emacswiki.org/emacs/MovingTheCtrlKey#toc7  
+#   
+#  On Debian and derivatives (Ubuntu, Mint etc.)
+# To make Caps Lock another Ctrl key, edit the file /etc/default/keyboard and change the line which reads
+# 
+#  XKBOPTIONS=""
+# to
+# 
+#  XKBOPTIONS="ctrl:nocaps"		# Some people prefer "ctrl:swapcaps"
+# and then run:
+# 
+#  $ sudo dpkg-reconfigure -phigh console-setup 

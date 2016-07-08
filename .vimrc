@@ -22,14 +22,12 @@ Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'dag/vim-fish'
 Plugin 'vim-scripts/matchit.zip'
-if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
-  Plugin 'Valloric/YouCompleteMe'
-endif
 "Plugin 'chase/vim-ansible-yaml'
 "Plugin 'gilligan/vim-lldb'
 "Plugin 'scrooloose/nerdcommenter'
 Plugin 'tomasr/molokai'
 Plugin 'vim-airline/vim-airline'
+Plugin 'Valloric/YouCompleteMe'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -80,8 +78,8 @@ autocmd Filetype c,cpp inoremap <buffer> #in          #include<Space><><Esc>i
 "autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<CR>};<Esc>k$hi<space>
 "autocmd Filetype cpp   inoremap <buffer> struct<Space> struct<Space>{<CR>};<Esc>k$hi<space>
 
-autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f %:p:h/a.out<CR>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
-autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f %:p:h/a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
+autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:silent !/bin/rm -f %:p:h/a.out<CR>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
+autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:silent !/bin/rm -f %:p:h/a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>
 autocmd Filetype python nnoremap <buffer> ,m :w<CR>:set makeprg=python3\ %<CR>:make<CR>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<CR>:set makeprg=emacs\ --no-site-file\ --script\ %<CR>:make<CR>
@@ -290,12 +288,12 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 
 function! RubyInfo()
   ruby << EOF
-    class A
-    end
-    puts A.new.class
-    puts RUBY_VERSION
-    puts RUBY_PLATFORM
-    puts RUBY_RELEASE_DATE
+  class A
+end
+puts A.new.class
+puts RUBY_VERSION
+puts RUBY_PLATFORM
+puts RUBY_RELEASE_DATE
 EOF
 endfunction
 
@@ -329,17 +327,10 @@ let g:ycm_key_invoke_completion = '<M-;>'
 " YCM default: let g:ycm_key_detailed_diagnostics = '<leader>d'
 nnoremap ,c :YcmCompleter GoToDeclaration<CR>
 "nnoremap ,p :YcmCompleter GetParent<CR> " conflict with :cp
-
-if filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'))
-  nnoremap ,d :YcmCompleter GoToImprecise<CR>
-  "nnoremap ,d :YcmCompleter GoTo<CR>
-  let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
-  autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
-elseif filereadable('/usr/lib/vim-youcompleteme/ycm_extra_conf.py')
-  nnoremap ,d :YcmCompleter GoToDefinitionElseDeclaration<CR>
-  let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf.py'
-  autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/ycm_extra_conf_for_c.py'
-endif
+"nnoremap ,d :YcmCompleter GoTo<CR>
+let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
+autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
+nnoremap ,d :YcmCompleter GoToImprecise<CR>
 autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
 "----------------youcompleteme end---------------------------------
 
