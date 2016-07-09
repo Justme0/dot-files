@@ -82,7 +82,7 @@ autocmd Filetype c,cpp inoremap <buffer> #in          #include<Space><><Esc>i
 
 autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f %:p:h/a.out<CR>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:silent !gvfs-trash -f %:p:h/a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
-autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ %<CR>:make<CR>
+autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ -w\ %<CR>:make<CR>
 autocmd Filetype python nnoremap <buffer> ,m :w<CR>:set makeprg=python3\ %<CR>:make<CR>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<CR>:set makeprg=emacs\ --no-site-file\ --script\ %<CR>:make<CR>
 "autocmd Filetype tex    nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf &<CR>
