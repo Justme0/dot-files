@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
 
 conf2dir = {
-  "config.fish" => "~/.config/fish/",
+  ".gemrc" => "~",
   ".emacs" => "~",
   ".tmux.conf" => "~",
   ".vimrc" => "~",
   "zathurarc" => "~/.config/zathura/",
+  "config.fish" => "~/.config/fish/",
 }
 
 conf2dir.each_pair do |target, dst|

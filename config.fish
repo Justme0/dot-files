@@ -97,9 +97,11 @@ end
 if type gvfs-trash > /dev/null 2>&1
   alias t='gvfs-trash'
 else
-  function t
-    kioclient move $argv trash:/
-  end
+  # `sudo apt-get install trash-cli
+  alias t='trash'
+  # function t
+  #   kioclient move $argv trash:/
+  # end
 end
 
 if type gvfs-tree > /dev/null 2>&1
