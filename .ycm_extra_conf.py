@@ -69,6 +69,7 @@ flags = [
 
 '-I', '.',
 '-I', './include',
+'-I', './src',
 '-I', 'src/include',
 '-I', 'lib/include',
 ]

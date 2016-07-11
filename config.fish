@@ -79,20 +79,15 @@ function gk
   gitk --date-order --all $argv &
 end
 
-function ds
-  if test (count $argv) = 0
-    # if not given directory
-    du -sch ./* ./.* | sort -h
-  else
-    du -sch $argv/* $argv/.* | sort -h
-  end
+function tm
+  ~/dot-files/fish/tm.rb $argv
 end
 
-if test -f /usr/share/autojump/autojump.fish
-  . /usr/share/autojump/autojump.fish
-else if test -f ~/.autojump/share/autojump/autojump.fish
-  . ~/.autojump/share/autojump/autojump.fish
+function ds
+  ~/dot-files/fish/ds.rb $argv
 end
+
+. /usr/share/autojump/autojump.fish
 
 if type gvfs-trash > /dev/null 2>&1
   alias t='gvfs-trash'
