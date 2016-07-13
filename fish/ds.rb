@@ -1,4 +1,12 @@
 #!/usr/bin/env ruby
 
-dir = ARGV.empty? ? "." : ARGV.first
-system("du -sch #{dir}/$(ls -A #{dir}) | sort -h")
+Dir.chdir(ARGV.first) unless ARGV.empty?
+
+files = ''
+files += ' .* ' unless (Dir['.*'] - ['.', '..']).empty?
+files += ' * ' unless Dir['*'].empty?
+
+system("fish -c 'du -sch #{files} | sort -h'")
+
+# Ruby is different from fish in expanding '.*'; Ruby includes '.' and '..'
+# while fish doesn't.
