@@ -32,9 +32,13 @@ set -gx MANWIDTH           72
 #set -gx GIT_TRACE          1
 #set -gx GIT_CURL_VERBOSE   1
 
+. /usr/share/autojump/autojump.fish
+
+# xmodmap ~/dot-files/.xmodmaprc # using /etc/default/keyboard
+
 alias cp="cp -i"
 alias mv="mv -i"
-alias rm='shit' # Please use `gvfs-trash` instead. Remove trash to recycle bin. Or `/bin/rm`.
+alias rm="NOTE: `rm` is dangerous, use `t` or `/bin/rm` instead."
 
 alias iv='info --vi-keys'
 
@@ -46,12 +50,13 @@ alias sf='. ~/dot-files/config.fish'
 alias e='emacs'
 alias en='emacs -nw'
 alias v='gvim'
-alias vf='vi ~/dot-files/config.fish' # symbolic link is ~/.config/fish/config.fish
+# symbolic link is ~/.config/fish/config.fish
+alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
 
 # KLEE project related
 alias m='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit; and ./test.py; and cd ..'
-alias tm='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit/transform_test/demo; and ./trans.rb demo1_if.c'
+# alias tm='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit/transform_test/demo; and ./trans.rb demo1_if.c'
 
 # git
 alias gb='git branch -a'
@@ -64,30 +69,23 @@ alias gl='git pull'
 #alias gs='git status --short'
 alias gs='git status'
 alias gd='git diff -w'
-alias gm='git diff --name-only | uniq | xargs vi -p' # open conflict files in one go
+# open conflict files when git merge
+alias gm="git diff --name-only | uniq | xargs vi -p"
+alias ds="~/dot-files/fish/ds.rb $argv"
+alias tm="~/dot-files/fish/tm.rb $argv"
 
 function gp
-  if test (count $argv) = 0
-    git log -p --stat
-  else
+  if count $argv
     # a file's history
     git log -p --stat --follow -- $argv
+  else
+    git log -p --stat
   end
 end
 
 function gk
   gitk --date-order --all $argv &
 end
-
-function tm
-  ~/dot-files/fish/tm.rb $argv
-end
-
-function ds
-  ~/dot-files/fish/ds.rb $argv
-end
-
-. /usr/share/autojump/autojump.fish
 
 if type gvfs-trash > /dev/null 2>&1
   alias t='gvfs-trash'
@@ -102,5 +100,3 @@ end
 if type gvfs-tree > /dev/null 2>&1
   alias tree='gvfs-tree'
 end
-
-# xmodmap ~/dot-files/.xmodmaprc # using /etc/default/keyboard

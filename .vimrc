@@ -315,7 +315,7 @@ autocmd FileType coq inoremap <silent> <F5>	 <Esc>:w<CR>:! coqc %<CR>
 "----------------youcompleteme------------------------------------
 "ycm compile lib
 "cmake -G 'Unix Makefiles' -DEXTERNAL_LIBCLANG_PATH=/home/justme0/.vim/bundle/YouCompleteMe/third_party/ycmd/libclang.so . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp # note: may replace libclang.so position
-"cmake --build . --target ycm_core --config Release
+"cmake --build . --target ycm_core --config Release -- -j7 # note: set -jN
 
 " if vim-youcompleteme	/usr/lib/vim-youcompleteme/ycm_extra_conf.py
 " else			~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
@@ -341,12 +341,16 @@ let g:ctrlp_max_files = 0
 
 " for KLEE project
 if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
-  "if expand("%:p") =~ "klee-base" && (expand("%:p") =~ "include" || expand("%:p") =~ "lib")
-  "  autocmd BufEnter,Filetype c,cpp set softtabstop=4
-  "  autocmd BufEnter,Filetype c,cpp set shiftwidth=4
-  "endif
   let g:ctrlp_custom_ignore = {
         \ 'dir': '\v(docs|_test|testsuit)$',
+        \ 'file': '\v[^hp]$',
+        \ }
+endif
+
+" for dg project
+if expand("%:p") =~ "/dg" || getcwd() =~ "/dg"
+  let g:ctrlp_custom_ignore = {
+        \ 'dir': '\v(html)$',
         \ 'file': '\v[^hp]$',
         \ }
 endif
