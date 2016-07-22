@@ -9,8 +9,9 @@ conf2dir = {
   "config.fish" => "~/.config/fish/",
 }
 
-conf2dir.each_pair do |target, dst|
-  `mkdir -p #{dst}`
-  `ln -s ~/dot-files/#{target} #{dst}` # OPTIMIZE: refactor hard code
-  puts "ln -s ~/dot-files/#{target} #{dst}" if $?.success?
+conf2dir.each_pair do |target, dir|
+  `mkdir -p #{dir}`
+  cmd = "ln -s ~/dot-files/#{target} #{dir}"
+  puts cmd
+  system(cmd) # OPTIMIZE: refactor hard code
 end

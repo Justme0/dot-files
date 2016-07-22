@@ -34,8 +34,6 @@ set -gx MANWIDTH           72
 
 . /usr/share/autojump/autojump.fish
 
-# xmodmap ~/dot-files/.xmodmaprc # using /etc/default/keyboard
-
 alias cp="cp -i"
 alias mv="mv -i"
 alias rm="NOTE: `rm` is dangerous, use `t` or `/bin/rm` instead."
