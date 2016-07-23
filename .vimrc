@@ -106,7 +106,14 @@ set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 11
 
 "colorscheme evening
 :silent! colorscheme gruvbox "if have no the colorscheme, do nothing
-set background=dark
+"set background=dark
+
+"HACK: distinguish background in console
+if !has("gui_running") && filereadable("/home/justme0/Pictures/Roraima_EN-US12977483391_1366x768.jpg")
+  set background=light
+else
+  set background=dark
+endif
 
 " go last open line
 if has("autocmd")

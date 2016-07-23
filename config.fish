@@ -36,7 +36,9 @@ set -gx MANWIDTH           72
 
 alias cp="cp -i"
 alias mv="mv -i"
-alias rm="NOTE: `rm` is dangerous, use `t` or `/bin/rm` instead."
+function rm
+  echo NOTE: `rm` is dangerous. Use `t` or `/bin/rm` instead.
+end
 
 alias iv='info --vi-keys'
 
