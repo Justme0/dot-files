@@ -141,7 +141,6 @@ set showmode
 set ruler
 set wildmenu
 set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
-" set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
 set shell=/bin/bash
 "set shellcmdflag=-ic
 autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
