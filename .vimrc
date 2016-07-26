@@ -97,22 +97,23 @@ autocmd Filetype html setlocal ts=4 sts=4 sw=4
 
 "set t_Co=256
 "set guifont=Courier\ 10\ Pitch\ 12
-"set guifont=Monospace\ 11
+"set guifont=Monospace\ 12
 set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 12
+set guioptions=r
 
-"let g:molokai_original=1
-"let g:rehash256=1
-"colorscheme molokai
-
+let g:molokai_original=1
+let g:rehash256=1 " work only if &t_Co > 255
+colorscheme molokai
 "colorscheme evening
-:silent! colorscheme gruvbox "if have no the colorscheme, do nothing
+":silent! colorscheme gruvbox "if have no the colorscheme, do nothing
 "set background=dark
 
 "HACK: distinguish background in console
-if !has("gui_running") && filereadable("/home/justme0/Pictures/Roraima_EN-US12977483391_1366x768.jpg")
-  set background=light
-else
+"if !has("gui_running") && filereadable("/home/justme0/Pictures/Roraima_EN-US12977483391_1366x768.jpg")
+if has("gui_running")
   set background=dark
+else
+  set background=light
 endif
 
 " go last open line
@@ -134,7 +135,6 @@ set hlsearch
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <silent> <esc>^[ <esc>^[
 set clipboard=unnamedplus
-set guioptions=r
 autocmd FileType tex set cursorcolumn
 set showcmd
 set showmode
@@ -320,7 +320,12 @@ autocmd FileType coq inoremap <silent> <F5>	 <Esc>:w<CR>:! coqc %<CR>
 
 "----------------youcompleteme------------------------------------
 "ycm compile lib
+" 1)
 "cmake -G 'Unix Makefiles' -DEXTERNAL_LIBCLANG_PATH=/home/justme0/.vim/bundle/YouCompleteMe/third_party/ycmd/libclang.so . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp # note: may replace libclang.so position
+" e.g.
+"cmake -G 'Unix Makefiles' -DEXTERNAL_LIBCLANG_PATH=/usr/lib/x86_64-linux-gnu/libclang-3.8.so.1 . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+
+" 2)
 "cmake --build . --target ycm_core --config Release -- -j7 # note: set -jN
 
 " if vim-youcompleteme	/usr/lib/vim-youcompleteme/ycm_extra_conf.py

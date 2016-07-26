@@ -1,7 +1,7 @@
 # Path to Oh My Fish install.
 set -q XDG_DATA_HOME
-and set -gx OMF_PATH "$XDG_DATA_HOME/omf"
-or set -gx OMF_PATH "$HOME/.local/share/omf"
+  and set -gx OMF_PATH "$XDG_DATA_HOME/omf"
+  or set -gx OMF_PATH "$HOME/.local/share/omf"
 
 # Customize Oh My Fish configuration path.
 #set -gx OMF_CONFIG "/home/justme0/.config/omf"
@@ -15,9 +15,11 @@ if test -d ~/programs/mruby/bin
   set PATH ~/programs/mruby/bin $PATH
 end
 
+# klee-base related
 set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
 set -gx CPLUS_INCLUDE_PATH /usr/include/x86_64-linux-gnu
 set -gx LD_LIBRARY_PATH    /usr/local/lib
+
 set -gx GCC_COLORS         1
 #set -gx LLDB               /usr/bin/lldb-3.6
 set -gx EDITOR             /usr/bin/vim
@@ -26,6 +28,7 @@ set -gx LESS               -iR # http://stackoverflow.com/a/26069/1204713
 set -gx MANWIDTH           72
 #set -gx BROWSER            chromium-browser
 
+# YouCompleteMe related
 #enable the following when YCM git clone failed
 #https://confluence.atlassian.com/stashkb/git-clone-fails-error-rpc-failed-result-56-http-code-200-693897332.html
 #set -gx GIT_TRACE_PACKET   1
