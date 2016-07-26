@@ -11,6 +11,10 @@ source $OMF_PATH/init.fish
 
 fish_vi_key_bindings
 
+if test -d ~/programs/klee-base/Debug+Asserts/bin
+  set PATH ~/programs/klee-base/Debug+Asserts/bin $PATH
+end
+
 if test -d ~/programs/mruby/bin
   set PATH ~/programs/mruby/bin $PATH
 end
