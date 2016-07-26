@@ -61,7 +61,7 @@ flags = [
 
 '-isystem', '/usr/local/bin/../lib/clang/3.8.0/include',
 
-'-isystem', /usr/lib/llvm-3.8/bin/../lib/clang/3.8.0/include
+'-isystem', '/usr/lib/llvm-3.8/bin/../lib/clang/3.8.0/include',
 
 '-isystem', '/usr/include/x86_64-linux-gnu',
 '-isystem', '/usr/local/include',
