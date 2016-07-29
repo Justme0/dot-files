@@ -28,6 +28,7 @@ Plugin 'keith/tmux.vim'
 "Plugin 'scrooloose/nerdcommenter'
 Plugin 'tomasr/molokai'
 Plugin 'vim-airline/vim-airline'
+Plugin 'justme0/llvm-vim-util'
 Plugin 'Valloric/YouCompleteMe'
 
 " The following are examples of different formats supported.
@@ -111,11 +112,12 @@ colorscheme molokai
 
 "HACK: distinguish background in console
 "if !has("gui_running") && filereadable("/home/justme0/Pictures/Roraima_EN-US12977483391_1366x768.jpg")
-if has("gui_running")
-  set background=dark
-else
-  set background=light
-endif
+"if has("gui_running")
+"  set background=dark
+"else
+"  set background=light
+"endif
+set background=dark
 
 " go last open line
 if has("autocmd")

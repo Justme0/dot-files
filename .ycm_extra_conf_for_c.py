@@ -60,9 +60,6 @@ flags = [
 '-x', 'c',
 
 '-isystem', '/usr/local/bin/../lib/clang/3.8.0/include',
-
-'-isystem', '/usr/lib/llvm-3.8/bin/../lib/clang/3.8.0/include',
-
 '-isystem', '/usr/include/x86_64-linux-gnu',
 '-isystem', '/usr/local/include',
 '-isystem', '/usr/include',
@@ -73,7 +70,7 @@ flags = [
 '-I', 'src/include',
 '-I', 'lib/include',
 
-# for testing coreutils in shapechecker
+# for test in shapechecker
 '-I', './testsuit/juliet_test_suite/testcasesupport',
 '-I', './testsuit/coreutils/lib',
 '-DTOOL_DEBUG',

@@ -62,7 +62,7 @@ alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
 
 # KLEE project related
-alias m='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit; and ./test.py'
+alias m='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit; and ./test.py; and cd ..'
 # NOTE: mt is a Linux command
 # alias mt='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit/transform_test/demo; and ./trans.rb demo1_if.c'
 

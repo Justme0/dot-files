@@ -62,13 +62,8 @@ flags = [
 '-isystem', '/usr/lib/gcc/x86_64-linux-gnu/4.9/../../../../include/c++/4.9',
 '-isystem', '/usr/lib/gcc/x86_64-linux-gnu/4.9/../../../../include/x86_64-linux-gnu/c++/4.9',
 '-isystem', '/usr/lib/gcc/x86_64-linux-gnu/4.9/../../../../include/c++/4.9/backward',
+
 '-isystem', '/usr/local/bin/../lib/clang/3.8.0/include',
-
-'-isystem', '/usr/bin/../lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0',
-'-isystem', '/usr/bin/../lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0',
-'-isystem', '/usr/bin/../lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward',
-'-isystem', '/usr/lib/llvm-3.8/bin/../lib/clang/3.8.0/include',
-
 '-isystem', '/usr/include/x86_64-linux-gnu',
 '-isystem', '/usr/local/include',
 '-isystem', '/usr/include',
@@ -78,6 +73,10 @@ flags = [
 '-I', 'src',
 '-I', 'src/include',
 '-I', 'lib/include',
+
+# for dg
+'-DHAVE_LLVM',
+'-DENABLE_CFG',
 ]
 
 
