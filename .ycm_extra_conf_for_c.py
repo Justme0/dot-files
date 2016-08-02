@@ -59,6 +59,7 @@ flags = [
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x', 'c',
 
+# produced by `echo | clang -v -E -x c -`
 '-isystem', '/usr/local/bin/../lib/clang/3.8.0/include',
 '-isystem', '/usr/include/x86_64-linux-gnu',
 '-isystem', '/usr/local/include',
