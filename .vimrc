@@ -100,15 +100,16 @@ autocmd Filetype html setlocal ts=4 sts=4 sw=4
 "set t_Co=256
 "set guifont=Courier\ 10\ Pitch\ 12
 "set guifont=Monospace\ 12
-set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 12
+set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 11
 set guioptions=r
 
 let g:molokai_original=1
 let g:rehash256=1 " work only if &t_Co > 255
-colorscheme molokai
-"colorscheme evening
+:silent! colorscheme molokai
+
 ":silent! colorscheme gruvbox "if have no the colorscheme, do nothing
-"set background=dark
+
+"colorscheme evening
 
 "HACK: distinguish background in console
 "if !has("gui_running") && filereadable("/home/justme0/Pictures/Roraima_EN-US12977483391_1366x768.jpg")

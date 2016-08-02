@@ -4,3 +4,5 @@
 (setq explicit-shell-file-name "bash")
 (setq shell-file-name "bash")
 (setenv "SHELL" shell-file-name)
+
+(global-linum-mode t)
