@@ -1,8 +1,8 @@
 " some useful Vim operation:
 
 " 1. diff
-" To begin diffing on all visible windows: :windo diffthis
-" To end diff mode: :diffoff!
+" diff all visible windows: :windo diffthis
+" end diff mode: :diffoff!
 
 "-----------------------------------vundle---------------------------------
 set nocompatible              " be iMproved, required
@@ -100,7 +100,7 @@ autocmd Filetype html setlocal ts=4 sts=4 sw=4
 "set t_Co=256
 "set guifont=Courier\ 10\ Pitch\ 12
 "set guifont=Monospace\ 12
-set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 11
+set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 12
 set guioptions=r
 
 let g:molokai_original=1
@@ -365,7 +365,7 @@ endif
 " for dg project
 if expand("%:p") =~ "/dg" || getcwd() =~ "/dg"
   let g:ctrlp_custom_ignore = {
-        \ 'dir': '\v(html)$',
+        \ 'dir': '\v(html|tests|Testing)$',
         \ 'file': '\v[^hp]$',
         \ }
 endif
