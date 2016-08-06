@@ -75,7 +75,6 @@ autocmd Filetype ruby inoremap <buffer> class<Space> class<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> def<Space>   def<Space><CR>end<Esc>kA
 autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><CR>end<Esc>kA
 
-autocmd Filetype c,cpp inoremap <buffer> #in          #include<Space><><Esc>i
 " class as template name:
 "autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<CR>};<Esc>k$hi<space>
 "autocmd Filetype cpp   inoremap <buffer> struct<Space> struct<Space>{<CR>};<Esc>k$hi<space>

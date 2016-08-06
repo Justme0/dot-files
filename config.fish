@@ -15,6 +15,10 @@ if test -d ~/programs/klee-base/Debug+Asserts/bin
   set PATH ~/programs/klee-base/Debug+Asserts/bin $PATH
 end
 
+if test -d ~/programs/klee-base/Release+Asserts/bin
+  set PATH ~/programs/klee-base/Release+Asserts/bin $PATH
+end
+
 if test -d ~/programs/mruby/bin
   set PATH ~/programs/mruby/bin $PATH
 end
@@ -93,6 +97,10 @@ end
 
 function gk
   gitk --date-order --all $argv &
+end
+
+function z
+  zathura $argv > /dev/null 2>&1 &
 end
 
 if type gvfs-trash > /dev/null 2>&1
