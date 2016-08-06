@@ -1,8 +1,8 @@
 " some useful Vim operation:
 
 " 1. diff
-" To begin diffing on all visible windows: :windo diffthis
-" To end diff mode: :diffoff!
+" diff all visible windows: :windo diffthis
+" end diff mode: :diffoff!
 
 "-----------------------------------vundle---------------------------------
 set nocompatible              " be iMproved, required
@@ -104,10 +104,11 @@ set guioptions=r
 
 let g:molokai_original=1
 let g:rehash256=1 " work only if &t_Co > 255
-colorscheme molokai
-"colorscheme evening
+:silent! colorscheme molokai
+
 ":silent! colorscheme gruvbox "if have no the colorscheme, do nothing
-"set background=dark
+
+"colorscheme evening
 
 "HACK: distinguish background in console
 "if !has("gui_running") && filereadable("/home/justme0/Pictures/Roraima_EN-US12977483391_1366x768.jpg")
@@ -363,7 +364,7 @@ endif
 " for dg project
 if expand("%:p") =~ "/dg" || getcwd() =~ "/dg"
   let g:ctrlp_custom_ignore = {
-        \ 'dir': '\v(html)$',
+        \ 'dir': '\v(html|tests|Testing)$',
         \ 'file': '\v[^hp]$',
         \ }
 endif
