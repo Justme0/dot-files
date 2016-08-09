@@ -1,3 +1,10 @@
+# Remove shit time right prompt in oh-my-fish.
+# Override fish_right_prompt function in
+# ~/.local/share/omf/themes/default/fish_right_prompt.fish.
+
+function fish_right_prompt
+end
+
 # Path to Oh My Fish install.
 set -q XDG_DATA_HOME
   and set -gx OMF_PATH "$XDG_DATA_HOME/omf"
