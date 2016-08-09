@@ -123,3 +123,5 @@ end
 if type gvfs-tree > /dev/null 2>&1
   alias tree='gvfs-tree'
 end
+
+git config --global core.excludesfile ~/dot-files/.gitignore_global
