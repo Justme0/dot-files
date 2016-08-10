@@ -82,8 +82,8 @@ alias gb='git branch -a'
 # note gc is a command 'graph count'
 alias gc='git config -l'
 alias gac='git add --all :/ --verbose; and git commit -v'
-#alias gg="git log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset'"
-alias gg="git log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --all"
+#alias gg="git log --author-date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset'"
+alias gg="git log --author-date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset' --all"
 alias gl='git pull'
 #alias gs='git status --short'
 alias gs='git status'
@@ -103,7 +103,7 @@ function gp
 end
 
 function gk
-  gitk --date-order --all $argv &
+  gitk --author-date-order --all $argv &
 end
 
 function z
