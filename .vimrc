@@ -1,9 +1,3 @@
-" some useful Vim operation:
-
-" 1. diff
-" diff all visible windows: :windo diffthis
-" end diff mode: :diffoff!
-
 "-----------------------------------vundle---------------------------------
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -25,10 +19,11 @@ Plugin 'vim-scripts/matchit.zip'
 Plugin 'keith/tmux.vim'
 "Plugin 'chase/vim-ansible-yaml'
 "Plugin 'gilligan/vim-lldb'
-"Plugin 'scrooloose/nerdcommenter'
 Plugin 'tomasr/molokai'
 Plugin 'vim-airline/vim-airline'
 Plugin 'justme0/llvm-vim-util'
+"Plugin 'tpope/vim-commentary'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'Valloric/YouCompleteMe'
 
 " The following are examples of different formats supported.
@@ -177,21 +172,19 @@ inoremap <C-j> <Esc><C-w>j
 inoremap <C-k> <Esc><C-w>k
 inoremap <C-l> <Esc><C-w>l
 
-nnoremap <down> g<down>
-nnoremap <up> g<up>
-inoremap <down> <C-o>g<down>
-inoremap <up> <C-o>g<up>
+nnoremap j gjzz
+nnoremap k gkzz
+" nnoremap <down> g<down>
+" nnoremap <up> g<up>
+" inoremap <down> <C-o>g<down>
+" inoremap <up> <C-o>g<up>
 
 nnoremap <space> :q<cr>
 
 set cursorline
-nnoremap j gjzz
-nnoremap k gkzz
 nnoremap ,, 0D
 
 nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<CR>
-nnoremap gc :w<cr>:!clang-format -i %:p<cr>
-
 nnoremap ,a ggdG
 nnoremap \n :lnext<CR>
 nnoremap \p :lprevious<CR>
@@ -201,6 +194,15 @@ nnoremap \r "_diwP
 nnoremap gr Go<esc>pk"7dggzR
 nnoremap ,t :cd ~/programs/test<CR>:e a.cpp<CR>
 nnoremap gp :!git log -p --stat --follow -- %:p > /tmp/gitLogPatch<cr>:vsp /tmp/gitLogPatch<cr>
+
+function! DiffToggle()
+  if &diff
+    diffoff!
+  else
+    windo diffthis
+  endif
+endfunction
+nnoremap ,f :call DiffToggle()<CR>
 
 nnoremap ,s :source ~/.vimrc<CR>
 nnoremap ,v :sp ~/.vimrc<CR>
@@ -212,6 +214,9 @@ autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {
 autocmd FileType ruby   nnoremap ,h ggdGi#!/usr/bin/env ruby<CR><CR><Esc>
 autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python3<CR># -*- coding: utf-8 -*-<CR><Esc>
 
+nnoremap gc :w<cr>:!clang-format -i %:p<cr>
+nnoremap <C-N> :call NERDComment("n", "Toggle")<CR>j
+xnoremap <C-N> :call NERDComment("x", "Toggle")<CR>j
 "noremap <silent> <C-C> :call CommentLine()<CR>
 function! CommentLine()
   if &ft == 'c' || &ft == 'cpp'
@@ -409,3 +414,26 @@ autocmd Filetype cpp nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sens
 "  set cscopeverbose
 "endif
 "----------------cscope end----------------------------------------
+
+"----------------nerdcommenter-----------------------------------
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+" let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'both'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_c = 1
+
+" Add your own custom formats or override the defaults
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+" let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+"----------------nerdcommenter end-------------------------------
