@@ -1,7 +1,6 @@
 # Remove shit time right prompt in oh-my-fish.
 # Override fish_right_prompt function in
 # ~/.local/share/omf/themes/default/fish_right_prompt.fish.
-
 function fish_right_prompt
 end
 
@@ -67,6 +66,10 @@ alias lt='ls -halF --time-style=long-iso -tr'
 alias sf='. ~/dot-files/config.fish'
 alias e='emacs'
 alias en='emacs -nw'
+function eg
+  emacs --eval "( gdb \" gdb -i=mi --args $argv \" )" &
+end
+
 alias v='gvim'
 # symbolic link is ~/.config/fish/config.fish
 alias vf='vi ~/dot-files/config.fish'
