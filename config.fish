@@ -17,16 +17,13 @@ source $OMF_PATH/init.fish
 
 fish_vi_key_bindings
 
-# set $PATH
+# set PATH environment variable
 set PATH /sbin /usr/local/sbin /usr/sbin $PATH
 if test -d ~/programs/klee-base/Debug+Asserts/bin
   set PATH ~/programs/klee-base/Debug+Asserts/bin $PATH
 end
 if test -d ~/programs/klee-base/Release+Asserts/bin
   set PATH ~/programs/klee-base/Release+Asserts/bin $PATH
-end
-if test -d ~/programs/mruby/bin
-  set PATH ~/programs/mruby/bin $PATH
 end
 
 # klee-base related
