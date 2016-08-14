@@ -126,4 +126,4 @@ git config --global core.excludesfile ~/dot-files/.gitignore_global
 
 alias ds="~/dot-files/fish/ds.rb $argv"
 alias tm="~/dot-files/fish/tm.rb $argv"
-alias p="~/dot-files/fish/p.rb $argv"
+alias pg="~/dot-files/fish/pg.rb $argv"
