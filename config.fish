@@ -93,8 +93,6 @@ alias gs='git status'
 alias gd='git diff -w'
 # open conflict files when git merge
 alias gm="git diff --name-only | uniq | xargs vi -p"
-alias ds="~/dot-files/fish/ds.rb $argv"
-alias tm="~/dot-files/fish/tm.rb $argv"
 
 function gp
   if count $argv
@@ -128,3 +126,7 @@ if type gvfs-tree > /dev/null 2>&1
 end
 
 git config --global core.excludesfile ~/dot-files/.gitignore_global
+
+alias ds="~/dot-files/fish/ds.rb $argv"
+alias tm="~/dot-files/fish/tm.rb $argv"
+alias p="~/dot-files/fish/p.rb $argv"
