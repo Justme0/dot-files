@@ -176,8 +176,8 @@ nnoremap j gjzz
 nnoremap k gkzz
 " nnoremap <down> g<down>
 " nnoremap <up> g<up>
-" inoremap <down> <C-o>g<down>
-" inoremap <up> <C-o>g<up>
+inoremap <down> <C-o>g<down>
+inoremap <up> <C-o>g<up>
 
 nnoremap <space> :q<cr>
 
