@@ -372,6 +372,8 @@ if expand("%:p") =~ "/dg" || getcwd() =~ "/dg"
         \ 'dir': '\v(html|tests|Testing)$',
         \ 'file': '\v[^hp]$',
         \ }
+  set softtabstop=4
+  set shiftwidth=4
 endif
 "----------------ctrlp end-----------------------------------------
 
