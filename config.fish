@@ -101,7 +101,7 @@ function gp
 end
 
 function gk
-  gitk --author-date-order --all $argv &
+  gitk --date-order --all $argv &
 end
 
 function z

@@ -160,8 +160,8 @@ syntax on
 function! ToggleFullScreen()
   call system("wmctrl -r :ACTIVE: -b toggle,fullscreen")
 endfunction
-noremap <silent> <F11> :call ToggleFullScreen()<CR>
-inoremap <silent> <F11> <Esc>:call ToggleFullScreen()<CR>
+nnoremap <F11>      :call ToggleFullScreen()<CR>
+inoremap <F11> <Esc>:call ToggleFullScreen()<CR>
 
 nnoremap <C-h> <Esc><C-w>h
 nnoremap <C-j> <Esc><C-w>j
