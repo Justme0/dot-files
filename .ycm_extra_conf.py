@@ -36,6 +36,9 @@ import ycm_core
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
 flags = [
 '-Wall',
+# man gcc: This warning is enabled by -Wall in C, not in C++
+'-Wno-missing-braces',
+
 '-Wextra',
 # '-Werror',
 # '-Wc++98-compat',

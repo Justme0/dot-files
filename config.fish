@@ -66,6 +66,9 @@ alias en='emacs -nw'
 function eg
   emacs --eval "( gdb \" gdb -i=mi --args $argv \" )" &
 end
+function eng
+  emacs -nw --eval "( gdb \" gdb -i=mi --args $argv \" )" &
+end
 
 alias v='gvim'
 # symbolic link is ~/.config/fish/config.fish
@@ -76,6 +79,7 @@ alias vv='vi ~/.vimrc'
 alias m='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit; and ./test.py; and cd ..'
 # NOTE: mt is a Linux command
 # alias mt='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit/transform_test/demo; and ./trans.rb demo1_if.c'
+alias md='cd ~/programs/dg/; and make -j9; and cd tools'
 
 # git
 alias gb='git branch -a'
