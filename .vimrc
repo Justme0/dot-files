@@ -350,7 +350,13 @@ nnoremap ,c :YcmCompleter GoToDeclaration<CR>
 "nnoremap ,d :YcmCompleter GoTo<CR>
 let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
 autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
-nnoremap ,d :YcmCompleter GoToImprecise<CR>
+
+function! OpenNewBufferIfNotModified()
+  if !&modified
+    sp
+  endif
+endfunction
+nnoremap ,d :call OpenNewBufferIfNotModified()<CR>:YcmCompleter GoToImprecise<CR>
 autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
 "----------------youcompleteme end---------------------------------
 
