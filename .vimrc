@@ -61,26 +61,29 @@ filetype plugin indent on    " required
 "------------------------------------my config-------------------------------
 
 " edit and compile for programming
-inoremap {<CR> {<CR>}<Esc>O
+inoremap {<cr> {<cr>}<Esc>O
 
-autocmd Filetype ruby inoremap <buffer> do<CR>       do<CR>end<Esc>O
-autocmd Filetype ruby inoremap <buffer> do<Space>    do<Space>\|<CR>end<Esc>k$a
-autocmd Filetype ruby inoremap <buffer> class<Space> class<Space><CR>end<Esc>kA
-"autocmd Filetype ruby inoremap <buffer> if<Space>    if<Space><CR>end<Esc>kA
-autocmd Filetype ruby inoremap <buffer> def<Space>   def<Space><CR>end<Esc>kA
-autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><CR>end<Esc>kA
+autocmd Filetype ruby inoremap <buffer> do<cr>       do<cr>end<Esc>O
+autocmd Filetype ruby inoremap <buffer> do<Space>    do<Space>\|<cr>end<Esc>k$a
+autocmd Filetype ruby inoremap <buffer> class<Space> class<Space><cr>end<Esc>kA
+"autocmd Filetype ruby inoremap <buffer> if<Space>    if<Space><cr>end<Esc>kA
+autocmd Filetype ruby inoremap <buffer> def<Space>   def<Space><cr>end<Esc>kA
+autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><cr>end<Esc>kA
 
 " class as template name:
-"autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<CR>};<Esc>k$hi<space>
-"autocmd Filetype cpp   inoremap <buffer> struct<Space> struct<Space>{<CR>};<Esc>k$hi<space>
+"autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<cr>};<Esc>k$hi<space>
+"autocmd Filetype cpp   inoremap <buffer> struct<Space> struct<Space>{<cr>};<Esc>k$hi<space>
 
-autocmd Filetype c      nnoremap <buffer> ,m :w<CR>:silent !/bin/rm -f %:p:h/a.out<CR>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
-autocmd Filetype cpp    nnoremap <buffer> ,m :w<CR>:silent !/bin/rm -f %:p:h/a.out<CR>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<CR>:make<CR>:!%:p:h/a.out<CR>
-autocmd Filetype ruby   nnoremap <buffer> ,m :w<CR>:set makeprg=ruby\ -w\ %<CR>:make<CR>
-autocmd Filetype python nnoremap <buffer> ,m :w<CR>:set makeprg=python3\ %<CR>:make<CR>
-autocmd Filetype lisp   nnoremap <buffer> ,m :w<CR>:set makeprg=emacs\ --no-site-file\ --script\ %<CR>:make<CR>
-"autocmd Filetype tex    nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>:!zathura %:r.pdf &<CR>
-autocmd Filetype tex    nnoremap <buffer> ,m :w<CR>:set makeprg=xelatex\ -output-directory=%:p:h\ %<CR>:make<CR>
+autocmd Filetype c      nnoremap <buffer> gl :w<cr>:!rm -f %:p:h/{a.bc,a.ll} && clang   -std=c11   -emit-llvm -c % -o %:p:h/a.bc && clang   -std=c11   -emit-llvm -S % -o %:p:h/a.ll<cr>:vsp %:p:h/a.ll<cr>
+autocmd Filetype cpp    nnoremap <buffer> gl :w<cr>:!rm -f %:p:h/{a.bc,a.ll} && clang++ -std=c++14 -emit-llvm -c % -o %:p:h/a.bc && clang++ -std=c++14 -emit-llvm -S % -o %:p:h/a.ll<cr>:vsp %:p:h/a.ll<cr>
+
+autocmd Filetype c      nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
+autocmd Filetype cpp    nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
+autocmd Filetype ruby   nnoremap <buffer> ,m :w<cr>:set makeprg=ruby\ -w\ %<cr>:make<cr>
+autocmd Filetype python nnoremap <buffer> ,m :w<cr>:set makeprg=python3\ %<cr>:make<cr>
+autocmd Filetype lisp   nnoremap <buffer> ,m :w<cr>:set makeprg=emacs\ --no-site-file\ --script\ %<cr>:make<cr>
+"autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:set makeprg=xelatex\ -output-directory=%:p:h\ %<cr>:make<cr>:!zathura %:r.pdf &<cr>
+autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:set makeprg=xelatex\ -output-directory=%:p:h\ %<cr>:make<cr>
 
 "function! RunTeX()
 "  " !zathura %:r.pdf
@@ -160,8 +163,8 @@ syntax on
 function! ToggleFullScreen()
   call system("wmctrl -r :ACTIVE: -b toggle,fullscreen")
 endfunction
-nnoremap <F11>      :call ToggleFullScreen()<CR>
-inoremap <F11> <Esc>:call ToggleFullScreen()<CR>
+nnoremap <F11>      :call ToggleFullScreen()<cr>
+inoremap <F11> <Esc>:call ToggleFullScreen()<cr>
 
 nnoremap <C-h> <Esc><C-w>h
 nnoremap <C-j> <Esc><C-w>j
@@ -184,15 +187,15 @@ nnoremap <space> :q<cr>
 set cursorline
 nnoremap ,, 0D
 
-nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<CR>
+nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<cr>
 nnoremap ,a ggdG
-nnoremap \n :lnext<CR>
-nnoremap \p :lprevious<CR>
-nnoremap ,n :cn<CR>
-nnoremap ,p :cp<CR>
+nnoremap \n :lnext<cr>
+nnoremap \p :lprevious<cr>
+nnoremap ,n :cn<cr>
+nnoremap ,p :cp<cr>
 nnoremap \r "_diwP
 nnoremap gr Go<esc>pk"7dggzR
-nnoremap ,t :cd ~/programs/test<CR>:e a.cpp<CR>
+nnoremap ,t :cd ~/programs/test<cr>:e a.cpp<cr>
 nnoremap gp :!git log -p --stat --follow -- %:p > /tmp/gitLogPatch<cr>:vsp /tmp/gitLogPatch<cr>
 
 function! DiffToggle()
@@ -202,28 +205,28 @@ function! DiffToggle()
     windo diffthis
   endif
 endfunction
-nnoremap ,f :call DiffToggle()<CR>
+nnoremap ,f :call DiffToggle()<cr>
 
-nnoremap ,s :source ~/.vimrc<CR>
-nnoremap ,v :sp ~/.vimrc<CR>
+nnoremap ,s :source ~/.vimrc<cr>
+nnoremap ,v :sp ~/.vimrc<cr>
 autocmd! bufwritepost .vimrc source ~/.vimrc " reload vimrc once it's edited
 
 nnoremap ,= =i{<C-o>
-autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>gg
-autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><CR><CR>int main() {<CR><CR>return 0;<CR>}<Esc>gg
-autocmd FileType ruby   nnoremap ,h ggdGi#!/usr/bin/env ruby<CR><CR><Esc>
-autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python3<CR># -*- coding: utf-8 -*-<CR><Esc>
+autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><cr><cr>int main() {<cr><cr>return 0;<cr>}<Esc>gg
+autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><cr><cr>int main() {<cr><cr>return 0;<cr>}<Esc>gg
+autocmd FileType ruby   nnoremap ,h ggdGi#!/usr/bin/env ruby<cr><cr><Esc>
+autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python3<cr># -*- coding: utf-8 -*-<cr><Esc>
 
 nnoremap gc :w<cr>:!clang-format -i %:p<cr>
-nnoremap <C-N> :call NERDComment("n", "Toggle")<CR>j
-xnoremap <C-N> :call NERDComment("x", "Toggle")<CR>j
-"noremap <silent> <C-C> :call CommentLine()<CR>
+nnoremap <C-N> :call NERDComment("n", "Toggle")<cr>j
+xnoremap <C-N> :call NERDComment("x", "Toggle")<cr>j
+"noremap <silent> <C-C> :call CommentLine()<cr>
 function! CommentLine()
   if &ft == 'c' || &ft == 'cpp'
     if match(getline("."), "^[\t ]*//.*") == -1
       execute ":silent! normal I// \<ESC>hh\<down>"
     else
-      execute ":silent! normal :nohlsearch\<CR>:s/\\/\\///\<CR>:nohlsearch\<CR>==\<down>"
+      execute ":silent! normal :nohlsearch\<cr>:s/\\/\\///\<cr>:nohlsearch\<cr>==\<down>"
     endif
   endif
 endfunction
@@ -316,14 +319,14 @@ endfunction
 
 "------------------------------------coq-------------------------------------
 autocmd FileType coq highlight SentToCoq ctermbg=17 guibg=#000045
-autocmd FileType coq nnoremap <silent> <C-Up>	 <Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq nnoremap <silent> <C-Down>	 <Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq nnoremap <silent> <C-Right> <Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq nnoremap <silent> <F5>	 <Esc>:w<CR>:! coqc %<CR>
-autocmd FileType coq inoremap <silent> <C-Up>	 <Esc>:CoqIDEUndo<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq inoremap <silent> <C-Down>	 <Esc>:CoqIDENext<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq inoremap <silent> <C-Right> <Esc>:CoqIDEToCursor<CR>:set scrolloff=5<CR>:vertical resize 76<CR>
-autocmd FileType coq inoremap <silent> <F5>	 <Esc>:w<CR>:! coqc %<CR>
+autocmd FileType coq nnoremap <silent> <C-Up>	 <Esc>:CoqIDEUndo<cr>:set scrolloff=5<cr>:vertical resize 76<cr>
+autocmd FileType coq nnoremap <silent> <C-Down>	 <Esc>:CoqIDENext<cr>:set scrolloff=5<cr>:vertical resize 76<cr>
+autocmd FileType coq nnoremap <silent> <C-Right> <Esc>:CoqIDEToCursor<cr>:set scrolloff=5<cr>:vertical resize 76<cr>
+autocmd FileType coq nnoremap <silent> <F5>	 <Esc>:w<cr>:! coqc %<cr>
+autocmd FileType coq inoremap <silent> <C-Up>	 <Esc>:CoqIDEUndo<cr>:set scrolloff=5<cr>:vertical resize 76<cr>
+autocmd FileType coq inoremap <silent> <C-Down>	 <Esc>:CoqIDENext<cr>:set scrolloff=5<cr>:vertical resize 76<cr>
+autocmd FileType coq inoremap <silent> <C-Right> <Esc>:CoqIDEToCursor<cr>:set scrolloff=5<cr>:vertical resize 76<cr>
+autocmd FileType coq inoremap <silent> <F5>	 <Esc>:w<cr>:! coqc %<cr>
 "------------------------------------coq end---------------------------------
 
 "----------------youcompleteme------------------------------------
@@ -343,11 +346,11 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<M-;>'
 " let g:ycm_key_invoke_completion = '<S-Space>'
 " let g:ycm_key_detailed_diagnostics = ',d'
-" nnoremap \d :YcmDiags<CR>
+" nnoremap \d :YcmDiags<cr>
 " YCM default: let g:ycm_key_detailed_diagnostics = '<leader>d'
-nnoremap ,c :YcmCompleter GoToDeclaration<CR>
-"nnoremap ,p :YcmCompleter GetParent<CR> " conflict with :cp
-"nnoremap ,d :YcmCompleter GoTo<CR>
+nnoremap ,c :YcmCompleter GoToDeclaration<cr>
+"nnoremap ,p :YcmCompleter GetParent<cr> " conflict with :cp
+"nnoremap ,d :YcmCompleter GoTo<cr>
 let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
 autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
 
@@ -356,8 +359,8 @@ function! OpenNewBufferIfNotModified()
     sp
   endif
 endfunction
-nnoremap ,d :call OpenNewBufferIfNotModified()<CR>:YcmCompleter GoToImprecise<CR>
-autocmd FileType python nnoremap ,d :YcmCompleter GoTo<CR>
+nnoremap ,d :call OpenNewBufferIfNotModified()<cr>:YcmCompleter GoToImprecise<cr>
+autocmd FileType python nnoremap ,d :YcmCompleter GoTo<cr>
 "----------------youcompleteme end---------------------------------
 
 "----------------ctrlp---------------------------------------------
