@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
-`ps aux | grep [t]mux`
-$?.success? ? system("tmux attach") : system("tmux")
+cmd = `ps aux | grep [t]mux`.count("\n") == 0 ? "tmux" : "tmux attach"
+system(cmd)
