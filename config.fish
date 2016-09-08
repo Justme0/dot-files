@@ -25,6 +25,9 @@ end
 if test -d ~/programs/klee-base/Release+Asserts/bin
   set PATH ~/programs/klee-base/Release+Asserts/bin $PATH
 end
+if test -d ~/programs/dg/tools
+  set PATH ~/programs/dg/tools $PATH
+end
 
 # klee-base related
 set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
@@ -85,7 +88,7 @@ alias md='cd ~/programs/dg/; and make -j9; and cd tools'
 alias gb='git branch -a'
 # note gc is a command 'graph count'
 alias gc='git config -l'
-alias gac='git add --all :/ --verbose; and git commit -v'
+alias gac='git add --all --verbose; and git commit -v'
 #alias gg="git log --author-date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset'"
 alias gg="git log --author-date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset' --all"
 alias gl='git pull'
