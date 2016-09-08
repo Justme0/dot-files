@@ -93,6 +93,7 @@ autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:set makeprg=xelatex\ -output
 "endfunction
 
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
+autocmd Filetype c setlocal ts=4 sts=4 sw=4
 
 "set t_Co=256
 "set guifont=Courier\ 10\ Pitch\ 12
