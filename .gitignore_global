@@ -8,6 +8,8 @@
 *.swp
 
 a.*
+b.*
+c.*
 
 # Shapechecker's output
 tool_output
