@@ -18,16 +18,9 @@ source $OMF_PATH/init.fish
 fish_vi_key_bindings
 
 # set PATH environment variable
-set PATH /sbin /usr/local/sbin /usr/sbin $PATH
-if test -d ~/programs/klee-base/Debug+Asserts/bin
-  set PATH ~/programs/klee-base/Debug+Asserts/bin $PATH
-end
-if test -d ~/programs/klee-base/Release+Asserts/bin
-  set PATH ~/programs/klee-base/Release+Asserts/bin $PATH
-end
-if test -d ~/programs/dg/tools
-  # set PATH ~/programs/dg/tools $PATH
-end
+# if test -d ~/programs/dg/tools
+#   set PATH ~/programs/dg/tools $PATH
+# end
 
 # klee-base related
 set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
@@ -79,7 +72,8 @@ alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
 
 # KLEE project related
-alias m='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit; and ./test.py; and cd ..'
+alias m='cd ~/programs/klee-base/build; and ninja; and cd ../testsuit; and ./test.py; and cd ..'
+# alias m='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit; and ./test.py; and cd ..'
 # NOTE: mt is a Linux command
 # alias mt='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit/transform_test/demo; and ./trans.rb demo1_if.c'
 alias md='cd ~/programs/dg/; and make -j9; and cd tools'
