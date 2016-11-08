@@ -15,6 +15,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'dag/vim-fish'
+Plugin 'rdnetto/YCM-Generator'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'keith/tmux.vim'
 "Plugin 'chase/vim-ansible-yaml'
@@ -80,7 +81,7 @@ autocmd Filetype cpp    nnoremap <buffer> gl :w<cr>:!rm -f %:p:h/{a.bc,a.ll} && 
 autocmd Filetype c      nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<cr>:set makeprg=ruby\ -w\ %<cr>:make<cr>
-autocmd Filetype python nnoremap <buffer> ,m :w<cr>:set makeprg=python3\ %<cr>:make<cr>
+autocmd Filetype python nnoremap <buffer> ,m :w<cr>:set makeprg=python2\ %<cr>:make<cr>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<cr>:set makeprg=emacs\ --no-site-file\ --script\ %<cr>:make<cr>
 "autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:set makeprg=xelatex\ -output-directory=%:p:h\ %<cr>:make<cr>:!zathura %:r.pdf &<cr>
 autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:set makeprg=xelatex\ -output-directory=%:p:h\ %<cr>:make<cr>
@@ -92,8 +93,8 @@ autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:set makeprg=xelatex\ -output
 "  endif
 "endfunction
 
-autocmd Filetype html setlocal ts=4 sts=4 sw=4
-autocmd Filetype c setlocal ts=4 sts=4 sw=4
+autocmd Filetype html setlocal tabstop=4 softtabstop=4 shiftwidth=4
+autocmd Filetype c setlocal shiftwidth=4
 
 "set t_Co=256
 "set guifont=Courier\ 10\ Pitch\ 12
@@ -219,8 +220,8 @@ autocmd FileType ruby   nnoremap ,h ggdGi#!/usr/bin/env ruby<cr><cr><Esc>
 autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python3<cr># -*- coding: utf-8 -*-<cr><Esc>
 
 nnoremap gc :w<cr>:!clang-format -i %:p<cr>
-nnoremap <C-N> :call NERDComment("n", "Toggle")<cr>j
-xnoremap <C-N> :call NERDComment("x", "Toggle")<cr>j
+nnoremap <C-n> :call NERDComment("n", "Toggle")<cr>j
+xnoremap <C-n> :call NERDComment("x", "Toggle")<cr>j
 "noremap <silent> <C-C> :call CommentLine()<cr>
 function! CommentLine()
   if &ft == 'c' || &ft == 'cpp'
@@ -352,8 +353,13 @@ let g:ycm_key_invoke_completion = '<M-;>'
 nnoremap ,c :YcmCompleter GoToDeclaration<cr>
 "nnoremap ,p :YcmCompleter GetParent<cr> " conflict with :cp
 "nnoremap ,d :YcmCompleter GoTo<cr>
-let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
-autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
+" specific to Linux kernel in my computer
+if expand("%:p") =~ "linuxAll/linux" || getcwd() =~ "linuxAll/linux"
+  let g:ycm_global_ycm_extra_conf = '~/programs/linuxAll/linux/.ycm_extra_conf.py'
+else
+  let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
+  autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
+endif
 
 function! OpenNewBufferIfNotModified()
   if !&modified
@@ -361,7 +367,7 @@ function! OpenNewBufferIfNotModified()
   endif
 endfunction
 nnoremap ,d :call OpenNewBufferIfNotModified()<cr>:YcmCompleter GoToImprecise<cr>
-autocmd FileType python nnoremap ,d :YcmCompleter GoTo<cr>
+autocmd FileType python nnoremap ,d :call OpenNewBufferIfNotModified()<cr>:YcmCompleter GoTo<cr>
 "----------------youcompleteme end---------------------------------
 
 "----------------ctrlp---------------------------------------------
@@ -382,7 +388,7 @@ if expand("%:p") =~ "/dg" || getcwd() =~ "/dg"
         \ 'dir': '\v(html|tests|Testing)$',
         \ 'file': '\v[^hp]$',
         \ }
-  set softtabstop=4
+  " set softtabstop=4
   set shiftwidth=4
 endif
 "----------------ctrlp end-----------------------------------------
@@ -400,8 +406,9 @@ endif
 " Perl regex match whole word, use \b instead of \< in Vim
 " special for KLEE:
 " FIXME: head file's filetype is cpp
-autocmd Filetype c   nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cc  -w <cword> <cr>
-autocmd Filetype cpp nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cpp -w <cword> <cr>
+" autocmd Filetype c   nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cc  -w <cword> <cr>
+" autocmd Filetype cpp nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cpp -w <cword> <cr>
+nnoremap ,r :Ack --ignore-dir testsuit --case-sensitive -w <cword> <cr>
 "----------------ack for ag end------------------------------------
 
 "----------------cscope--------------------------------------------
