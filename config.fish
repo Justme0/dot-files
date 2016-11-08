@@ -26,7 +26,7 @@ if test -d ~/programs/klee-base/Release+Asserts/bin
   set PATH ~/programs/klee-base/Release+Asserts/bin $PATH
 end
 if test -d ~/programs/dg/tools
-  set PATH ~/programs/dg/tools $PATH
+  # set PATH ~/programs/dg/tools $PATH
 end
 
 # klee-base related
@@ -113,6 +113,10 @@ end
 
 function z
   zathura $argv > /dev/null 2>&1 &
+end
+
+function pp
+  ps --sort=-pcpu -eo pcpu,comm,pid,user | head -n 11
 end
 
 if type gvfs-trash > /dev/null 2>&1
