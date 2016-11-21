@@ -408,7 +408,7 @@ endif
 " FIXME: head file's filetype is cpp
 " autocmd Filetype c   nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cc  -w <cword> <cr>
 " autocmd Filetype cpp nnoremap <buffer> ,r :Ack --ignore-dir testsuit --case-sensitive --cpp -w <cword> <cr>
-nnoremap ,r :Ack --ignore-dir testsuit --case-sensitive -w <cword> <cr>
+nnoremap ,r :Ack --ignore-dir testsuit --ignore-dir webGUI --case-sensitive -w <cword> <cr>
 "----------------ack for ag end------------------------------------
 
 "----------------cscope--------------------------------------------
