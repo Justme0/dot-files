@@ -236,7 +236,7 @@ endfunction
 "-------- use LLVM style
 " Highlight trailing whitespace and lines longer than 80 columns.
 highlight LongLine ctermbg=Black guibg=Black
-autocmd BufEnter,BufRead,Filetype c,cpp,ruby,python,vim,sh let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
+autocmd BufEnter,BufRead,Filetype c,cpp,ruby,python,sh let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
 "highlight WhitespaceEOL ctermbg=Black guibg=Black
 
 " Lines longer than 80 columns.
