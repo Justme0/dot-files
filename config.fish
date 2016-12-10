@@ -21,6 +21,9 @@ fish_vi_key_bindings
 # if test -d ~/programs/dg/tools
 #   set PATH ~/programs/dg/tools $PATH
 # end
+if test -d ~/programs/klee-base/bin
+  set PATH ~/programs/klee-base/bin $PATH
+end
 
 # klee-base related
 set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
