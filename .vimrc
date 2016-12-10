@@ -83,8 +83,8 @@ autocmd Filetype cpp    nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.o
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<cr>:set makeprg=ruby\ -w\ %<cr>:make<cr>
 autocmd Filetype python nnoremap <buffer> ,m :w<cr>:set makeprg=python2\ %<cr>:make<cr>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<cr>:set makeprg=emacs\ --no-site-file\ --script\ %<cr>:make<cr>
-"autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:set makeprg=xelatex\ -output-directory=%:p:h\ %<cr>:make<cr>:!zathura %:r.pdf &<cr>
-autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:set makeprg=xelatex\ -output-directory=%:p:h\ %<cr>:make<cr>
+autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:let &makeprg='xelatex -output-directory=' . shellescape('%:p:h') . ' ' . fnameescape(expand('%:p'))<cr>:make<cr>
+" :!zathura %:r.pdf &<cr>
 
 "function! RunTeX()
 "  " !zathura %:r.pdf
