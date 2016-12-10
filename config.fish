@@ -17,6 +17,8 @@ source $OMF_PATH/init.fish
 
 fish_vi_key_bindings
 
+# PATH doesn't include sbin in my Debian
+set PATH /sbin /usr/local/sbin /usr/sbin $PATH
 # set PATH environment variable
 # if test -d ~/programs/dg/tools
 #   set PATH ~/programs/dg/tools $PATH
