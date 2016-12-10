@@ -343,6 +343,7 @@ autocmd FileType coq inoremap <silent> <F5>	 <Esc>:w<cr>:! coqc %<cr>
 
 " if vim-youcompleteme	/usr/lib/vim-youcompleteme/ycm_extra_conf.py
 " else			~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
+let g:ycm_server_python_interpreter = '/usr/bin/python2'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<M-;>'
@@ -350,22 +351,18 @@ let g:ycm_key_invoke_completion = '<M-;>'
 " let g:ycm_key_detailed_diagnostics = ',d'
 " nnoremap \d :YcmDiags<cr>
 " YCM default: let g:ycm_key_detailed_diagnostics = '<leader>d'
-nnoremap ,c :YcmCompleter GoToDeclaration<cr>
 "nnoremap ,p :YcmCompleter GetParent<cr> " conflict with :cp
 "nnoremap ,d :YcmCompleter GoTo<cr>
-" specific to Linux kernel in my computer
-if expand("%:p") =~ "linuxAll/linux" || getcwd() =~ "linuxAll/linux"
-  let g:ycm_global_ycm_extra_conf = '~/programs/linuxAll/linux/.ycm_extra_conf.py'
-else
-  let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
-  autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
-endif
+
+let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf.py'
+autocmd BufNewFile,BufRead *.c let g:ycm_global_ycm_extra_conf = '~/dot-files/.ycm_extra_conf_for_c.py'
 
 function! OpenNewBufferIfNotModified()
   if !&modified
     sp
   endif
 endfunction
+nnoremap ,c :call OpenNewBufferIfNotModified()<cr>:YcmCompleter GoToDeclaration<cr>
 nnoremap ,d :call OpenNewBufferIfNotModified()<cr>:YcmCompleter GoToImprecise<cr>
 autocmd FileType python nnoremap ,d :call OpenNewBufferIfNotModified()<cr>:YcmCompleter GoTo<cr>
 "----------------youcompleteme end---------------------------------
