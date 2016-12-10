@@ -11,5 +11,7 @@ a.*
 b.*
 c.*
 
+build
+
 # Shapechecker's output
 tool_output
