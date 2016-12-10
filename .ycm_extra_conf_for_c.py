@@ -60,21 +60,15 @@ flags = [
 '-x', 'c',
 
 # produced by `echo | clang -v -E -x c -`
-'-isystem', '/usr/local/bin/../lib/clang/3.8.0/include',
+'-isystem', '/usr/local/bin/../lib/clang/3.9.0/include',
 '-isystem', '/usr/include/x86_64-linux-gnu',
 '-isystem', '/usr/local/include',
 '-isystem', '/usr/include',
 
 '-I', '.',
 '-I', 'include',
-'-I', 'src',
 '-I', 'src/include',
 '-I', 'lib/include',
-
-# for test in shapechecker
-'-I', './testsuit/juliet_test_suite/testcasesupport',
-'-I', './testsuit/coreutils/lib',
-'-DTOOL_DEBUG',
 ]
 
 
@@ -176,7 +170,4 @@ def FlagsForFile( filename, **kwargs ):
     relative_to = DirectoryOfThisScript()
     final_flags = MakeRelativePathsInFlagsAbsolute( flags, relative_to )
 
-  return {
-    'flags': final_flags,
-    'do_cache': True
-  }
+  return { 'flags': final_flags }
