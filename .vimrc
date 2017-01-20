@@ -10,21 +10,29 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
 "Plugin 'vim-scripts/Conque-GDB' " use emacs gdb
+
+" for search
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'dag/vim-fish'
-Plugin 'rdnetto/YCM-Generator'
+
 Plugin 'vim-scripts/matchit.zip'
-Plugin 'keith/tmux.vim'
-"Plugin 'chase/vim-ansible-yaml'
-"Plugin 'gilligan/vim-lldb'
 Plugin 'tomasr/molokai'
-Plugin 'vim-airline/vim-airline'
+" Plugin 'morhetz/gruvbox'
+
+" syntax highlight
+Plugin 'dag/vim-fish'
+Plugin 'keith/tmux.vim'
 Plugin 'justme0/llvm-vim-util'
+"Plugin 'chase/vim-ansible-yaml'
+
+"Plugin 'gilligan/vim-lldb'
+" Plugin 'vim-airline/vim-airline'
 "Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdcommenter'
+
+" Plugin 'rdnetto/YCM-Generator'
 Plugin 'Valloric/YouCompleteMe'
 
 " The following are examples of different formats supported.
@@ -75,13 +83,13 @@ autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><cr>end<Esc>kA
 "autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<cr>};<Esc>k$hi<space>
 "autocmd Filetype cpp   inoremap <buffer> struct<Space> struct<Space>{<cr>};<Esc>k$hi<space>
 
-autocmd Filetype c      nnoremap <buffer> gl :w<cr>:!rm -f %:p:h/{a.bc,a.ll} && clang   -std=c11   -emit-llvm -c % -o %:p:h/a.bc && clang   -std=c11   -emit-llvm -S % -o %:p:h/a.ll<cr>:vsp %:p:h/a.ll<cr>
-autocmd Filetype cpp    nnoremap <buffer> gl :w<cr>:!rm -f %:p:h/{a.bc,a.ll} && clang++ -std=c++14 -emit-llvm -c % -o %:p:h/a.bc && clang++ -std=c++14 -emit-llvm -S % -o %:p:h/a.ll<cr>:vsp %:p:h/a.ll<cr>
+autocmd Filetype c      nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang   -std=c11   -emit-llvm -c % -o %:p:r.bc && clang   -std=c11   -emit-llvm -S % -o %:p:r.ll<cr>:sp %:p:r.ll<cr>
+autocmd Filetype cpp    nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang++ -std=c++14 -emit-llvm -c % -o %:p:r.bc && clang++ -std=c++14 -emit-llvm -S % -o %:p:r.ll<cr>:sp %:p:r.ll<cr>
 
 autocmd Filetype c      nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<cr>:set makeprg=ruby\ -w\ %<cr>:make<cr>
-autocmd Filetype python nnoremap <buffer> ,m :w<cr>:set makeprg=python2\ %<cr>:make<cr>
+autocmd Filetype python nnoremap <buffer> ,m :w<cr>:set makeprg=python3\ %<cr>:make<cr>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<cr>:set makeprg=emacs\ --no-site-file\ --script\ %<cr>:make<cr>
 autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:let &makeprg='xelatex -output-directory=' . shellescape('%:p:h') . ' ' . fnameescape(expand('%:p'))<cr>:make<cr>
 " :!zathura %:r.pdf &<cr>
@@ -198,7 +206,7 @@ nnoremap ,p :cp<cr>
 nnoremap \r "_diwP
 nnoremap gr Go<esc>pk"7dggzR
 nnoremap ,t :cd ~/programs/test<cr>:e a.cpp<cr>
-nnoremap gp :!git log -p --stat --follow -- %:p > /tmp/gitLogPatch<cr>:vsp /tmp/gitLogPatch<cr>
+nnoremap gp :!git log -p -w --stat --follow -- %:p > /tmp/gitLogPatch<cr>:vsp /tmp/gitLogPatch<cr>
 
 function! DiffToggle()
   if &diff
@@ -217,7 +225,8 @@ nnoremap ,= =i{<C-o>
 autocmd Filetype c      nnoremap ,h ggdGi#include <stdio.h><cr><cr>int main() {<cr><cr>return 0;<cr>}<Esc>gg
 autocmd Filetype cpp    nnoremap ,h ggdGi#include <iostream><cr><cr>int main() {<cr><cr>return 0;<cr>}<Esc>gg
 autocmd FileType ruby   nnoremap ,h ggdGi#!/usr/bin/env ruby<cr><cr><Esc>
-autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python3<cr># -*- coding: utf-8 -*-<cr><Esc>
+" autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python2<cr># -*- coding: utf-8 -*-<cr><Esc>
+autocmd FileType python nnoremap ,h ggdGi#!/usr/bin/env python3<cr><Esc>
 
 nnoremap gc :w<cr>:!clang-format -i %:p<cr>
 nnoremap <C-n> :call NERDComment("n", "Toggle")<cr>j
@@ -343,7 +352,10 @@ autocmd FileType coq inoremap <silent> <F5>	 <Esc>:w<cr>:! coqc %<cr>
 
 " if vim-youcompleteme	/usr/lib/vim-youcompleteme/ycm_extra_conf.py
 " else			~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
-let g:ycm_server_python_interpreter = '/usr/bin/python2'
+
+let g:ycm_server_python_interpreter = 'python2'
+let g:ycm_python_binary_path = 'python3'
+
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<M-;>'
@@ -453,3 +465,7 @@ let g:NERDAltDelims_c = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 "----------------nerdcommenter end-------------------------------
+
+"----------------airline-----------------------------------------
+" let g:airline#extensions#tabline#enabled = 1
+"----------------airline end-------------------------------------
