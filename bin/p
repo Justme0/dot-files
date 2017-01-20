@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+# e.g. If `ARGV` is `ssh`, `arg` is `[s]sh`.
+arg = "[#{ARGV.first[0]}]#{ARGV.first[1..-1]}"
+
+out = `ps -eFL | grep -v 'ruby #{__FILE__} #{ARGV[0]}' | grep -i --color=always #{arg}`
+if out.empty?
+  exit false
+else
+  puts `ps -eFL | head -n 1`
+  puts out
+end
