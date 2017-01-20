@@ -22,7 +22,7 @@ set PATH /usr/local/cuda/bin ~/programs/klee-base/bin ~/dot-files/bin /sbin /usr
 # klee-base related
 set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
 set -gx CPLUS_INCLUDE_PATH /usr/include/x86_64-linux-gnu
-set -gx LD_LIBRARY_PATH    /usr/local/lib
+set -gx LD_LIBRARY_PATH    /usr/local/lib /usr/local/cuda/lib64
 
 set -gx GCC_COLORS         1
 #set -gx LLDB               /usr/bin/lldb-3.6
@@ -41,8 +41,9 @@ set -gx MANWIDTH           72
 
 . /usr/share/autojump/autojump.fish
 
-alias cp="cp -i"
-alias mv="mv -i"
+alias jt='cd ~/programs/test'
+alias cp='cp -i'
+alias mv='mv -i'
 function rm
   echo NOTE: `rm` is dangerous. Use `t` or `/bin/rm` instead.
 end
@@ -69,15 +70,29 @@ alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
 
 # KLEE project related
-alias m='cd ~/programs/klee-base/build; and cmake --build .; and cd ../testsuit; and ./test.py; and cd ..'
+function m
+  pushd .
+  cd ~/programs/klee-base/build
+  cmake --build . -- -j9
+  if test $status -eq 0
+    popd
+  else
+    cd ..
+  end
+end
+# regression test for klee-base
+alias mt='m; and cd ~/programs/klee-base/testsuit; and ./test.py'
+# alias mk='cd ~/programs/klee-base/build; cmake --build . -- -j9; and cd ../testsuit; and ./test.py; cd ~/programs/klee-base'
+
 # NOTE: mt is a Linux command
 # alias mt='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit/transform_test/demo; and ./trans.rb demo1_if.c'
-alias md='cd ~/programs/dg/; and cmake --build .; and cd tools'
+# alias md='cd ~/programs/dg/; and cmake --build . -- -j9; and cd tools'
 
 # git
 alias gb='git branch -a'
 # note gc is a command 'graph count'
 alias gc='git config -l'
+alias go='git checkout'
 alias gac='git add --all --verbose; and git commit -v'
 #alias gg="git log --author-date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset'"
 alias gg="git log --author-date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset' --all"
@@ -89,16 +104,13 @@ alias gd='git diff -w'
 alias gm="git diff --name-only | uniq | xargs vi -p"
 
 function gp
-  if count $argv
+  if count $argv >/dev/null
     # a file's history
-    git log -p --stat --follow -- $argv
+    git log -p --stat -w --follow -- $argv
   else
-    git log -p --stat
+    git log -p --stat -w
   end
-end
-
-function gk
-  gitk --date-order --all $argv &
+  return 0
 end
 
 function z
