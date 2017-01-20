@@ -17,15 +17,7 @@ source $OMF_PATH/init.fish
 
 fish_vi_key_bindings
 
-# PATH doesn't include sbin in my Debian
-set PATH /sbin /usr/local/sbin /usr/sbin $PATH
-# set PATH environment variable
-# if test -d ~/programs/dg/tools
-#   set PATH ~/programs/dg/tools $PATH
-# end
-if test -d ~/programs/klee-base/bin
-  set PATH ~/programs/klee-base/bin $PATH
-end
+set PATH /usr/local/cuda/bin ~/programs/klee-base/bin ~/dot-files/bin /sbin /usr/local/sbin /usr/sbin $PATH
 
 # klee-base related
 set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
