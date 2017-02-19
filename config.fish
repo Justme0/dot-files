@@ -101,7 +101,7 @@ alias gl='git pull'
 alias gs='git status'
 alias gd='git diff -w'
 # open conflict files when git merge
-alias gm="git diff --name-only | uniq | xargs vi -p"
+alias vd="git diff --name-only | uniq | xargs vi -p"
 
 function gp
   if count $argv >/dev/null
