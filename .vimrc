@@ -86,7 +86,7 @@ autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><cr>end<Esc>kA
 autocmd Filetype c      nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang   -std=c11   -emit-llvm -c % -o %:p:r.bc && clang   -std=c11   -emit-llvm -S % -o %:p:r.ll<cr>:sp %:p:r.ll<cr>
 autocmd Filetype cpp    nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang++ -std=c++14 -emit-llvm -c % -o %:p:r.bc && clang++ -std=c++14 -emit-llvm -S % -o %:p:r.ll<cr>:sp %:p:r.ll<cr>
 
-autocmd Filetype c      nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=gcc\ -std=c11\ \ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
+autocmd Filetype c      nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=gcc\ -std=gnu11\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<cr>:set makeprg=ruby\ -w\ %<cr>:make<cr>
 autocmd Filetype python nnoremap <buffer> ,m :w<cr>:set makeprg=python3\ %<cr>:make<cr>
