@@ -8,11 +8,15 @@
 *.swo
 *.swp
 
+a
 a.*
+b
 b.*
+c
 c.*
 
 build
 
 # Shapechecker's output
 tool_output
+shit
