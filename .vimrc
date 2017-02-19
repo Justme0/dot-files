@@ -32,8 +32,8 @@ autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><cr>end<Esc>kA
 "autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<cr>};<Esc>k$hi<space>
 "autocmd Filetype cpp   inoremap <buffer> struct<Space> struct<Space>{<cr>};<Esc>k$hi<space>
 
-autocmd Filetype c      nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang   -std=c11   -emit-llvm -c % -o %:p:r.bc && clang   -std=c11   -emit-llvm -S % -o %:p:r.ll<cr>:sp %:p:r.ll<cr>
-autocmd Filetype cpp    nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang++ -std=c++14 -emit-llvm -c % -o %:p:r.bc && clang++ -std=c++14 -emit-llvm -S % -o %:p:r.ll<cr>:sp %:p:r.ll<cr>
+autocmd Filetype c      nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang   -std=c11   -emit-llvm -g -c % -o %:p:r.bc && clang   -std=c11   -emit-llvm -g -S % -o %:p:r.ll<cr>:sp %:p:r.ll<cr>
+autocmd Filetype cpp    nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang++ -std=c++14 -emit-llvm -g -c % -o %:p:r.bc && clang++ -std=c++14 -emit-llvm -g -S % -o %:p:r.ll<cr>:sp %:p:r.ll<cr>
 
 autocmd Filetype c      nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=gcc\ -std=gnu11\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
