@@ -92,7 +92,7 @@ alias mt='m; and cd ~/programs/klee-base/testsuit; and ./test.py'
 alias gb='git branch -a'
 # note gc is a command 'graph count'
 alias gc='git config -l'
-alias go='git checkout'
+# alias gco='git checkout' # TODO: gco <tab> failed
 alias gac='git add --all --verbose; and git commit -v'
 #alias gg="git log --author-date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset'"
 alias gg="git log --author-date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset' --all"
