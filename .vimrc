@@ -18,9 +18,6 @@ filetype plugin indent on
 "-----------------------------------vundle end-------------------------------
 
 "------------------------------------my config-------------------------------
-" edit and compile for programming
-inoremap {<cr> {<cr>}<Esc>O
-
 autocmd Filetype ruby inoremap <buffer> do<cr>       do<cr>end<Esc>O
 autocmd Filetype ruby inoremap <buffer> do<Space>    do<Space>\|<cr>end<Esc>k$a
 autocmd Filetype ruby inoremap <buffer> class<Space> class<Space><cr>end<Esc>kA
@@ -32,8 +29,8 @@ autocmd Filetype ruby inoremap <buffer> while<Space> while<Space><cr>end<Esc>kA
 "autocmd Filetype cpp   inoremap <buffer> class<Space> class<Space>{<cr>};<Esc>k$hi<space>
 "autocmd Filetype cpp   inoremap <buffer> struct<Space> struct<Space>{<cr>};<Esc>k$hi<space>
 
-autocmd Filetype c      nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang   -std=c11   -emit-llvm -g -c % -o %:p:r.bc && clang   -std=c11   -emit-llvm -g -S % -o %:p:r.ll<cr>:sp %:p:r.ll<cr>
-autocmd Filetype cpp    nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang++ -std=c++14 -emit-llvm -g -c % -o %:p:r.bc && clang++ -std=c++14 -emit-llvm -g -S % -o %:p:r.ll<cr>:sp %:p:r.ll<cr>
+autocmd Filetype c      nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang   -std=c11   -emit-llvm -g -c % -o %:p:r.bc && clang   -std=c11   -emit-llvm -g -S % -o %:p:r.ll<cr>:vs %:p:r.ll<cr>
+autocmd Filetype cpp    nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clang++ -std=c++14 -emit-llvm -g -c % -o %:p:r.bc && clang++ -std=c++14 -emit-llvm -g -S % -o %:p:r.ll<cr>:vs %:p:r.ll<cr>
 
 autocmd Filetype c      nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=gcc\ -std=gnu11\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
@@ -51,30 +48,29 @@ autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:let &makeprg='xelatex -outpu
 "endfunction
 
 autocmd Filetype html setlocal tabstop=4 softtabstop=4 shiftwidth=4
-autocmd Filetype c setlocal shiftwidth=4
+autocmd Filetype c setlocal shiftwidth=8
 
-"set t_Co=256
+" set t_Co=256
 "set guifont=Courier\ 10\ Pitch\ 12
 "set guifont=Monospace\ 12
 set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 12
+set background=dark
 set guioptions=r
 
 let g:molokai_original=1
 let g:rehash256=1 " work only if &t_Co > 255
 :silent! colorscheme molokai
-
 ":silent! colorscheme gruvbox "if have no the colorscheme, do nothing
-
 "colorscheme evening
 
-"HACK: distinguish background in console
-"if !has("gui_running") && filereadable("/home/justme0/Pictures/Roraima_EN-US12977483391_1366x768.jpg")
-"if has("gui_running")
-"  set background=dark
-"else
-"  set background=light
-"endif
-set background=dark
+if (expand("%:p") =~ "/thesis/" || getcwd() =~ "/thesis/") && has("gui_running")
+  set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 21
+  colorscheme default
+  set background=light
+  " highlight Normal guifg=#ffe0e0
+  " highlight Normal ctermfg=black ctermbg=red
+  nnoremap gm :sp ~/Documents/thesis/jiangg/main.tex<cr>
+endif
 
 " go last open line
 if has("autocmd")
@@ -82,6 +78,7 @@ if has("autocmd")
 endif
 
 autocmd VimResized * wincmd =
+set display+=lastline
 set history=2000
 set scrolloff=5
 set number
@@ -136,16 +133,28 @@ inoremap <C-l> <Esc><C-w>l
 
 nnoremap j gjzz
 nnoremap k gkzz
-" nnoremap <down> g<down>
-" nnoremap <up> g<up>
-inoremap <down> <C-o>g<down>
-inoremap <up> <C-o>g<up>
+nnoremap <down> gj
+nnoremap <up> gk
+inoremap <down> <C-o>gj
+inoremap <up> <C-o>gk
 
-nnoremap <space> :q<cr>
+" Mimic Emacs Line Editing in Insert Mode Only
+inoremap <C-A> <Home>
+inoremap <C-B> <Left>
+inoremap <C-E> <End>
+inoremap <C-F> <Right>
+inoremap <C-K> <Esc>lDa
+inoremap <C-U> <Esc>d0xi
+inoremap <C-Y> <Esc>Pa
+inoremap <C-N> <C-o>gj
+inoremap <C-P> <C-o>gk
+inoremap <C-X><C-S> <Esc>:w<CR>a
+" edit and compile for programming
+inoremap {<cr> {<cr>}<Esc>O
 
-set cursorline
+" set cursorline
 nnoremap ,, 0D
-
+nnoremap <space> :q<cr>
 nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<cr>
 nnoremap ,a ggdG
 nnoremap \n :lnext<cr>
@@ -303,7 +312,6 @@ autocmd FileType coq inoremap <silent> <F5>	 <Esc>:w<cr>:! coqc %<cr>
 
 let g:ycm_server_python_interpreter = 'python2'
 let g:ycm_python_binary_path = 'python3'
-
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<M-;>'
@@ -332,7 +340,7 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 0
 
 " for KLEE project
-if expand("%:p") =~ "klee-base" || getcwd() =~ "klee-base"
+if expand("%:p") =~ "shapechecker" || getcwd() =~ "shapechecker"
   let g:ctrlp_custom_ignore = {
         \ 'dir': '\v(docs|_test|testsuit)$',
         \ 'file': '\v[^hp]$',
@@ -417,3 +425,31 @@ let g:NERDTrimTrailingWhitespace = 1
 "----------------airline-----------------------------------------
 " let g:airline#extensions#tabline#enabled = 1
 "----------------airline end-------------------------------------
+
+" highlight DiffAdd    cterm=NONE ctermfg=0 ctermbg=22
+" highlight DiffDelete cterm=NONE ctermfg=0 ctermbg=52
+" highlight DiffChange cterm=NONE ctermfg=0 ctermbg=23
+" highlight DiffText   cterm=NONE ctermfg=0 ctermbg=23
+
+" from http://fcitx.github.io/handbook/chapter-remote.html
+" to review: https://github.com/lilydjwg/fcitx.vim
+let g:input_toggle = 1
+function! Fcitx2en()
+   let s:input_status = system("fcitx-remote")
+   if s:input_status == 2
+      let g:input_toggle = 1
+      let l:a = system("fcitx-remote -c")
+   endif
+endfunction
+
+function! Fcitx2zh()
+   let s:input_status = system("fcitx-remote")
+   if s:input_status != 2 && g:input_toggle == 1
+      let l:a = system("fcitx-remote -o")
+      let g:input_toggle = 0
+   endif
+endfunction
+
+set timeoutlen=150
+autocmd InsertLeave * call Fcitx2en()
+autocmd InsertEnter * call Fcitx2zh()
