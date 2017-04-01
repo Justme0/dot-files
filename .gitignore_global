@@ -20,3 +20,6 @@ build
 # Shapechecker's output
 tool_output
 shit
+*.bc
+*.ll
+core
