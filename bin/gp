@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+if ARGV.size == 1 and File.file? ARGV.first
+  system "git log -p --stat -w --follow -- #{ARGV.first}"
+else
+  system "git log -p --stat -w #{ARGV.join ' '}"
+end

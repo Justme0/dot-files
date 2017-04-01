@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+# Use hash for scalability.
+tp2cmd = {
+  "pdf" => "zathura",
+}
+tp2cmd.default = "xdg-open"
+
+ARGV.reverse_each do |file|
+  ext = File.extname(file).strip.downcase[1..-1]
+  prog = tp2cmd[ext]
+  # puts "#{prog} #{file} &"
+  system "#{prog} #{file} &"
+end

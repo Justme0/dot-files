@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+# When git merge conflicts, open all conflicting files.
+
+files = `ag "<<<< HEAD" -l $(git diff --name-only)`.split
+if files.empty?
+  exit
+else
+  system "vim -p #{files.join ' '}"
+end
