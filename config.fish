@@ -1,3 +1,7 @@
+# Some good tools:
+# sudo apt install silverlight-ag
+# sudo pip install icdiff
+
 # Remove shit time right prompt in oh-my-fish.
 # Override fish_right_prompt function in
 # ~/.local/share/omf/themes/default/fish_right_prompt.fish.
@@ -17,9 +21,8 @@ source $OMF_PATH/init.fish
 
 fish_vi_key_bindings
 
-set PATH /usr/local/cuda/bin ~/programs/klee-base/bin ~/dot-files/bin /sbin /usr/local/sbin /usr/sbin $PATH
+set PATH /usr/local/cuda/bin ~/programs/shapechecker/bin ~/dot-files/bin /sbin /usr/local/sbin /usr/sbin $PATH
 
-# klee-base related
 set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
 set -gx CPLUS_INCLUDE_PATH /usr/include/x86_64-linux-gnu
 set -gx LD_LIBRARY_PATH    /usr/local/lib /usr/local/cuda/lib64
@@ -55,7 +58,9 @@ alias ll='ls -halF --time-style=long-iso'
 alias lt='ls -halF --time-style=long-iso -tr'
 
 alias sf='. ~/dot-files/config.fish'
-alias e='emacs'
+function e
+  emacs $argv &
+end
 alias en='emacs -nw'
 function eg
   emacs --eval "( gdb \" gdb -i=mi --args $argv \" )" &
@@ -69,53 +74,30 @@ alias v='gvim'
 alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'
 
-# KLEE project related
+# shapechecker project related
 function m
   pushd .
-  cd ~/programs/klee-base/build
-  cmake --build . -- -j9
+  and cd ~/programs/shapechecker/build
+  and cmake --build . -- -j9
   if test $status -eq 0
     popd
   else
     cd ..
+    false
   end
 end
-# regression test for klee-base
-alias mt='m; and cd ~/programs/klee-base/testsuit; and ./test.py'
-# alias mk='cd ~/programs/klee-base/build; cmake --build . -- -j9; and cd ../testsuit; and ./test.py; cd ~/programs/klee-base'
-
-# NOTE: mt is a Linux command
-# alias mt='cd ~/programs/klee-base/; and make CPPFLAGS+=-DTOOL_DEBUG -j9; and cd testsuit/transform_test/demo; and ./trans.rb demo1_if.c'
-# alias md='cd ~/programs/dg/; and cmake --build . -- -j9; and cd tools'
+alias mt='m; and cd ~/programs/shapechecker/testsuit; and ./test.py'
 
 # git
 alias gb='git branch -a'
-# note gc is a command 'graph count'
+# NOTE: gc is a command 'graph count'
 alias gc='git config -l'
 # alias gco='git checkout' # TODO: gco <tab> failed
 alias gac='git add --all --verbose; and git commit -v'
-#alias gg="git log --author-date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset'"
 alias gg="git log --author-date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset' --all"
 alias gl='git pull'
-#alias gs='git status --short'
 alias gs='git status'
 alias gd='git diff -w'
-# open conflict files when git merge
-alias vd="git diff --name-only | uniq | xargs vi -p"
-
-function gp
-  if count $argv >/dev/null
-    # a file's history
-    git log -p --stat -w --follow -- $argv
-  else
-    git log -p --stat -w
-  end
-  return 0
-end
-
-function z
-  zathura $argv > /dev/null 2>&1 &
-end
 
 function pp
   ps --sort=-pcpu -eo pcpu,comm,pid,user | head -n 11
@@ -136,3 +118,5 @@ if type gvfs-tree > /dev/null 2>&1
 end
 
 git config --global core.excludesfile ~/dot-files/.gitignore_global
+
+ulimit -c unlimited
