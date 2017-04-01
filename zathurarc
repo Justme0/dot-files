@@ -1,3 +1,19 @@
 set selection-clipboard clipboard
-map w quit
+set window-height 1000
+set window-width 1800
+set incremental-search true
+set guioptions "v"
+
+map <C-o> jumplist backward
+map <C-i> jumplist forward
+map f scroll full-down
+map d scroll half-down
+map b scroll full-up
+map u scroll half-up
+map <PageDown> scroll half-down
+map <PageUp> scroll half-up
+map t toggle_page_mode
+# map w adjust_window width
+# map s follow
 map x quit
+map w quit
