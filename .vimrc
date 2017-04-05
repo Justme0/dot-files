@@ -273,14 +273,34 @@ augroup END
 
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-function! RubyInfo()
+nnoremap ,e :call GoToSrc()<cr>
+function! GoToSrc()
 ruby << EOF
-class A
+
+# Check root according to Git.
+def is_root(dir)
+  File.directory?(dir + "/.git")
 end
-puts A.new.class
-puts RUBY_VERSION
-puts RUBY_PLATFORM
-puts RUBY_RELEASE_DATE
+
+head = Vim::Buffer.current.name
+abort "Not head file." unless head.end_with?(".h")
+src = File.basename(head, ".h") + ".cpp"
+puts "head is " + head
+puts "src is " + src
+dir = File.dirname(head)
+until is_root(dir)
+  abort ".git not found." if dir == "/"
+  dir = File.dirname(dir)
+end
+puts "dir is " + dir
+src_fullpath = `find #{dir} -name #{src}`.chomp
+puts "src_fullpath is " + src_fullpath
+if !src_fullpath.empty?
+  Vim::command("vs #{src_fullpath}")
+else
+  Vim::command("echo 'Good bye :)'")
+end
+
 EOF
 endfunction
 "------------------------------------my config end----------------
@@ -431,6 +451,7 @@ let g:NERDTrimTrailingWhitespace = 1
 " highlight DiffChange cterm=NONE ctermfg=0 ctermbg=23
 " highlight DiffText   cterm=NONE ctermfg=0 ctermbg=23
 
+"----------------input mode switch-------------------------------
 " from http://fcitx.github.io/handbook/chapter-remote.html
 " to review: https://github.com/lilydjwg/fcitx.vim
 let g:input_toggle = 1
@@ -453,3 +474,4 @@ endfunction
 set timeoutlen=150
 autocmd InsertLeave * call Fcitx2en()
 autocmd InsertEnter * call Fcitx2zh()
+"----------------input mode switch end---------------------------
