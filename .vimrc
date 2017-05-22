@@ -8,6 +8,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'tomasr/molokai'
+Plugin 'morhetz/gruvbox'
 Plugin 'dag/vim-fish'
 Plugin 'keith/tmux.vim'
 Plugin 'justme0/llvm-vim-util'
@@ -52,17 +53,24 @@ autocmd Filetype html setlocal tabstop=4 softtabstop=4 shiftwidth=4
 autocmd Filetype c setlocal shiftwidth=8
 
 " set t_Co=256
-"set guifont=Courier\ 10\ Pitch\ 12
-"set guifont=Monospace\ 12
-set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 13
+" set guifont=Courier\ 10\ Pitch\ 12
+" set guifont=Monospace\ 12
+set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 14
 set background=dark
 set guioptions=r
 
-let g:molokai_original=1
-let g:rehash256=1 " work only if &t_Co > 255
-:silent! colorscheme molokai
-":silent! colorscheme gruvbox "if have no the colorscheme, do nothing
-"colorscheme evening
+"============================== color ================================
+" three colorscheme for you:
+
+" let g:molokai_original=1
+" let g:rehash256=1 " work only if &t_Co > 255
+" :silent! colorscheme molokai
+
+:silent! colorscheme gruvbox "if have no the colorscheme, do nothing
+let g:gruvbox_contrast_dark='hard' " or soft, medium
+
+" colorscheme evening
+"============================== color end ============================
 
 " go last open line
 if has("autocmd")
@@ -133,6 +141,7 @@ nnoremap <up> gkzz
 " Mimic Emacs Line Editing in Insert Mode Only
 inoremap <C-A> <Home>
 inoremap <C-B> <Left>
+inoremap <C-D> <del>
 inoremap <C-E> <End>
 inoremap <C-F> <Right>
 inoremap <C-K> <Esc>lDa
@@ -156,7 +165,17 @@ nnoremap ,p :cp<cr>
 nnoremap \r "_diwP
 nnoremap gr Go<esc>pk"7dggzR
 nnoremap ,t :cd ~/programs/test<cr>:e a.cpp<cr>
-nnoremap gp :!git log -p -w --stat --follow -- %:p > /tmp/gitLogPatch<cr>:vsp /tmp/gitLogPatch<cr><cr>
+
+function! GetGitLog()
+ruby << EOF
+system("git log -p -w --stat --follow -- #{Vim::Buffer.current.name} > /tmp/gitLogPatch") or abort
+Vim::command("let @/ = expand('<cword>')")
+Vim::command("vsp /tmp/gitLogPatch")
+Vim::command("normal gg")
+# Vim::command("normal N")
+EOF
+endfunction
+nnoremap gp :call GetGitLog()<cr>
 
 function! DiffToggle()
   if &diff
@@ -360,6 +379,8 @@ if expand("%:p") =~ "shapechecker" || getcwd() =~ "shapechecker"
         \ 'dir': '\v(docs|_test|testsuit)$',
         \ 'file': '\v[^hp]$',
         \ }
+  " autocmd Filetype c   nnoremap <buffer> ,m :w<cr>:let &makeprg='bash ~/programs/shapechecker/build/make.sh'<cr>:make<cr>
+  autocmd Filetype cpp nnoremap <buffer> ,m :w<cr>:let &makeprg='ninja -C ~/programs/shapechecker/build -j3'<cr>:make<cr><cr>:cw<cr>
 endif
 
 " for dg project
@@ -455,7 +476,7 @@ if (expand("%:p") =~ "/thesis/" || getcwd() =~ "/thesis/")
   " highlight Normal ctermfg=black ctermbg=red
   nnoremap gm :sp ~/Documents/thesis/jiangg/main.tex<cr>
   " autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:let &makeprg='bash ~/Documents/thesis/jiang/make.sh'<cr>:make<cr>
-  nnoremap ,m :w<cr>:let &makeprg='bash ~/Documents/thesis/jiang/make.sh'<cr>:make<cr>
+  nnoremap ,m :w<cr>:cd ~/Documents/thesis/jiang<cr>:let &makeprg='bash ~/Documents/thesis/jiang/make.sh'<cr>:make<cr>
 
   "----------------input mode switch-------------------------------
   " from http://fcitx.github.io/handbook/chapter-remote.html
