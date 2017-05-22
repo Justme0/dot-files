@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
 # apt-get install tig or gitk
-git_tool = ENV["DISPLAY"] ? "gitk" : "tig"
-system "#{git_tool} --date-order --all #{ARGV.join(' ')}"
+if ENV["DISPLAY"]
+  system "gitk --date-order --all #{ARGV.join(' ')} &"
+else
+  system "tig  --date-order --all #{ARGV.join(' ')}"
+end

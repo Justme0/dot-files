@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
-cmd = `ps aux | grep [t]mux`.count("\n") == 0 ? "tmux" : "tmux attach"
-system(cmd)
+from_tmux = system "tmux attach > /dev/null 2>&1"
+system "tmux" if ENV["TERM"] != "screen" and !from_tmux
