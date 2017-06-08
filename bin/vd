@@ -2,7 +2,7 @@
 
 # When git merge conflicts, open all conflicting files.
 
-files = `ag "<<<< HEAD" -l $(git diff --name-only)`.split
+files = `ag "^<<<<<<< " -l $(git diff --name-only)`.split
 if files.empty?
   exit
 else

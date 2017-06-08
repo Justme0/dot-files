@@ -2,4 +2,4 @@
 
 # apt-get install tig or gitk
 git_tool = ENV["DISPLAY"] ? "gitk" : "tig"
-system "#{git_tool} --date-order --all #{ARGV.join(' ')}"
+system "#{git_tool} --date-order --all #{ARGV.join(' ')} &"
