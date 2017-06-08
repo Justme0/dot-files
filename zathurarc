@@ -2,7 +2,7 @@ set selection-clipboard clipboard
 set window-height 1000
 set window-width 1800
 set incremental-search true
-set guioptions "v"
+set guioptions "svh"
 
 map <C-o> jumplist backward
 map <C-i> jumplist forward

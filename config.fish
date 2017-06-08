@@ -21,11 +21,11 @@ source $OMF_PATH/init.fish
 
 fish_vi_key_bindings
 
-set PATH /usr/local/cuda/bin ~/programs/shapechecker/bin ~/dot-files/bin /sbin /usr/local/sbin /usr/sbin $PATH 2> /dev/null
+set PATH /sbin /usr/local/sbin /usr/sbin ~/dot-files/bin /usr/local/cuda/bin ~/programs/shapechecker/bin $PATH 2> /dev/null
 
 set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
 set -gx CPLUS_INCLUDE_PATH /usr/include/x86_64-linux-gnu
-set -gx LD_LIBRARY_PATH    /usr/local/lib /usr/local/cuda/lib64
+set -gx LD_LIBRARY_PATH    /usr/local/lib
 
 set -gx GCC_COLORS         1
 #set -gx LLDB               /usr/bin/lldb-3.6
@@ -98,7 +98,8 @@ alias gs='git status'
 alias gd='git diff -w'
 
 function pp
-  ps --sort=-pcpu -eo pcpu,comm,pid,user | head -n 11
+  # ps --sort=-pcpu -eo pcpu,comm,pid,user | head -n 11
+  ps --sort=-pcpu aux | head -n 6
 end
 
 if type gvfs-trash > /dev/null 2>&1

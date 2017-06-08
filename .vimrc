@@ -8,6 +8,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'tomasr/molokai'
+Plugin 'morhetz/gruvbox'
 Plugin 'dag/vim-fish'
 Plugin 'keith/tmux.vim'
 Plugin 'justme0/llvm-vim-util'
@@ -36,8 +37,9 @@ autocmd Filetype c      nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.o
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<cr>:set makeprg=ruby\ -w\ %<cr>:make<cr>
 autocmd Filetype python nnoremap <buffer> ,m :w<cr>:set makeprg=python3\ %<cr>:make<cr>
+autocmd Filetype apl    nnoremap <buffer> ,m :w<cr>:set makeprg=apl\ -s\ -f\ %<cr>:make<cr>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<cr>:set makeprg=emacs\ --no-site-file\ --script\ %<cr>:make<cr>
-autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:let &makeprg='xelatex -output-directory=' . shellescape('%:p:h') . ' ' . fnameescape(expand('%:p'))<cr>:make<cr>
+" autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:let &makeprg='xelatex -output-directory=' . shellescape('%:p:h') . ' ' . fnameescape(expand('%:p'))<cr>:make<cr>
 " :!zathura %:r.pdf &<cr>
 
 "function! RunTeX()
@@ -51,26 +53,24 @@ autocmd Filetype html setlocal tabstop=4 softtabstop=4 shiftwidth=4
 autocmd Filetype c setlocal shiftwidth=8
 
 " set t_Co=256
-"set guifont=Courier\ 10\ Pitch\ 12
-"set guifont=Monospace\ 12
-set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 12
+" set guifont=Courier\ 10\ Pitch\ 12
+" set guifont=Monospace\ 12
+set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 14
 set background=dark
 set guioptions=r
 
-let g:molokai_original=1
-let g:rehash256=1 " work only if &t_Co > 255
-:silent! colorscheme molokai
-":silent! colorscheme gruvbox "if have no the colorscheme, do nothing
-"colorscheme evening
+"============================== color ================================
+" three colorscheme for you:
 
-if (expand("%:p") =~ "/thesis/" || getcwd() =~ "/thesis/") && has("gui_running")
-  set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 21
-  colorscheme default
-  set background=light
-  " highlight Normal guifg=#ffe0e0
-  " highlight Normal ctermfg=black ctermbg=red
-  nnoremap gm :sp ~/Documents/thesis/jiangg/main.tex<cr>
-endif
+" let g:molokai_original=1
+" let g:rehash256=1 " work only if &t_Co > 255
+" :silent! colorscheme molokai
+
+:silent! colorscheme gruvbox "if have no the colorscheme, do nothing
+let g:gruvbox_contrast_dark='hard' " or soft, medium
+
+" colorscheme evening
+"============================== color end ============================
 
 " go last open line
 if has("autocmd")
@@ -92,7 +92,7 @@ set hlsearch
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <silent> <esc>^[ <esc>^[
 set clipboard=unnamedplus
-autocmd FileType tex set cursorcolumn
+" autocmd FileType tex set cursorcolumn
 set showcmd
 set showmode
 set ruler
@@ -133,14 +133,15 @@ inoremap <C-l> <Esc><C-w>l
 
 nnoremap j gjzz
 nnoremap k gkzz
-nnoremap <down> gj
-nnoremap <up> gk
-inoremap <down> <C-o>gj
-inoremap <up> <C-o>gk
+vnoremap j gjzz
+vnoremap k gkzz
+nnoremap <down> gjzz
+nnoremap <up> gkzz
 
 " Mimic Emacs Line Editing in Insert Mode Only
 inoremap <C-A> <Home>
 inoremap <C-B> <Left>
+inoremap <C-D> <del>
 inoremap <C-E> <End>
 inoremap <C-F> <Right>
 inoremap <C-K> <Esc>lDa
@@ -164,7 +165,17 @@ nnoremap ,p :cp<cr>
 nnoremap \r "_diwP
 nnoremap gr Go<esc>pk"7dggzR
 nnoremap ,t :cd ~/programs/test<cr>:e a.cpp<cr>
-nnoremap gp :!git log -p -w --stat --follow -- %:p > /tmp/gitLogPatch<cr>:vsp /tmp/gitLogPatch<cr>
+
+function! GetGitLog()
+ruby << EOF
+system("git log -p -w --stat --follow -- #{Vim::Buffer.current.name} > /tmp/gitLogPatch") or abort
+Vim::command("let @/ = expand('<cword>')")
+Vim::command("vsp /tmp/gitLogPatch")
+Vim::command("normal gg")
+# Vim::command("normal N")
+EOF
+endfunction
+nnoremap gp :call GetGitLog()<cr>
 
 function! DiffToggle()
   if &diff
@@ -239,6 +250,7 @@ set smarttab
 augroup filetype
   autocmd! BufRead,BufNewFile *Makefile* set filetype=make
   autocmd! BufRead,BufNewFile *makefile* set filetype=make
+  autocmd! BufRead,BufNewFile *.apl set filetype=apl
 augroup END
 
 " In Makefiles, don't expand tabs to spaces, since we need the actual tabs
@@ -273,16 +285,38 @@ augroup END
 
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-function! RubyInfo()
+function! GoToSrc()
 ruby << EOF
-class A
+# Check root according to Git.
+def is_root(dir)
+  File.directory?(dir + "/.git")
 end
-puts A.new.class
-puts RUBY_VERSION
-puts RUBY_PLATFORM
-puts RUBY_RELEASE_DATE
+
+head = Vim::Buffer.current.name
+abort "Not head file." unless head.end_with?(".h")
+src = File.basename(head, ".h") + ".cpp"
+puts "head is " + head
+puts "src is " + src
+dir = File.dirname(head)
+until is_root(dir)
+  abort ".git not found." if dir == "/"
+  dir = File.dirname(dir)
+end
+puts "dir is " + dir
+src_fullpath = `find #{dir} -name #{src}`.split.last # a shit hack for ShapeChecker
+p "src_fullpath is " + src_fullpath
+if !src_fullpath.empty?
+  Vim::command("echo 'vs #{src_fullpath}'")
+  Vim::command("let @/ = expand('<cword>')")
+  Vim::command("vs #{src_fullpath}")
+  Vim::command("normal gg")
+  Vim::command("normal n")
+else
+  Vim::command("echo 'Good bye :)'")
+end
 EOF
 endfunction
+nnoremap ,e :call GoToSrc()<cr><cr>
 "------------------------------------my config end----------------
 
 "------------------------------------coq-------------------------------------
@@ -345,6 +379,8 @@ if expand("%:p") =~ "shapechecker" || getcwd() =~ "shapechecker"
         \ 'dir': '\v(docs|_test|testsuit)$',
         \ 'file': '\v[^hp]$',
         \ }
+  " autocmd Filetype c   nnoremap <buffer> ,m :w<cr>:let &makeprg='bash ~/programs/shapechecker/build/make.sh'<cr>:make<cr>
+  autocmd Filetype cpp nnoremap <buffer> ,m :w<cr>:let &makeprg='ninja -C ~/programs/shapechecker/build -j3'<cr>:make<cr><cr>:cw<cr>
 endif
 
 " for dg project
@@ -431,25 +467,47 @@ let g:NERDTrimTrailingWhitespace = 1
 " highlight DiffChange cterm=NONE ctermfg=0 ctermbg=23
 " highlight DiffText   cterm=NONE ctermfg=0 ctermbg=23
 
-" from http://fcitx.github.io/handbook/chapter-remote.html
-" to review: https://github.com/lilydjwg/fcitx.vim
-let g:input_toggle = 1
-function! Fcitx2en()
-   let s:input_status = system("fcitx-remote")
-   if s:input_status == 2
-      let g:input_toggle = 1
-      let l:a = system("fcitx-remote -c")
-   endif
-endfunction
+if (expand("%:p") =~ "/thesis/" || getcwd() =~ "/thesis/")
+" && has("gui_running")
+  set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 16
+  colorscheme default
+  set background=light
+  " highlight Normal guifg=#ffe0e0
+  " highlight Normal ctermfg=black ctermbg=red
+  nnoremap gm :sp ~/Documents/thesis/jiangg/main.tex<cr>
+  " autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:let &makeprg='bash ~/Documents/thesis/jiang/make.sh'<cr>:make<cr>
+  nnoremap ,m :w<cr>:cd ~/Documents/thesis/jiang<cr>:let &makeprg='bash ~/Documents/thesis/jiang/make.sh'<cr>:make<cr>
 
-function! Fcitx2zh()
-   let s:input_status = system("fcitx-remote")
-   if s:input_status != 2 && g:input_toggle == 1
-      let l:a = system("fcitx-remote -o")
-      let g:input_toggle = 0
-   endif
-endfunction
+  "----------------input mode switch-------------------------------
+  " from http://fcitx.github.io/handbook/chapter-remote.html
+  " to review: https://github.com/lilydjwg/fcitx.vim
+  let g:input_toggle = 1
+  function! Fcitx2en()
+     let s:input_status = system("fcitx-remote")
+     if s:input_status == 2
+        let g:input_toggle = 1
+        let l:a = system("fcitx-remote -c")
+     endif
+  endfunction
 
-set timeoutlen=150
-autocmd InsertLeave * call Fcitx2en()
-autocmd InsertEnter * call Fcitx2zh()
+  function! Fcitx2zh()
+     let s:input_status = system("fcitx-remote")
+     if s:input_status != 2 && g:input_toggle == 1
+        let l:a = system("fcitx-remote -o")
+        let g:input_toggle = 0
+     endif
+  endfunction
+
+  set timeoutlen=800
+  autocmd InsertLeave * call Fcitx2en()
+  autocmd InsertEnter * call Fcitx2zh()
+  "----------------input mode switch end---------------------------
+
+  let g:ctrlp_custom_ignore = {
+        \ 'dir': '\vfigures$',
+        \ 'file': '\v([^xb]|aux)$',
+        \ }
+endif
+
+inoremap <down> <C-o>gj
+inoremap <up> <C-o>gk
