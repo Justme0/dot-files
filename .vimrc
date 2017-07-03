@@ -39,7 +39,7 @@ autocmd Filetype ruby   nnoremap <buffer> ,m :w<cr>:set makeprg=ruby\ -w\ %<cr>:
 autocmd Filetype python nnoremap <buffer> ,m :w<cr>:set makeprg=python3\ %<cr>:make<cr>
 autocmd Filetype apl    nnoremap <buffer> ,m :w<cr>:set makeprg=apl\ -s\ -f\ %<cr>:make<cr>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<cr>:set makeprg=emacs\ --no-site-file\ --script\ %<cr>:make<cr>
-" autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:let &makeprg='xelatex -output-directory=' . shellescape('%:p:h') . ' ' . fnameescape(expand('%:p'))<cr>:make<cr>
+autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:let &makeprg='xelatex -output-directory=' . shellescape('%:p:h') . ' ' . fnameescape(expand('%:p'))<cr>:make<cr>
 " :!zathura %:r.pdf &<cr>
 
 "function! RunTeX()
@@ -55,7 +55,7 @@ autocmd Filetype c setlocal shiftwidth=8
 " set t_Co=256
 " set guifont=Courier\ 10\ Pitch\ 12
 " set guifont=Monospace\ 12
-set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 14
+set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 13
 set background=dark
 set guioptions=r
 
@@ -92,7 +92,7 @@ set hlsearch
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <silent> <esc>^[ <esc>^[
 set clipboard=unnamedplus
-" autocmd FileType tex set cursorcolumn
+autocmd FileType tex set cursorcolumn
 set showcmd
 set showmode
 set ruler
@@ -153,7 +153,7 @@ inoremap <C-X><C-S> <Esc>:w<CR>a
 " edit and compile for programming
 inoremap {<cr> {<cr>}<Esc>O
 
-" set cursorline
+set cursorline
 nnoremap ,, 0D
 nnoremap <space> :q<cr>
 nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<cr>
@@ -292,23 +292,28 @@ def is_root(dir)
   File.directory?(dir + "/.git")
 end
 
-head = Vim::Buffer.current.name
-abort "Not head file." unless head.end_with?(".h")
-src = File.basename(head, ".h") + ".cpp"
-puts "head is " + head
-puts "src is " + src
-dir = File.dirname(head)
+def get_brother(filename)
+  return File.basename(filename, ".h") + ".cpp" if filename.end_with?(".h")
+  return File.basename(filename, ".cpp") + ".h" if filename.end_with?(".cpp")
+  abort "Unsupported file type"
+end
+
+filename = Vim::Buffer.current.name
+brother = get_brother(filename)
+puts "filename is " + filename
+puts "brother is " + brother
+dir = File.dirname(filename)
 until is_root(dir)
   abort ".git not found." if dir == "/"
   dir = File.dirname(dir)
 end
 puts "dir is " + dir
-src_fullpath = `find #{dir} -name #{src}`.split.last # a shit hack for ShapeChecker
-p "src_fullpath is " + src_fullpath
-if !src_fullpath.empty?
-  Vim::command("echo 'vs #{src_fullpath}'")
-  Vim::command("let @/ = expand('<cword>')")
-  Vim::command("vs #{src_fullpath}")
+brother_fullpath = `find #{dir} -name #{brother}`.split.last # a shit hack for ShapeChecker
+p "brother_fullpath is " + brother_fullpath
+if !brother_fullpath.empty?
+  Vim::command("echo 'vs #{brother_fullpath}'")
+  Vim::command("let @/ = '\\<' . expand('<cword>') . '\\>'")
+  Vim::command("vs #{brother_fullpath}")
   Vim::command("normal gg")
   Vim::command("normal n")
 else
@@ -380,7 +385,7 @@ if expand("%:p") =~ "shapechecker" || getcwd() =~ "shapechecker"
         \ 'file': '\v[^hp]$',
         \ }
   " autocmd Filetype c   nnoremap <buffer> ,m :w<cr>:let &makeprg='bash ~/programs/shapechecker/build/make.sh'<cr>:make<cr>
-  autocmd Filetype cpp nnoremap <buffer> ,m :w<cr>:let &makeprg='ninja -C ~/programs/shapechecker/build -j3'<cr>:make<cr><cr>:cw<cr>
+  autocmd Filetype cpp nnoremap <buffer> ,m :wa<cr>:let &makeprg='ninja -C ~/programs/shapechecker/build -j3 && shapechecker a.bc'<cr>:make<cr><cr>:cw<cr>
 endif
 
 " for dg project
@@ -476,7 +481,7 @@ if (expand("%:p") =~ "/thesis/" || getcwd() =~ "/thesis/")
   " highlight Normal ctermfg=black ctermbg=red
   nnoremap gm :sp ~/Documents/thesis/jiangg/main.tex<cr>
   " autocmd Filetype tex    nnoremap <buffer> ,m :w<cr>:let &makeprg='bash ~/Documents/thesis/jiang/make.sh'<cr>:make<cr>
-  nnoremap ,m :w<cr>:cd ~/Documents/thesis/jiang<cr>:let &makeprg='bash ~/Documents/thesis/jiang/make.sh'<cr>:make<cr>
+  nnoremap ,m :wa<cr>:cd ~/Documents/thesis/jiang<cr>:let &makeprg='bash ~/Documents/thesis/jiang/make.sh'<cr>:make<cr>
 
   "----------------input mode switch-------------------------------
   " from http://fcitx.github.io/handbook/chapter-remote.html
