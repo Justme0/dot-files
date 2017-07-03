@@ -1,0 +1,12 @@
+[user]
+	email = jiangg@mail.ustc.edu.cn
+	name = jiangg
+[push]
+	default = simple
+[core]
+	excludesfile = /home/justme0/dot-files/.gitignore_global
+[sendemail]
+	smtpuser = jiangg@mail.ustc.edu.cn
+	smtpserver = mail.ustc.edu.cn
+	smtpencryption = ssl
+	smtpserverport = 465
