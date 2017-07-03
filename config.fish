@@ -27,6 +27,7 @@ set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
 set -gx CPLUS_INCLUDE_PATH /usr/include/x86_64-linux-gnu
 set -gx LD_LIBRARY_PATH    /usr/local/lib
 
+set -gx GDBHISTFILE        ~/.gdb_history
 set -gx GCC_COLORS         1
 #set -gx LLDB               /usr/bin/lldb-3.6
 set -gx EDITOR             /usr/bin/vim
