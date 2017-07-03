@@ -122,3 +122,4 @@ end
 git config --global core.excludesfile ~/dot-files/.gitignore_global
 
 ulimit -c unlimited
+xmodmap ~/dot-files/.Xmodmap
