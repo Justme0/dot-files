@@ -4,5 +4,5 @@
 if ENV["DISPLAY"]
   system "gitk --date-order --all #{ARGV.join(' ')} &"
 else
-  system "tig  --date-order --all #{ARGV.join(' ')}"
+  system "tig  --date-order #{ARGV.join(' ')}"
 end
