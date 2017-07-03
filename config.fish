@@ -21,7 +21,7 @@ source $OMF_PATH/init.fish
 
 fish_vi_key_bindings
 
-set PATH ~/programs/shapechecker/bin ~/dot-files/bin /sbin /usr/local/sbin /usr/sbin $PATH
+set PATH /sbin /usr/local/sbin /usr/sbin ~/dot-files/bin /usr/local/cuda/bin ~/programs/shapechecker/bin $PATH 2> /dev/null
 
 set -gx C_INCLUDE_PATH     /usr/include/x86_64-linux-gnu
 set -gx CPLUS_INCLUDE_PATH /usr/include/x86_64-linux-gnu
@@ -52,13 +52,11 @@ function rm
   echo NOTE: `rm` is dangerous. Use `t` or `/bin/rm` instead.
 end
 
-alias iv='info --vi-keys'
-
-#alias ll='ls -halFv --time-style=long-iso'
 alias ll='ls -halF --time-style=long-iso'
 alias lt='ls -halF --time-style=long-iso -tr'
 
 alias sf='. ~/dot-files/config.fish'
+
 function e
   emacs $argv &
 end
@@ -67,7 +65,7 @@ function eg
   emacs --eval "( gdb \" gdb -i=mi --args $argv \" )" &
 end
 function eng
-  emacs -nw --eval "( gdb \" gdb -i=mi --args $argv \" )" &
+  emacs -nw --eval "( gdb \" gdb -i=mi --args $argv \" )"
 end
 
 alias v='gvim'
