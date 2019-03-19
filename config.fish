@@ -94,7 +94,7 @@ alias gb='git branch -a'
 alias gc='git config -l'
 # alias gco='git checkout' # TODO: gco <tab> failed
 alias gac='git add --all --verbose; and git commit -v'
-alias gg="git log --author-date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset' --all"
+alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%an>%Creset' --all"
 alias gl='git pull'
 alias gs='git status'
 alias gd='git diff -w'
