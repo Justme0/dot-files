@@ -4,16 +4,17 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'vim-scripts/matchit.zip'
-Plugin 'tomasr/molokai'
-Plugin 'morhetz/gruvbox'
-Plugin 'dag/vim-fish'
-Plugin 'keith/tmux.vim'
-Plugin 'justme0/llvm-vim-util'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'fatih/vim-go'
+" Plugin 'kien/ctrlp.vim'
+" Plugin 'mileszs/ack.vim'
+" Plugin 'vim-scripts/matchit.zip'
+" Plugin 'tomasr/molokai'
+" Plugin 'morhetz/gruvbox'
+" Plugin 'dag/vim-fish'
+" Plugin 'keith/tmux.vim'
+" Plugin 'justme0/llvm-vim-util'
+" Plugin 'scrooloose/nerdcommenter'
+" Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 "-----------------------------------vundle end-------------------------------
@@ -36,6 +37,7 @@ autocmd Filetype cpp    nnoremap <buffer> gl :w<cr>:!rm -f %:p:r.{bc,ll} && clan
 autocmd Filetype c      nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=gcc\ -std=gnu11\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
 autocmd Filetype cpp    nnoremap <buffer> ,m :w<cr>:silent !/bin/rm -f %:p:h/a.out<cr>:set makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -o\ %:p:h/a.out\ %<cr>:make<cr>:!%:p:h/a.out<cr>
 autocmd Filetype ruby   nnoremap <buffer> ,m :w<cr>:set makeprg=ruby\ -w\ %<cr>:make<cr>
+autocmd Filetype go     nnoremap <buffer> ,m :w<cr>:set makeprg=go\ run\ %<cr>:make<cr>
 autocmd Filetype python nnoremap <buffer> ,m :w<cr>:set makeprg=python3\ %<cr>:make<cr>
 autocmd Filetype apl    nnoremap <buffer> ,m :w<cr>:set makeprg=apl\ -s\ -f\ %<cr>:make<cr>
 autocmd Filetype lisp   nnoremap <buffer> ,m :w<cr>:set makeprg=emacs\ --no-site-file\ --script\ %<cr>:make<cr>
@@ -69,7 +71,7 @@ set guioptions=r
 :silent! colorscheme gruvbox "if have no the colorscheme, do nothing
 let g:gruvbox_contrast_dark='hard' " or soft, medium
 
-" colorscheme evening
+colorscheme murphy
 "============================== color end ============================
 
 " go last open line
@@ -92,7 +94,6 @@ set hlsearch
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <silent> <esc>^[ <esc>^[
 set clipboard=unnamedplus
-autocmd FileType tex set cursorcolumn
 set showcmd
 set showmode
 set ruler
@@ -155,7 +156,8 @@ inoremap <C-X><C-S> <Esc>:w<CR>a
 " edit and compile for programming
 inoremap {<cr> {<cr>}<Esc>O
 
-set cursorline
+" set cursorline
+autocmd FileType tex set cursorcolumn
 nnoremap ,, 0D
 nnoremap <space> :q<cr>
 nnoremap g= gg=G<C-o><C-o>:%s/\s\+$//<cr>

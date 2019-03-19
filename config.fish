@@ -17,7 +17,7 @@ set -q XDG_DATA_HOME
 #set -gx OMF_CONFIG "/home/justme0/.config/omf"
 
 # Load oh-my-fish configuration.
-source $OMF_PATH/init.fish
+# source $OMF_PATH/init.fish
 
 fish_vi_key_bindings
 
@@ -30,7 +30,7 @@ set -gx LD_LIBRARY_PATH    /usr/local/lib
 set -gx GDBHISTFILE        ~/.gdb_history
 set -gx GCC_COLORS         1
 #set -gx LLDB               /usr/bin/lldb-3.6
-set -gx EDITOR             /usr/bin/vim
+set -gx EDITOR             vim
 set -gx LESS               -iR # http://stackoverflow.com/a/26069/1204713
 #set -gx PAGER              most # apt-get install most
 set -gx MANWIDTH           72
@@ -43,7 +43,7 @@ set -gx MANWIDTH           72
 #set -gx GIT_TRACE          1
 #set -gx GIT_CURL_VERBOSE   1
 
-. /usr/share/autojump/autojump.fish
+# . /usr/share/autojump/autojump.fish
 
 alias jt='cd ~/programs/test'
 alias cp='cp -i'
@@ -69,6 +69,7 @@ function eng
 end
 
 alias v='gvim'
+alias vi='vim'
 # symbolic link is ~/.config/fish/config.fish
 alias vf='vi ~/dot-files/config.fish'
 alias vv='vi ~/.vimrc'

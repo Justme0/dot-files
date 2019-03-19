@@ -5,6 +5,7 @@ conf2dir = {
   ".emacs"      => "~",
   ".tmux.conf"  => "~",
   ".vimrc"      => "~",
+  ".gitconfig"  => "~",
   "zathurarc"   => "~/.config/zathura/",
   "config.fish" => "~/.config/fish/",
   "keyboard"    => "/etc/default/",
