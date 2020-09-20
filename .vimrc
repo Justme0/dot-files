@@ -1,22 +1,22 @@
 "-----------------------------------vundle---------------------------------
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'fatih/vim-go'
-" Plugin 'kien/ctrlp.vim'
-" Plugin 'mileszs/ack.vim'
-" Plugin 'vim-scripts/matchit.zip'
-" Plugin 'tomasr/molokai'
-" Plugin 'morhetz/gruvbox'
-" Plugin 'dag/vim-fish'
-" Plugin 'keith/tmux.vim'
-" Plugin 'justme0/llvm-vim-util'
-" Plugin 'scrooloose/nerdcommenter'
-" Plugin 'Valloric/YouCompleteMe'
-call vundle#end()
-filetype plugin indent on
+" set nocompatible
+" filetype off
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
+" Plugin 'gmarik/Vundle.vim'
+" Plugin 'fatih/vim-go'
+" " Plugin 'kien/ctrlp.vim'
+" " Plugin 'mileszs/ack.vim'
+" " Plugin 'vim-scripts/matchit.zip'
+" " Plugin 'tomasr/molokai'
+" " Plugin 'morhetz/gruvbox'
+" " Plugin 'dag/vim-fish'
+" " Plugin 'keith/tmux.vim'
+" " Plugin 'justme0/llvm-vim-util'
+" " Plugin 'scrooloose/nerdcommenter'
+" " Plugin 'Valloric/YouCompleteMe'
+" call vundle#end()
+" filetype plugin indent on
 "-----------------------------------vundle end-------------------------------
 
 "------------------------------------my config-------------------------------
@@ -68,10 +68,13 @@ set guioptions=r
 " let g:rehash256=1 " work only if &t_Co > 255
 " :silent! colorscheme molokai
 
+colorscheme macvim
 :silent! colorscheme gruvbox "if have no the colorscheme, do nothing
 let g:gruvbox_contrast_dark='hard' " or soft, medium
 
-colorscheme murphy
+set incsearch
+set hlsearch
+" highlight Search ctermbg=White ctermfg=Black
 "============================== color end ============================
 
 " go last open line
@@ -89,18 +92,26 @@ set number
 set smartindent
 autocmd Filetype c,cpp set cindent
 set mouse=a
-set incsearch
-set hlsearch
+
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <silent> <esc>^[ <esc>^[
-set clipboard=unnamedplus
+
+"set clipboard=unnamedplus
+set clipboard=unnamed
+
 set showcmd
 set showmode
 set ruler
 set wildmenu
-"set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+
+" encoding
+" set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
+" set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set fileencoding=utf-8
+set termencoding=utf-8
+set encoding=utf-8
+
 set shell=/bin/bash
 "set shellcmdflag=-ic
 autocmd BufNewFile,BufRead * setlocal formatoptions-=ro

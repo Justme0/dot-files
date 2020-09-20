@@ -12,7 +12,7 @@ conf2dir = {
 }
 
 conf2dir.each_pair do |target, dir|
-  `mkdir -p #{dir}`
+  `sudo mkdir -p #{dir}`
   cmd = "sudo ln -fs ~/dot-files/#{target} #{dir}"
   puts cmd
   system(cmd) # OPTIMIZE: refactor hard code
