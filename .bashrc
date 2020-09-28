@@ -41,7 +41,7 @@ function gg() {
 }
 
 # git log patch
-unalias gp
+unalias gp 2>/dev/null
 function gp() {
     git log -p --stat --color --date=format-local:'%Y-%m-%d %H:%M:%S %a' "$@"
 }
