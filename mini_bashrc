@@ -1,0 +1,60 @@
+" ################## custom conf begin ###############
+
+" 1. set section
+set encoding=utf-8
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set mouse=a
+set incsearch
+set number
+set background=dark
+set scrolloff=6
+set noignorecase
+
+" 2. indent & tab
+autocmd BufNewFile,BufRead * setlocal formatoptions-=ro " why must BufNewFile ...
+set smartindent
+set smarttab
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+autocmd Filetype c,cpp set cindent
+
+syntax enable
+syntax on
+
+" color, theme
+colorscheme desert
+set hlsearch
+highlight Search ctermbg=Blue ctermfg=White
+
+" view
+" go last open line
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" 3. key map section
+nnoremap <c-h> <esc><c-w>h
+nnoremap <c-j> <esc><c-w>j
+nnoremap <c-k> <esc><c-w>k
+nnoremap <c-l> <esc><c-w>l
+inoremap <c-h> <esc><c-w>h
+inoremap <c-j> <esc><c-w>j
+inoremap <c-k> <esc><c-w>k
+inoremap <c-l> <esc><c-w>l
+
+noremap j gjzz
+noremap k gkzz
+nnoremap <space> :q<cr>
+nnoremap ,v :sp<space>~/.vimrc<cr>
+
+" search
+nnoremap <silent> <esc> :nohlsearch<cr><esc>
+nnoremap <silent> <esc>^[ <esc>^[
+
+" edit
+inoremap {<cr> {<cr>}<esc>O
+" reload vimrc once it's edited
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
+" ################## custom conf end ###############
