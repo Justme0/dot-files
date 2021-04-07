@@ -92,6 +92,7 @@ set number
 set smartindent
 autocmd Filetype c,cpp set cindent
 set mouse=a
+set backspace=indent,eol,start
 
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <silent> <esc>^[ <esc>^[
