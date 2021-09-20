@@ -9,7 +9,7 @@ conf2dir = {
   "zathurarc"   => "~/.config/zathura/",
   "config.fish" => "~/.config/fish/",
   ".bashrc"     => "~",
-  "keyboard"    => "/etc/default/",
+  "keyboard"    => "/etc/default/", # Please use xmodmap .Xmodmap
 }
 
 conf2dir.each_pair do |target, dir|
