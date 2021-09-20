@@ -8,6 +8,7 @@ conf2dir = {
   ".gitconfig"  => "~",
   "zathurarc"   => "~/.config/zathura/",
   "config.fish" => "~/.config/fish/",
+  ".bashrc"     => "~",
   "keyboard"    => "/etc/default/",
 }
 

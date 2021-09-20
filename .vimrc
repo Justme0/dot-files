@@ -68,8 +68,8 @@ set guioptions=r
 " let g:rehash256=1 " work only if &t_Co > 255
 " :silent! colorscheme molokai
 
-colorscheme macvim
-:silent! colorscheme gruvbox "if have no the colorscheme, do nothing
+:silent! colorscheme macvim "if have no the colorscheme, do nothing
+:silent! colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard' " or soft, medium
 
 set incsearch
