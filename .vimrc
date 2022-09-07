@@ -68,6 +68,7 @@ set guioptions=r
 " let g:rehash256=1 " work only if &t_Co > 255
 " :silent! colorscheme molokai
 
+colorscheme zellner
 :silent! colorscheme macvim "if have no the colorscheme, do nothing
 :silent! colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard' " or soft, medium
@@ -229,8 +230,8 @@ endfunction
 
 "-------- use LLVM style
 " Highlight trailing whitespace and lines longer than 80 columns.
-highlight LongLine ctermbg=Black guibg=Black
-autocmd BufEnter,BufRead,Filetype c,cpp,ruby,python,sh let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
+"highlight LongLine ctermbg=Black guibg=Black
+"autocmd BufEnter,BufRead,Filetype c,cpp,ruby,python,sh let w:m0=matchadd('LongLine', '\%>80v.\+', -1)
 "highlight WhitespaceEOL ctermbg=Black guibg=Black
 
 " Lines longer than 80 columns.

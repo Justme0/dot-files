@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 conf2dir = {
+  ".bashrc"     => "~",
+  ".zshrc"      => "~",
   ".gemrc"      => "~",
   ".emacs"      => "~",
   ".tmux.conf"  => "~",
@@ -8,7 +10,6 @@ conf2dir = {
   ".gitconfig"  => "~",
   "zathurarc"   => "~/.config/zathura/",
   "config.fish" => "~/.config/fish/",
-  ".bashrc"     => "~",
   "keyboard"    => "/etc/default/", # Please use xmodmap .Xmodmap
 }
 
