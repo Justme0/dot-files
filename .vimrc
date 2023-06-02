@@ -167,7 +167,7 @@ inoremap <C-N> <C-o>gj
 inoremap <C-P> <C-o>gk
 inoremap <C-X><C-S> <Esc>:w<CR>a
 " edit and compile for programming
-inoremap {<cr> {<cr>}<Esc>O
+" inoremap {<cr> {<cr>}<Esc>O
 
 " set cursorline
 autocmd FileType tex set cursorcolumn
