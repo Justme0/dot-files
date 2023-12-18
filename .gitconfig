@@ -1,7 +1,10 @@
 [user]
 	email = jiangg2012@hotmail.com
 	name = Justme0
+[pull]
+        rebase = false
 [push]
 	default = simple
+        autoSetupRemote = true
 [core]
 	excludesfile = ~/dot-files/.gitignore_global
