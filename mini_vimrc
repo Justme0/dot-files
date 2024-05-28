@@ -32,6 +32,8 @@ highlight Search ctermbg=Blue ctermfg=White
 " view
 " go last open line
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" mute warning when file changed
+autocmd FileChangedShell * echo ""
 
 " 3. key map section
 nnoremap <c-h> <esc><c-w>h
